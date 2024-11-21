@@ -26,6 +26,6 @@ public class PlayerMovement : MonoBehaviour
 
 
         movement = move.action.ReadValue<Vector3>();
-        rb.velocity = new Vector3(movement.x * movementSpeed, movement.y * movementSpeed, Velocity.z);
+        //rb.velocity = new Vector3(movement.x * movementSpeed, movement.y * movementSpeed, Velocity.z);
     }
 }
