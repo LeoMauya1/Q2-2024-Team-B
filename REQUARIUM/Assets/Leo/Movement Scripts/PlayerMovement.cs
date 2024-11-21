@@ -11,7 +11,8 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 movement;
     public float movementSpeed;
     public InputActionReference move;
-    
+   
+
 
 
     void Start()
@@ -24,8 +25,8 @@ public class PlayerMovement : MonoBehaviour
     {
 
 
-
-        movement = move.action.ReadValue<Vector3>();
-        //rb.velocity = new Vector3(movement.x * movementSpeed, movement.y * movementSpeed, Velocity.z);
+        movement = move.action.ReadValue<Vector2>();
+        rb.velocity = new Vector3(movement.x * movementSpeed,0, movement.y * movementSpeed);
+        
     }
 }
