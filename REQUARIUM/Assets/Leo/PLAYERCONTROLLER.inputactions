@@ -13,12 +13,21 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Aim",
+                    "type": "PassThrough",
+                    "id": "0faa8e09-fced-4858-98d3-151ea63f4d7e",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
                 {
                     "name": "2D Vector",
-                    "id": "55c7a8ba-03ff-48c9-b14a-2a37875cf6b4",
+                    "id": "29791fd2-7e9c-450d-9e05-f13e8e4b71a9",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
@@ -29,7 +38,7 @@
                 },
                 {
                     "name": "up",
-                    "id": "f16255bc-3fe4-4bd1-b72a-2a9fd5d2c8ec",
+                    "id": "861ef3bd-cd4f-4df9-918f-30b095b81639",
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
@@ -40,7 +49,7 @@
                 },
                 {
                     "name": "down",
-                    "id": "91587d07-b484-4845-a5f1-bb0a8aba5b1b",
+                    "id": "1ac730d7-6ad8-46ea-a0b3-06ac1d379524",
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
@@ -51,7 +60,7 @@
                 },
                 {
                     "name": "left",
-                    "id": "6d47ffbd-740c-4bb1-87c7-43662a9a8744",
+                    "id": "c17cf0c8-a9c3-43fd-9bd8-32b04c645752",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
@@ -62,7 +71,7 @@
                 },
                 {
                     "name": "right",
-                    "id": "bd26e675-1d2e-469d-a112-43941580e99b",
+                    "id": "b6d6c9af-bc74-421d-8560-27c26164fa33",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
@@ -70,6 +79,50 @@
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "3c44aa6e-3b64-468b-a4f9-66a8fea53a7e",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "GamePad",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f99efd3d-a25b-4a93-b060-11870392022e",
+                    "path": "<Gamepad>/dpad",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "GamePad",
+                    "action": "Movement",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8bf9527c-a851-4a4d-8ef7-96ea8421b297",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "17474267-f254-46a6-911f-51ad63150496",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "GamePad",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
@@ -85,6 +138,11 @@
                     "isOR": false
                 }
             ]
+        },
+        {
+            "name": "GamePad",
+            "bindingGroup": "GamePad",
+            "devices": []
         }
     ]
 }
