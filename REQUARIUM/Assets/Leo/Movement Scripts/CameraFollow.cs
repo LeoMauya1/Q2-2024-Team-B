@@ -15,8 +15,8 @@ public class CameraFollow : MonoBehaviour
 
     float Yrotation;
     float xRotation;
-    
-    
+
+
     void Start()
     {
         //Cursor.lockState = CursorLockMode.Locked;
@@ -25,21 +25,10 @@ public class CameraFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-
-
-    }
-
-    public void Aim(InputAction.CallbackContext ctx)
-    {
-        aimAt = ctx.ReadValue<Vector2>();
-        Debug.Log(aimAt.x);
-        Debug.Log(aimAt.y);
-
 
         transform.position = PlayerPos.position - offset;
-        float mouseX = aimAt.x * Time.deltaTime * camSensitivty;
-        float mouseY = aimAt.y * Time.deltaTime * camSensitivty;
+        float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * camSensitivty;
+        float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * camSensitivty;
 
         Yrotation += mouseX;
         xRotation -= mouseY;
@@ -52,3 +41,12 @@ public class CameraFollow : MonoBehaviour
         PlayerPos.rotation = Quaternion.Euler(0, Yrotation, 0);
     }
 }
+
+
+
+    
+
+     
+
+
+
