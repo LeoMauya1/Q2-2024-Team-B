@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -687,7 +687,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAACAn+uVrOdjTQIAAAsFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGFVE1z2jAQ/SuMzk0HEzqNe2sNIT0QmNBOLr4IaY01yJJHH+Ejw3/vSraxQw49Yd57u/v2w34nQtkamNNmYQRfag7kx4iEZ/Jl1JNPcKQ7rTbiDJ3mVXBXBhGNmhfqhEY8CWFWV+CMYD/VTgbxGEGvRKFNNec7yLR1FuGCSgtIGe1CtELofUSObcCp/T2H39EFnxgoB+Z/Kq+YpFUNPLjtxUmnThqZwj5aRfDMtJTCtiaIO9WxyYzW1mMLKOCCYlOxfNCXIHalwz+TYfCqKCy41pKhp5kwOJsmK/mlm4FV1O4bX29U+lDnITpqUi4/sXdJpAujq6euajIOFVwp2P6Fnhi1bjDPITz7aNurA5V7upXwWoJ61gujveJIOuNDqLcwmQ1SXTvLSmD7Xtd4vQF9/Xk3Sb+bS+z9mElRbQPyddoAG6njtNMQAwb38hsNx4uwbSZEg4m/Fv7Q3fB0WuJRGOuQaguq4G6rvQlSMo8zC814l2mjIMKt5xoUle60xjTudoE33KDsDfNIw0vSFm+57vZvQiLc68fjG2qtD9dl2VIflmDLlXdSKOhNB+IZ55RppZr7Gs6kC9t4U1A2CNt5wT+eFklTOi2K9IHRKaT3k+Qu5enk/tsYvo95+jDdMhJvTyjsk8p1Y7QdD25N9ckV3ln37RgtDK3jrXNDDwtxrvRg5EIVesMMgFo1Ga7GwWARfCf5nAsc0AacEyrum7znRGq2B55fE+Wx0/nRGZr3WXJSizftApKTLH4xchLg6ymvDbwJOITiXbILufwDUEsDBBQAAAgIAACAn+uyd9jGbQAAAHgAAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNEz0jM011FQSi9KLMgoBooYgjilmSkgdrSSpWWiSVqapUVyokmqpbGRoa5liqWRsalBqrlBiqWFSVKyUixQfUllQapfYm4qRE9AYklGWmZeSmZeup57UWaKO8hopdhaAFBLAQItABQAAAgIAACAn+uVrOdjTQIAAAsFAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAACAn+uyd9jGbQAAAHgAAAAJACQAAAAAAAAAAAAAAJoCAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAAUgMAAAAA
+    dataString: UEsDBBQAAAgIAACAn+t0kZsASgIAAAsFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGFVMlu2zAQ/RWD56awHBeNemsVx+khsRG3yEUXmhxZhClS4OIlgf+9Q2qNc+jJ8ntvZt4s0jsRytbAnDZLI/iT5kB+TEh4Jl8mA/kIJ7rTaiPeoNO8Cu7KIKJR80Kd0IgnIczqCpwR7KfaySCeIuiVKLSpFnwHmbbOIlxQaQEpo12IVgi9T8ipDTi3v2/hd3LBJwbKgfmfyismaVUDD24HcdKpk0amsI9WETwzLaWwrQniznVsMqO19dgCCrig2FQsH/QliF3p8M9sHLwqCguutWTo+V4YnE2TlfzSzcAqaveNrwOVHnrjTcqnT+xNEunC6Oqxq5pMQwVXCrZ/oWdGrRvNcwzff7Tt1ZHKPd1KeC1BPeul0V5xJJ3xIdRbmN2PUvWdZSWw/aBrvF6Bvv68m2TYzSX2fsqkqLYB+TpvgI3UcdppiAGDe/mNhuNF2DYTosHEXwt/6G58Oi3xIIx1SLUFVXC31d4EKVnEmYVmvMu0URDh1nMNikp3XmMad73AK25U9op5oOElaYu3XHf7VyERHvTT6RW11sd+WbbUxyew5co7KRQMpgPxjHPKtFLNfY1n0oVtvCkoG4XtvOAfT4ukKZ0XRXrH6BzS21lyk/J0dvttCt+nPL2bbxmJtycU9knlujHajge3pobkCu+s+3ZMlobW8da5oceleKv0aORCFXrDDIBaNRl642CwCL6TfMEFDmgDzgkV903ecyI12wPP+0R57HRxcobmQ5ac1OKgXUByksUvRk4C3J/y2sBBwDEU75JdyOUfUEsDBBQAAAgIAACAn+uyd9jGbQAAAHgAAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNEz0jM011FQSi9KLMgoBooYgjilmSkgdrSSpWWiSVqapUVyokmqpbGRoa5liqWRsalBqrlBiqWFSVKyUixQfUllQapfYm4qRE9AYklGWmZeSmZeup57UWaKO8hopdhaAFBLAQItABQAAAgIAACAn+t0kZsASgIAAAsFAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAACAn+uyd9jGbQAAAHgAAAAJACQAAAAAAAAAAAAAAJcCAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAATwMAAAAA
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -845,6 +845,7 @@ GameObject:
   - component: {fileID: 487428883}
   - component: {fileID: 487428888}
   - component: {fileID: 487428887}
+  - component: {fileID: 487428889}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: Untagged
@@ -961,7 +962,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ghost:
     name: 
-    speed: 0
+    speed: 5
     nodes:
     - {fileID: 66220190}
     - {fileID: 1025595580}
@@ -985,11 +986,39 @@ MonoBehaviour:
   nextWaypointDistance: 3
   currentWaypoint: 0
   rb: {fileID: 487428887}
-  seeker: {fileID: 0}
+  seeker: {fileID: 487428889}
   targetDistance: 0
   leaveDistance: 0
   sortedNodes: []
   state: 0
+--- !u!114 &487428889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487428882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  drawGizmos: 1
+  detailedGizmos: 0
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  graphMask:
+    value: -1
 --- !u!1 &545345928
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,6 +17,7 @@ public class Ghost : MonoBehaviour
 
     public Rigidbody rb;
     public Seeker seeker;
+  
 
     public float targetDistance;
     public float leaveDistance;
@@ -38,6 +39,8 @@ public class Ghost : MonoBehaviour
     void Start()
     {
         sortedNodes = ghost.nodes.OrderBy(x => Vector3.Distance(this.transform.position, x.transform.position)).ToList();
+        ghost.currentTarget = sortedNodes[0];
+        ghost.nextTarget = sortedNodes[1];
     }
     void UpdatePath()
     {
@@ -58,6 +61,7 @@ public class Ghost : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UpdatePath();
         if (state == States.Roaming)
         {
             IsRoaming();
@@ -109,7 +113,18 @@ public class Ghost : MonoBehaviour
     [ContextMenu("IsRoaming")]
     public void IsRoaming()
     {
-
+        if (reachedEndOfPath == true)
+        {
+            sortedNodes.Remove(ghost.currentTarget);
+            if (sortedNodes.Count == 0)
+            {
+                sortedNodes = ghost.nodes.OrderBy(x => Vector3.Distance(this.transform.position, x.transform.position)).ToList();
+                ghost.currentTarget = sortedNodes[0];
+                ghost.nextTarget = sortedNodes[1];
+            }
+            ghost.currentTarget = ghost.nextTarget;
+            ghost.nextTarget = sortedNodes[1];
+        }
     }
 
     [ContextMenu("IsWatching")]
