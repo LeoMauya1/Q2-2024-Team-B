@@ -9,18 +9,26 @@ using System.Linq;
 public class Ghost : MonoBehaviour
 {
     public enum States { Roaming, Watching, Attacking, Possessing, Retreating }
+    
     public EnemyType ghost;
+    
     private Pathfinding.Path ghostPath;
+    
     public float nextWaypointDistance = 3f;
+    
     public int currentWaypoint = 0;
-    private bool reachedEndOfPath = false;
+    
+    public bool reachedEndOfPath = false;
 
     public Rigidbody rb;
+    
     public Seeker seeker;
   
 
     public float targetDistance;
+    
     public float leaveDistance;
+    
     public List<GameObject> sortedNodes;
 
     public States state = States.Roaming;
@@ -61,6 +69,7 @@ public class Ghost : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        targetDistance = Vector3.Distance(this.transform.position, ghost.currentTarget.transform.position);
         UpdatePath();
         if (state == States.Roaming)
         {
@@ -82,12 +91,13 @@ public class Ghost : MonoBehaviour
         {
             IsRetreating();
         }
+        
         if (ghostPath == null)
         {
             return;
         }
 
-        if (currentWaypoint >= ghostPath.vectorPath.Count)
+        if (targetDistance <= leaveDistance)
         {
             reachedEndOfPath = true;
             return;
@@ -97,17 +107,19 @@ public class Ghost : MonoBehaviour
             reachedEndOfPath = false;
         }
 
-        Vector3 direction = ((Vector3)ghostPath.vectorPath[currentWaypoint] - rb.position).normalized;
+        Vector3 direction = (ghost.currentTarget.transform.position - transform.position).normalized;
+        Debug.Log($"Direction: {direction}");
         Vector3 force = direction * ghost.speed * Time.deltaTime;
-
-        rb.AddForce(force);
-
-        float distance = Vector3.Distance(rb.position, ghostPath.vectorPath[currentWaypoint]);
-
+        Vector3 newForce = new Vector3(force.x, force.y, force.z);
+        rb.AddForce(newForce);
+        Debug.Log($"Newforce: {newForce}");
+        float distance = Vector3.Distance(rb.position, ghost.currentTarget.transform.position);
+        Debug.Log($"Distance: {distance}");
         if (distance < nextWaypointDistance)
         {
             currentWaypoint++;
         }
+        Debug.Log($"Current Waypoint: {currentWaypoint}");
     }
 
     [ContextMenu("IsRoaming")]
