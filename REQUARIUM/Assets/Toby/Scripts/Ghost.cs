@@ -10,15 +10,16 @@ public class Ghost : MonoBehaviour
 {
     public enum States { Roaming, Watching, Attacking, Possessing, Retreating }
     
-    public EnemyType ghost;
     
     private Pathfinding.Path ghostPath;
     
-    public float nextWaypointDistance = 3f;
+    private float nextWaypointDistance = 3f;
     
-    public int currentWaypoint = 0;
+    private int currentWaypoint = 0;
     
-    public bool reachedEndOfPath = false;
+    private bool reachedEndOfPath = false;
+
+    private bool switchWait;
 
     public Rigidbody rb;
     
@@ -29,9 +30,15 @@ public class Ghost : MonoBehaviour
     
     public float leaveDistance;
     
+    public float speedCap;
+
+    public float slerp;
+    
     public List<GameObject> sortedNodes;
 
-    public States state = States.Roaming;
+    private States state = States.Roaming;
+
+    public EnemyType ghost;
 
 
     [ContextMenu("FindNodes")]
@@ -71,6 +78,7 @@ public class Ghost : MonoBehaviour
     {
         targetDistance = Vector3.Distance(this.transform.position, ghost.currentTarget.transform.position);
         UpdatePath();
+        CapVelocity();
         if (state == States.Roaming)
         {
             IsRoaming();
@@ -87,34 +95,26 @@ public class Ghost : MonoBehaviour
         {
             IsPossessing();
         }
-        else if (state == States.Retreating)
-        {
-            IsRetreating();
-        }
         
         if (ghostPath == null)
         {
             return;
         }
 
-        if (targetDistance <= leaveDistance)
+        if (targetDistance <= leaveDistance && switchWait == false)
         {
             reachedEndOfPath = true;
             return;
         }
         else
         {
+            switchWait = false;
             reachedEndOfPath = false;
         }
 
         Vector3 direction = (ghost.currentTarget.transform.position - transform.position).normalized;
-        Debug.Log($"Direction: {direction}");
-        Vector3 force = direction * ghost.speed * Time.deltaTime;
-        Vector3 newForce = new Vector3(force.x, force.y, force.z);
-        rb.AddForce(newForce);
-        Debug.Log($"Newforce: {newForce}");
+        rb.velocity = Vector3.Slerp(rb.velocity, direction * ghost.speed, Time.deltaTime * slerp);
         float distance = Vector3.Distance(rb.position, ghost.currentTarget.transform.position);
-        Debug.Log($"Distance: {distance}");
         if (distance < nextWaypointDistance)
         {
             currentWaypoint++;
@@ -127,7 +127,9 @@ public class Ghost : MonoBehaviour
     {
         if (reachedEndOfPath == true)
         {
+            switchWait = true;
             sortedNodes.Remove(ghost.currentTarget);
+            reachedEndOfPath = false;
             if (sortedNodes.Count == 0)
             {
                 sortedNodes = ghost.nodes.OrderBy(x => Vector3.Distance(this.transform.position, x.transform.position)).ToList();
@@ -156,10 +158,40 @@ public class Ghost : MonoBehaviour
     {
 
     }
-
-    [ContextMenu("IsRetreating")]
-    public void IsRetreating()
+    
+    public void CapVelocity()
     {
-
+        if (rb.velocity.x < -speedCap)
+        {
+            rb.velocity = new(-speedCap, rb.velocity.y);
+            if (rb.velocity.z < -speedCap)
+            {
+                rb.velocity = new(-speedCap, rb.velocity.y, -speedCap);
+            }
+        }
+        if (rb.velocity.z < -speedCap)
+        {
+            rb.velocity = new(rb.velocity.x, rb.velocity.y, -speedCap);
+            if (rb.velocity.x < -speedCap)
+            {
+                rb.velocity = new(-speedCap, rb.velocity.y, -speedCap);
+            }
+        }
+        else if (rb.velocity.x > speedCap)
+        {
+            rb.velocity = new(speedCap, rb.velocity.y);
+            if (rb.velocity.z > speedCap)
+            {
+                rb.velocity = new(speedCap, rb.velocity.y, speedCap);
+            }
+        }
+        else if (rb.velocity.z > speedCap)
+        {
+            rb.velocity = new(rb.velocity.x, rb.velocity.y, speedCap);
+            if (rb.velocity.z > speedCap)
+            {
+                rb.velocity = new(speedCap, rb.velocity.y, speedCap);
+            }
+        }
     }
 }
