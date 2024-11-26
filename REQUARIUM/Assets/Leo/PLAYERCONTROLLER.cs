@@ -44,6 +44,15 @@ public partial class @PLAYERCONTROLLER : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Crouch"",
+                    ""type"": ""Button"",
+                    ""id"": ""4ed2174c-0c37-48b5-bda2-6197a71ea367"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -145,6 +154,17 @@ public partial class @PLAYERCONTROLLER : IInputActionCollection2, IDisposable
                     ""action"": ""Aim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9eec2a8f-244e-45ff-a77e-dd554c7e43ba"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Crouch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -172,6 +192,7 @@ public partial class @PLAYERCONTROLLER : IInputActionCollection2, IDisposable
         m_GamePlay1 = asset.FindActionMap("GamePlay1", throwIfNotFound: true);
         m_GamePlay1_Movement = m_GamePlay1.FindAction("Movement", throwIfNotFound: true);
         m_GamePlay1_Aim = m_GamePlay1.FindAction("Aim", throwIfNotFound: true);
+        m_GamePlay1_Crouch = m_GamePlay1.FindAction("Crouch", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -233,12 +254,14 @@ public partial class @PLAYERCONTROLLER : IInputActionCollection2, IDisposable
     private IGamePlay1Actions m_GamePlay1ActionsCallbackInterface;
     private readonly InputAction m_GamePlay1_Movement;
     private readonly InputAction m_GamePlay1_Aim;
+    private readonly InputAction m_GamePlay1_Crouch;
     public struct GamePlay1Actions
     {
         private @PLAYERCONTROLLER m_Wrapper;
         public GamePlay1Actions(@PLAYERCONTROLLER wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_GamePlay1_Movement;
         public InputAction @Aim => m_Wrapper.m_GamePlay1_Aim;
+        public InputAction @Crouch => m_Wrapper.m_GamePlay1_Crouch;
         public InputActionMap Get() { return m_Wrapper.m_GamePlay1; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -254,6 +277,9 @@ public partial class @PLAYERCONTROLLER : IInputActionCollection2, IDisposable
                 @Aim.started -= m_Wrapper.m_GamePlay1ActionsCallbackInterface.OnAim;
                 @Aim.performed -= m_Wrapper.m_GamePlay1ActionsCallbackInterface.OnAim;
                 @Aim.canceled -= m_Wrapper.m_GamePlay1ActionsCallbackInterface.OnAim;
+                @Crouch.started -= m_Wrapper.m_GamePlay1ActionsCallbackInterface.OnCrouch;
+                @Crouch.performed -= m_Wrapper.m_GamePlay1ActionsCallbackInterface.OnCrouch;
+                @Crouch.canceled -= m_Wrapper.m_GamePlay1ActionsCallbackInterface.OnCrouch;
             }
             m_Wrapper.m_GamePlay1ActionsCallbackInterface = instance;
             if (instance != null)
@@ -264,6 +290,9 @@ public partial class @PLAYERCONTROLLER : IInputActionCollection2, IDisposable
                 @Aim.started += instance.OnAim;
                 @Aim.performed += instance.OnAim;
                 @Aim.canceled += instance.OnAim;
+                @Crouch.started += instance.OnCrouch;
+                @Crouch.performed += instance.OnCrouch;
+                @Crouch.canceled += instance.OnCrouch;
             }
         }
     }
@@ -290,5 +319,6 @@ public partial class @PLAYERCONTROLLER : IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
+        void OnCrouch(InputAction.CallbackContext context);
     }
 }

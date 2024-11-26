@@ -5,6 +5,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.EnhancedTouch;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -16,12 +17,15 @@ public class PlayerMovement : MonoBehaviour
     public InputActionReference move;
     public Transform playerDirection;
     private Vector3 movedirection;
-
+    public InputActionReference crouch;
+    public Transform crouchPos;
 
 
     public float playerheight;
     public LayerMask theGroud;
     public float drag;
+    //private float isCrouch;
+
 
 
 
@@ -30,14 +34,18 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
 
-    }
+    } 
 
     // Update is called once per frame
     void Update()
     {
-
-
+        if (crouch.action.WasPerformedThisFrame())
+        {
+            //transform.position = Vector3.MoveTowards(transform.position, crouchPos, 2f);
+        }
+      
         movement = move.action.ReadValue<Vector2>();
+        
         movedirection = playerDirection.forward * movement.y + playerDirection.right * movement.x;
         rb.AddForce(movedirection.normalized * movementSpeed * 10f, ForceMode.Force);
 
@@ -47,6 +55,8 @@ public class PlayerMovement : MonoBehaviour
         }
         else
             rb.drag = 0;
+        
+
 
 
     }
