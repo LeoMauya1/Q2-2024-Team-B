@@ -24,6 +24,8 @@ public class Ghost : MonoBehaviour
     public Rigidbody rb;
     
     public Seeker seeker;
+
+    public SphereCastHelper vision;
   
 
     public float targetDistance;
