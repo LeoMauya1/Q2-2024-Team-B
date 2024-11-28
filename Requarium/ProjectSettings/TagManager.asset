@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Node
+  - Artifact Node
   layers:
   - Default
   - TransparentFX
@@ -14,7 +15,7 @@ TagManager:
   - UI
   - Node
   - Ground
-  - 
+  - Artifact Node
   - 
   - 
   - 
