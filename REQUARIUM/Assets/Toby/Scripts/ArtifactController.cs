@@ -8,11 +8,12 @@ public class ArtifactController : MonoBehaviour
 {
     public List<GameObject> artifactNodes;
     public GameObject targetNode;
-    public static Artifact artifactBase;
+    public GameObject artifactBase;
+    public Quaternion spawnRotation = Quaternion.identity;
     // Start is called before the first frame update
 
-    [ContextMenu("FindNodes")]
-    public void FindNodes()
+    [ContextMenu("FindArtifactNodes")]
+    public void FindArtifactNodes()
     {
         GameObject[] nodes = GameObject.FindGameObjectsWithTag("Artifact Node");
         foreach (GameObject node in nodes)
@@ -23,12 +24,10 @@ public class ArtifactController : MonoBehaviour
 
     public void CreateArtifact()
     {
-        List<GameObject> shuffledNodes = artifactNodes;
+        List<GameObject> shuffledNodes = artifactNodes; //.OrderBy(x => random.Next()).ToList();
         targetNode = shuffledNodes[0];
         artifactNodes.Remove(shuffledNodes[0]);
-        //.OrderBy(x => random.Next()).ToList();
-        //Instantiate(artifactBase, targetNode.gameObject.transform, targetNode);
-
+        Instantiate(artifactBase, targetNode.gameObject.transform.position, spawnRotation);
     }
     void Start()
     {
