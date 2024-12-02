@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1058,6 +1058,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  playerInfo: {fileID: 0}
   possessing:
     m_PersistentCalls:
       m_Calls:
@@ -1112,18 +1113,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+  foundPlayer: 0
   rb: {fileID: 487428887}
   seeker: {fileID: 487428889}
-  vision: {fileID: 0}
+  vision:
+    _offset: {x: 0, y: 0, z: 0}
+    _radius: 200
+    _rotation: {x: 0, y: 0, z: 0, w: 1}
+    _layerMask:
+      serializedVersion: 2
+      m_Bits: 512
   targetDistance: 0
   leaveDistance: 40
-  speedCap: 75
+  speedCap: 125
   slerp: 1
-  possessTime: 50
+  possessTimeMax: 25
+  possessTime: 25
+  watchTimeMax: 1.5
+  watchTime: 1.5
+  followTimeMax: 5
+  followTime: 5
   sortedNodes: []
   ghost:
     name: 
-    speed: 50
+    speed: 100
     nodes:
     - {fileID: 66220190}
     - {fileID: 1025595580}
@@ -3147,7 +3160,8 @@ GameObject:
   - component: {fileID: 1826938107}
   - component: {fileID: 1826938106}
   - component: {fileID: 1826938105}
-  m_Layer: 0
+  - component: {fileID: 1826938109}
+  m_Layer: 9
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -3225,13 +3239,30 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1826938104}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 65.6, y: 34.8, z: 61.5}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalPosition: {x: 287, y: 53.5, z: 299}
+  m_LocalScale: {x: 50, y: 50, z: 50}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1826938109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1826938104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5043497088e0a9c4abdba9ef908b5ef4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortedNodes: []
+  saveData:
+    money: 0
+    health: 0
+    workDay: 0
 --- !u!1 &1906325283
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ using Pathfinding;
 using UnityEditor.Rendering;
 using UnityEngine.Events;
 using System.Linq;
+using System.ComponentModel.Design;
 
 public class Ghost : MonoBehaviour
 {
@@ -13,41 +14,55 @@ public class Ghost : MonoBehaviour
 
     public GameObject player;
 
+    public PlayerInfo playerInfo;
+
     public UnityEvent possessing;
 
     public UnityEvent unpossess;
 
     private Pathfinding.Path ghostPath;
-    
+
     private float nextWaypointDistance = 3f;
-    
+
     private int currentWaypoint = 0;
-    
+
     private bool reachedEndOfPath = false;
 
     private bool switchWait;
 
     private bool isPossessing;
 
-    private bool caughtPlayer;
+    public bool foundPlayer;
+
+    private bool doneWatching;
 
     public Rigidbody rb;
-    
+
     public Seeker seeker;
 
     public SphereCastHelper vision;
-  
+
 
     public float targetDistance;
-    
+
     public float leaveDistance;
-    
+
     public float speedCap;
 
     public float slerp;
 
+    public float possessTimeMax;
+
     public float possessTime;
+
+    public float watchTimeMax;
+
+    public float watchTime;
     
+    public float followTimeMax;
+
+    public float followTime;
+
     public List<GameObject> sortedNodes;
 
     private States state = States.Roaming;
@@ -68,10 +83,9 @@ public class Ghost : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        playerInfo = player.GetComponent<PlayerInfo>();
         FindNodes();
-        sortedNodes = ghost.nodes.OrderBy(x => Vector3.Distance(this.transform.position, x.transform.position)).ToList();
-        ghost.currentTarget = sortedNodes[0];
-        ghost.nextTarget = sortedNodes[1];
+        SortNodes();
     }
     void UpdatePath()
     {
@@ -92,13 +106,17 @@ public class Ghost : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(state);
         targetDistance = Vector3.Distance(this.transform.position, ghost.currentTarget.transform.position);
         UpdatePath();
-        CapVelocity(); 
-        //need to put the sphere cast searching for player in here
+        CapVelocity();
         if (isPossessing == true)
         {
             state = States.Possessing;
+        }
+        if (foundPlayer == true && doneWatching == false)
+        {
+            state = States.Watching;
         }
         if (state == States.Roaming)
         {
@@ -121,6 +139,7 @@ public class Ghost : MonoBehaviour
     [ContextMenu("IsRoaming")]
     public void IsRoaming()
     {
+        GetInfo();
         if (reachedEndOfPath == true)
         {
             switchWait = true;
@@ -154,6 +173,8 @@ public class Ghost : MonoBehaviour
         Vector3 direction = (ghost.currentTarget.transform.position - transform.position).normalized;
         rb.velocity = Vector3.Slerp(rb.velocity, direction * ghost.speed, Time.deltaTime * slerp);
         float distance = Vector3.Distance(rb.position, ghost.currentTarget.transform.position);
+        //transform.forward = ghost.currentTarget.transform.position - transform.position;
+        //vision._rotation = transform.rotation;
         if (distance < nextWaypointDistance)
         {
             currentWaypoint++;
@@ -164,22 +185,23 @@ public class Ghost : MonoBehaviour
     [ContextMenu("IsWatching")]
     public void IsWatching()
     {
-        //Have enemy recheck to see if it saw the player for sure then move to attacking
+        rb.velocity = Vector3.zero;
+        GetInfo();
     }
 
     [ContextMenu("IsAttacking")]
     public void IsAttacking()
     {
-        state = States.Attacking;
+        watchTime = watchTimeMax;
+        GetInfo();
         ghost.currentTarget = player;
-
 
         if (ghostPath == null)
         {
             return;
         }
 
-        if (caughtPlayer == true)
+        if (isPossessing == true)
         {
             reachedEndOfPath = true;
             return;
@@ -192,6 +214,8 @@ public class Ghost : MonoBehaviour
 
         Vector3 direction = (ghost.currentTarget.transform.position - transform.position).normalized;
         rb.velocity = Vector3.Slerp(rb.velocity, direction * ghost.speed, Time.deltaTime * slerp);
+        //transform.forward = ghost.currentTarget.transform.position - transform.position;
+        //vision._rotation = transform.rotation;
         float distance = Vector3.Distance(rb.position, ghost.currentTarget.transform.position);
         if (distance < nextWaypointDistance)
         {
@@ -209,7 +233,10 @@ public class Ghost : MonoBehaviour
         if (possessTime <= 0)
         {
             unpossess.Invoke();
-            //respawn the enemy
+            isPossessing = false;
+            playerInfo.SortNodesBD();
+            transform.position = playerInfo.sortedNodes[0].transform.position;
+            SortNodes();
             state = States.Roaming;
         }
     }
@@ -219,7 +246,6 @@ public class Ghost : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isPossessing = true;
-            caughtPlayer = true;
         }
     }
 
@@ -257,5 +283,61 @@ public class Ghost : MonoBehaviour
                 rb.velocity = new(speedCap, rb.velocity.y, speedCap);
             }
         }
+    }
+
+    public void SortNodes()
+    {
+        sortedNodes = ghost.nodes.OrderBy(x => Vector3.Distance(this.transform.position, x.transform.position)).ToList();
+        ghost.currentTarget = sortedNodes[0];
+        ghost.nextTarget = sortedNodes[1];
+    }
+
+    public void GetInfo()
+    {
+        var hitInfo = vision.GetHitInfo(transform);
+        if (hitInfo.Length > 0)
+        {
+            foundPlayer = true;
+        }
+        else 
+        {
+            foundPlayer = false;
+        }
+        if (state == States.Roaming && foundPlayer == true)
+        {
+            state = States.Watching;
+        }
+        if (state == States.Watching)
+        {
+            if (watchTime > 0)
+            {
+                watchTime -= Time.deltaTime;
+            }
+            else if (watchTime <= 0 && foundPlayer == true)
+            {
+                state = States.Attacking;
+            }
+        }
+        if (state == States.Attacking)
+        {
+            if (foundPlayer == false)
+            {
+                followTime -= Time.deltaTime;
+                if (followTime < 0)
+                {
+                    SortNodes();
+                    state = States.Roaming;
+                }
+            } 
+            else
+            {
+                followTime = followTimeMax;
+            }
+            
+        }
+    }
+    public void OnDrawGizmos()
+    {
+        vision.Draw(transform);
     }
 }

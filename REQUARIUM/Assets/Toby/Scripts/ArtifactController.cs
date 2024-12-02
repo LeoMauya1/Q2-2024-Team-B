@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 using UnityEngine;
 
 [System.Serializable]
@@ -24,7 +25,8 @@ public class ArtifactController : MonoBehaviour
 
     public void CreateArtifact()
     {
-        List<GameObject> shuffledNodes = artifactNodes; //.OrderBy(x => random.Next()).ToList();
+        System.Random rand = new System.Random();
+        List<GameObject> shuffledNodes = artifactNodes.OrderBy(x => rand.Next()).ToList();
         targetNode = shuffledNodes[0];
         artifactNodes.Remove(shuffledNodes[0]);
         Instantiate(artifactBase, targetNode.gameObject.transform.position, spawnRotation);
