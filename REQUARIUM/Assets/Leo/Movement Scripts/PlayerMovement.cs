@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Runtime.InteropServices;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.Rendering;
 using UnityEngine;
@@ -13,12 +14,14 @@ public class PlayerMovement : MonoBehaviour
 
     public Rigidbody rb;
     private Vector3 movement;
-    public float movementSpeed;
+    private float movementSpeed;
     public InputActionReference move;
     public Transform playerDirection;
     private Vector3 movedirection;
     public InputActionReference crouch;
+    public InputActionReference Jump;
     public Transform crouchPos;
+    public InputActionReference sprint;
 
 
     public float playerheight;
@@ -26,28 +29,67 @@ public class PlayerMovement : MonoBehaviour
     public float drag;
     //private float isCrouch;
 
+    public float jumpPower;
+    public float jumpCooldown;
+    public float airMultiplier;
+    private bool readyToJump;
+    public MovementState state;
+    public float walkSpeed;
+    public float SprintSpeed;
+    private float playerOriginalPos;
+    public float crouchSpeed;
+    public float crouchScale;
+    
+   
 
-
-
+    public enum MovementState
+    {
+        walking,
+        sprint,
+        air,
+        crouching
+    }
 
 
     void Start()
     {
-
+        readyToJump = true;
+        playerOriginalPos = transform.localScale.y;
     } 
 
     // Update is called once per frame
     void Update()
     {
-        if (crouch.action.WasPerformedThisFrame())
+        if (crouch.action.IsPressed())
         {
-            //transform.position = Vector3.MoveTowards(transform.position, crouchPos, 2f);
+           transform.localScale = new Vector3(transform.localScale.x, crouchScale, transform.localScale.z);
+            Debug.Log("ur Crouching");
+           rb.AddForce(Vector3.down * 5,ForceMode.Impulse);
         }
-      
+        if (crouch.action.WasReleasedThisFrame())
+        {
+            transform.localScale = new Vector3(transform.localScale.x,playerOriginalPos, transform.localScale.z);
+        }
+        if(Jump.action.WasPerformedThisFrame() && IsGrounded())
+        {
+            readyToJump = false;
+            Jumping();
+            Invoke(nameof(ResetJump), jumpCooldown);
+        }
         movement = move.action.ReadValue<Vector2>();
-        
         movedirection = playerDirection.forward * movement.y + playerDirection.right * movement.x;
-        rb.AddForce(movedirection.normalized * movementSpeed * 10f, ForceMode.Force);
+        if(IsGrounded())
+        {
+          rb.AddForce(movedirection.normalized * movementSpeed * 10f, ForceMode.Force);
+
+        }
+         else if (!IsGrounded())
+        {
+            rb.AddForce(movedirection.normalized * movementSpeed * 10f * airMultiplier, ForceMode.Force);
+        }
+        
+        speedControl();
+        StateHandler();
 
         if (IsGrounded())
         {
@@ -68,6 +110,57 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    private void speedControl()
+    {
+        Vector3 flatvel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+        if (flatvel.magnitude > movementSpeed)
+        {
+            Vector3 limitVel = flatvel.normalized * movementSpeed;
+            rb.velocity = new Vector3(limitVel.x, rb.velocity.y, limitVel.z);
+
+        }
+    }
+
+    private void StateHandler()
+    {
+        if(crouch.action.WasPressedThisFrame())
+        {
+            state = MovementState.crouching;
+            movementSpeed = crouchSpeed;
+        }
+
+        if (IsGrounded())
+        {
+            state = MovementState.walking;
+            movementSpeed = walkSpeed;
+            
+        }
+        else if(IsGrounded() && sprint.action.IsPressed())
+        {
+            state = MovementState.sprint;
+            movementSpeed = SprintSpeed;
+        }
+        
+        else
+        {
+            state = MovementState.air;
+        }
+        
+    }
+
+
+
+    private void Jumping()
+    {
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+
+        rb.AddForce(transform.up *jumpPower, ForceMode.Impulse);
+    }
+    private void ResetJump()
+    {
+        readyToJump = true;
+    }
 
 }
     
