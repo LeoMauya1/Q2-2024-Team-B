@@ -11,10 +11,11 @@ public struct SphereCastHelper
     [SerializeField] private float _radius;
     [SerializeField] public Quaternion _rotation;
     [SerializeField] private LayerMask _layerMask;
+    [SerializeField] private QueryTriggerInteraction _trigger;
 
-    public readonly RaycastHit[] GetHitInfo(Transform transform)
+    public readonly bool GetHitInfo(Transform transform, out RaycastHit hitInfo)
     {
-        return Physics.SphereCastAll(transform.position + _offset, _radius, Vector3.zero, 1, _layerMask);
+        return Physics.SphereCast(transform.position + _offset, _radius, Vector3.one, out hitInfo, Mathf.Infinity, _layerMask, _trigger);
     }
 
     public readonly void Draw(Transform transform)

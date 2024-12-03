@@ -7,7 +7,7 @@ using System.Linq;
 public class PlayerInfo : MonoBehaviour
 {
     
-    private List<GameObject> pNodes;
+    public List<GameObject> pNodes;
     public List<GameObject> sortedNodes;
 
     public SaveData saveData;

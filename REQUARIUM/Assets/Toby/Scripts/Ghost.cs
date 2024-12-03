@@ -14,6 +14,10 @@ public class Ghost : MonoBehaviour
 
     public GameObject player;
 
+    public float playerDistance;
+
+    public float watchDistance;
+
     public PlayerInfo playerInfo;
 
     public UnityEvent possessing;
@@ -34,7 +38,7 @@ public class Ghost : MonoBehaviour
 
     public bool foundPlayer;
 
-    private bool doneWatching;
+    public bool doneWatching;
 
     public Rigidbody rb;
 
@@ -106,10 +110,20 @@ public class Ghost : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(state);
+        Debug.Log($"Current Target: {ghost.currentTarget}");
+        Debug.Log($"Current State: {state}");
         targetDistance = Vector3.Distance(this.transform.position, ghost.currentTarget.transform.position);
+        playerDistance = Vector3.Distance(this.transform.position, player.transform.position);
         UpdatePath();
         CapVelocity();
+        if (playerDistance <= watchDistance)
+        {
+            foundPlayer = true;
+        }
+        else
+        {
+            foundPlayer = false;
+        }
         if (isPossessing == true)
         {
             state = States.Possessing;
@@ -120,6 +134,8 @@ public class Ghost : MonoBehaviour
         }
         if (state == States.Roaming)
         {
+            watchTime = watchTimeMax;
+            doneWatching = false;
             IsRoaming();
         }
         else if (state == States.Watching)
@@ -127,7 +143,7 @@ public class Ghost : MonoBehaviour
             IsWatching();
         }
         else if (state == States.Attacking)
-        {
+        { 
             IsAttacking();
         }
         else if (state == States.Possessing)
@@ -179,7 +195,6 @@ public class Ghost : MonoBehaviour
         {
             currentWaypoint++;
         }
-        Debug.Log($"Current Waypoint: {currentWaypoint}");
     }
 
     [ContextMenu("IsWatching")]
@@ -192,9 +207,7 @@ public class Ghost : MonoBehaviour
     [ContextMenu("IsAttacking")]
     public void IsAttacking()
     {
-        watchTime = watchTimeMax;
         GetInfo();
-        ghost.currentTarget = player;
 
         if (ghostPath == null)
         {
@@ -221,7 +234,6 @@ public class Ghost : MonoBehaviour
         {
             currentWaypoint++;
         }
-        Debug.Log($"Current Waypoint: {currentWaypoint}");
     }
 
     [ContextMenu("IsPossessing")]
@@ -230,7 +242,7 @@ public class Ghost : MonoBehaviour
         rb.velocity = Vector3.zero;
         possessing.Invoke();
         possessTime -= Time.deltaTime;
-        if (possessTime <= 0)
+        if (possessTime <= 0 && isPossessing == true)
         {
             unpossess.Invoke();
             isPossessing = false;
@@ -294,15 +306,6 @@ public class Ghost : MonoBehaviour
 
     public void GetInfo()
     {
-        var hitInfo = vision.GetHitInfo(transform);
-        if (hitInfo.Length > 0)
-        {
-            foundPlayer = true;
-        }
-        else 
-        {
-            foundPlayer = false;
-        }
         if (state == States.Roaming && foundPlayer == true)
         {
             state = States.Watching;
@@ -313,8 +316,10 @@ public class Ghost : MonoBehaviour
             {
                 watchTime -= Time.deltaTime;
             }
-            else if (watchTime <= 0 && foundPlayer == true)
+            else if (watchTime <= 0)
             {
+                doneWatching = true;
+                ghost.currentTarget = player;
                 state = States.Attacking;
             }
         }
@@ -323,7 +328,7 @@ public class Ghost : MonoBehaviour
             if (foundPlayer == false)
             {
                 followTime -= Time.deltaTime;
-                if (followTime < 0)
+                if (followTime <= 0)
                 {
                     SortNodes();
                     state = States.Roaming;
