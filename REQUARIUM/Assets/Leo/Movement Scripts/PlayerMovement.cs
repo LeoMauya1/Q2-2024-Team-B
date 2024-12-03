@@ -60,24 +60,28 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        movement = move.action.ReadValue<Vector2>();
+        movedirection = playerDirection.forward * movement.y + playerDirection.right * movement.x;
+
+
         if (crouch.action.IsPressed())
         {
            transform.localScale = new Vector3(transform.localScale.x, crouchScale, transform.localScale.z);
             Debug.Log("ur Crouching");
            rb.AddForce(Vector3.down * 5,ForceMode.Impulse);
         }
+      
         if (crouch.action.WasReleasedThisFrame())
         {
             transform.localScale = new Vector3(transform.localScale.x,playerOriginalPos, transform.localScale.z);
         }
-        if(Jump.action.WasPerformedThisFrame() && IsGrounded())
+   
+        if(Jump.action.WasPerformedThisFrame() && IsGrounded() && readyToJump)
         {
             readyToJump = false;
             Jumping();
             Invoke(nameof(ResetJump), jumpCooldown);
         }
-        movement = move.action.ReadValue<Vector2>();
-        movedirection = playerDirection.forward * movement.y + playerDirection.right * movement.x;
         if(IsGrounded())
         {
           rb.AddForce(movedirection.normalized * movementSpeed * 10f, ForceMode.Force);
@@ -98,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
         else
             rb.drag = 0;
         
-
+        
 
 
     }
@@ -107,6 +111,7 @@ public class PlayerMovement : MonoBehaviour
     private bool IsGrounded()
     {
         return Physics.Raycast(transform.position, Vector3.down, playerheight * 0.5f + 0.2f, theGroud);
+        
 
     }
 
@@ -124,24 +129,22 @@ public class PlayerMovement : MonoBehaviour
 
     private void StateHandler()
     {
-        if(crouch.action.WasPressedThisFrame())
+        if(crouch.action.IsPressed())
         {
             state = MovementState.crouching;
             movementSpeed = crouchSpeed;
         }
-
-        if (IsGrounded())
+        else if( IsGrounded() && sprint.action.IsPressed())
+        {
+            state = MovementState.sprint;
+            movementSpeed = SprintSpeed;
+        } 
+        else if (IsGrounded())
         {
             state = MovementState.walking;
             movementSpeed = walkSpeed;
             
         }
-        else if(IsGrounded() && sprint.action.IsPressed())
-        {
-            state = MovementState.sprint;
-            movementSpeed = SprintSpeed;
-        }
-        
         else
         {
             state = MovementState.air;
