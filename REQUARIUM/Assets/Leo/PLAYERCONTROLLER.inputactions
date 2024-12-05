@@ -58,6 +58,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "shootSpear",
+                    "type": "Button",
+                    "id": "9e5f7f4e-15e1-43cf-826f-4b662b2b6598",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -207,11 +216,22 @@
                 {
                     "name": "",
                     "id": "15fa7ba3-78e1-4f28-b03b-1b8b927de2ac",
-                    "path": "<Keyboard>/f",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "FlashLight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9a05f14a-6d0d-4204-879d-03a8d16925d0",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "shootSpear",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

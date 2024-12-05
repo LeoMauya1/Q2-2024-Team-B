@@ -80,6 +80,15 @@ public partial class @PLAYERCONTROLLER : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""shootSpear"",
+                    ""type"": ""Button"",
+                    ""id"": ""9e5f7f4e-15e1-43cf-826f-4b662b2b6598"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -229,11 +238,22 @@ public partial class @PLAYERCONTROLLER : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""15fa7ba3-78e1-4f28-b03b-1b8b927de2ac"",
-                    ""path"": ""<Keyboard>/f"",
+                    ""path"": ""<Mouse>/leftButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""FlashLight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9a05f14a-6d0d-4204-879d-03a8d16925d0"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""shootSpear"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -267,6 +287,7 @@ public partial class @PLAYERCONTROLLER : IInputActionCollection2, IDisposable
         m_GamePlay1_Jump = m_GamePlay1.FindAction("Jump", throwIfNotFound: true);
         m_GamePlay1_Sprint = m_GamePlay1.FindAction("Sprint", throwIfNotFound: true);
         m_GamePlay1_FlashLight = m_GamePlay1.FindAction("FlashLight", throwIfNotFound: true);
+        m_GamePlay1_shootSpear = m_GamePlay1.FindAction("shootSpear", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -332,6 +353,7 @@ public partial class @PLAYERCONTROLLER : IInputActionCollection2, IDisposable
     private readonly InputAction m_GamePlay1_Jump;
     private readonly InputAction m_GamePlay1_Sprint;
     private readonly InputAction m_GamePlay1_FlashLight;
+    private readonly InputAction m_GamePlay1_shootSpear;
     public struct GamePlay1Actions
     {
         private @PLAYERCONTROLLER m_Wrapper;
@@ -342,6 +364,7 @@ public partial class @PLAYERCONTROLLER : IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_GamePlay1_Jump;
         public InputAction @Sprint => m_Wrapper.m_GamePlay1_Sprint;
         public InputAction @FlashLight => m_Wrapper.m_GamePlay1_FlashLight;
+        public InputAction @shootSpear => m_Wrapper.m_GamePlay1_shootSpear;
         public InputActionMap Get() { return m_Wrapper.m_GamePlay1; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -369,6 +392,9 @@ public partial class @PLAYERCONTROLLER : IInputActionCollection2, IDisposable
                 @FlashLight.started -= m_Wrapper.m_GamePlay1ActionsCallbackInterface.OnFlashLight;
                 @FlashLight.performed -= m_Wrapper.m_GamePlay1ActionsCallbackInterface.OnFlashLight;
                 @FlashLight.canceled -= m_Wrapper.m_GamePlay1ActionsCallbackInterface.OnFlashLight;
+                @shootSpear.started -= m_Wrapper.m_GamePlay1ActionsCallbackInterface.OnShootSpear;
+                @shootSpear.performed -= m_Wrapper.m_GamePlay1ActionsCallbackInterface.OnShootSpear;
+                @shootSpear.canceled -= m_Wrapper.m_GamePlay1ActionsCallbackInterface.OnShootSpear;
             }
             m_Wrapper.m_GamePlay1ActionsCallbackInterface = instance;
             if (instance != null)
@@ -391,6 +417,9 @@ public partial class @PLAYERCONTROLLER : IInputActionCollection2, IDisposable
                 @FlashLight.started += instance.OnFlashLight;
                 @FlashLight.performed += instance.OnFlashLight;
                 @FlashLight.canceled += instance.OnFlashLight;
+                @shootSpear.started += instance.OnShootSpear;
+                @shootSpear.performed += instance.OnShootSpear;
+                @shootSpear.canceled += instance.OnShootSpear;
             }
         }
     }
@@ -421,5 +450,6 @@ public partial class @PLAYERCONTROLLER : IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
         void OnFlashLight(InputAction.CallbackContext context);
+        void OnShootSpear(InputAction.CallbackContext context);
     }
 }
