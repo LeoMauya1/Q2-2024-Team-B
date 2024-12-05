@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Windows.Speech;
 
 public class SPEARGUN : MonoBehaviour
 {
     [Header("INPUTS")]
     public InputAction launchSpear;
-    public Transform playerPos;
-
+    
     [Header("SHOOTING")]
     public GameObject spears;
     public GameObject FiringPoint;
@@ -19,30 +19,30 @@ public class SPEARGUN : MonoBehaviour
     public float stunTime;
     [Header("SPEAR ATRIBUTES")]
     public Rigidbody rb;
-    public Vector3 spearPosition;
+    public Transform playerPos;
+    public Vector3 spearPos;
     public Vector3 spearRotation;
-
 
     private PLAYERCONTROLLER shootingEvent;
     private bool hasShot;
-
-  
-    
 
 
 
     private void Update()
     {
-        transform.position = playerPos.position + playerPos.TransformDirection(spearPosition);
+        transform.position = playerPos.position + playerPos.TransformDirection(spearPos);
         transform.rotation = playerPos.rotation * Quaternion.Euler(spearRotation);
 
 
-        if(hasShot)
-        {
-            spears.transform.position = new Vector3(transform.position.x + 4, transform.position.y, transform.position.z);
-            hasShot =! hasShot;
-        }
 
+
+
+        if (hasShot && rb != null )
+        {
+            Debug.Log("POW!");
+            spears.transform.position = new Vector3(spears.transform.position.x,spears.transform.position.y,transform.position.z * 10 * Time.deltaTime * 5);
+        }
+     
     }
 
 
@@ -66,8 +66,10 @@ public class SPEARGUN : MonoBehaviour
     private void ShootSpear(InputAction.CallbackContext contxt)
     {
         Debug.Log("spear was shot!");
+
         Instantiate(spears, FiringPoint.transform.position, FiringPoint.transform.rotation);
         hasShot = true;
+
         
     }
 }
