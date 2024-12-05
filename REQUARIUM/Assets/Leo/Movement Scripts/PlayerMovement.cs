@@ -68,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
         {
            transform.localScale = new Vector3(transform.localScale.x, crouchScale, transform.localScale.z);
             Debug.Log("ur Crouching");
-           rb.AddForce(Vector3.down * 5, ForceMode.Impulse);
+           rb.AddForce(Vector3.down * 7*Time.deltaTime, ForceMode.Impulse);
         }
       
         if (crouch.action.WasReleasedThisFrame())
@@ -158,7 +158,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
-        rb.AddForce(transform.up *jumpPower*Time.deltaTime, ForceMode.Impulse);
+        rb.AddForce(transform.up *jumpPower, ForceMode.Impulse);
     }
     private void ResetJump()
     {

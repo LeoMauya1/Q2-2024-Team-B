@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4009086616681177698}
   - component: {fileID: 6657489637311983054}
   - component: {fileID: 8198511024993338622}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 6246213183354406130}
   - component: {fileID: 8503935995342466697}
   - component: {fileID: 3656923699835325370}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SPEAR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
