@@ -71,6 +71,15 @@ public partial class @PLAYERCONTROLLER : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FlashLight"",
+                    ""type"": ""Button"",
+                    ""id"": ""c7444b7d-24ae-48e9-b367-8ab534e66ce4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -216,6 +225,17 @@ public partial class @PLAYERCONTROLLER : IInputActionCollection2, IDisposable
                     ""action"": ""Sprint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""15fa7ba3-78e1-4f28-b03b-1b8b927de2ac"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FlashLight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -246,6 +266,7 @@ public partial class @PLAYERCONTROLLER : IInputActionCollection2, IDisposable
         m_GamePlay1_Crouch = m_GamePlay1.FindAction("Crouch", throwIfNotFound: true);
         m_GamePlay1_Jump = m_GamePlay1.FindAction("Jump", throwIfNotFound: true);
         m_GamePlay1_Sprint = m_GamePlay1.FindAction("Sprint", throwIfNotFound: true);
+        m_GamePlay1_FlashLight = m_GamePlay1.FindAction("FlashLight", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -310,6 +331,7 @@ public partial class @PLAYERCONTROLLER : IInputActionCollection2, IDisposable
     private readonly InputAction m_GamePlay1_Crouch;
     private readonly InputAction m_GamePlay1_Jump;
     private readonly InputAction m_GamePlay1_Sprint;
+    private readonly InputAction m_GamePlay1_FlashLight;
     public struct GamePlay1Actions
     {
         private @PLAYERCONTROLLER m_Wrapper;
@@ -319,6 +341,7 @@ public partial class @PLAYERCONTROLLER : IInputActionCollection2, IDisposable
         public InputAction @Crouch => m_Wrapper.m_GamePlay1_Crouch;
         public InputAction @Jump => m_Wrapper.m_GamePlay1_Jump;
         public InputAction @Sprint => m_Wrapper.m_GamePlay1_Sprint;
+        public InputAction @FlashLight => m_Wrapper.m_GamePlay1_FlashLight;
         public InputActionMap Get() { return m_Wrapper.m_GamePlay1; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -343,6 +366,9 @@ public partial class @PLAYERCONTROLLER : IInputActionCollection2, IDisposable
                 @Sprint.started -= m_Wrapper.m_GamePlay1ActionsCallbackInterface.OnSprint;
                 @Sprint.performed -= m_Wrapper.m_GamePlay1ActionsCallbackInterface.OnSprint;
                 @Sprint.canceled -= m_Wrapper.m_GamePlay1ActionsCallbackInterface.OnSprint;
+                @FlashLight.started -= m_Wrapper.m_GamePlay1ActionsCallbackInterface.OnFlashLight;
+                @FlashLight.performed -= m_Wrapper.m_GamePlay1ActionsCallbackInterface.OnFlashLight;
+                @FlashLight.canceled -= m_Wrapper.m_GamePlay1ActionsCallbackInterface.OnFlashLight;
             }
             m_Wrapper.m_GamePlay1ActionsCallbackInterface = instance;
             if (instance != null)
@@ -362,6 +388,9 @@ public partial class @PLAYERCONTROLLER : IInputActionCollection2, IDisposable
                 @Sprint.started += instance.OnSprint;
                 @Sprint.performed += instance.OnSprint;
                 @Sprint.canceled += instance.OnSprint;
+                @FlashLight.started += instance.OnFlashLight;
+                @FlashLight.performed += instance.OnFlashLight;
+                @FlashLight.canceled += instance.OnFlashLight;
             }
         }
     }
@@ -391,5 +420,6 @@ public partial class @PLAYERCONTROLLER : IInputActionCollection2, IDisposable
         void OnCrouch(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
+        void OnFlashLight(InputAction.CallbackContext context);
     }
 }

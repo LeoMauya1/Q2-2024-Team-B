@@ -61,7 +61,9 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         movement = move.action.ReadValue<Vector2>();
-        movedirection = playerDirection.forward * movement.y * Time.deltaTime + playerDirection.right * movement.x * Time.deltaTime;
+
+        movedirection = playerDirection.forward * movement.y* Time.deltaTime + playerDirection.right * movement.x * Time.deltaTime;
+
 
 
         if (crouch.action.IsPressed())
