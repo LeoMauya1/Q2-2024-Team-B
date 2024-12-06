@@ -61,14 +61,14 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         movement = move.action.ReadValue<Vector2>();
-        movedirection = playerDirection.forward * movement.y* Time.deltaTime + playerDirection.right * movement.x * Time.deltaTime;
+        movedirection = playerDirection.forward * movement.y + playerDirection.right * movement.x;
 
 
         if (crouch.action.IsPressed())
         {
            transform.localScale = new Vector3(transform.localScale.x, crouchScale, transform.localScale.z);
             Debug.Log("ur Crouching");
-           rb.AddForce(Vector3.down * 5 * Time.deltaTime, ForceMode.Impulse);
+           rb.AddForce(Vector3.down * 7*Time.deltaTime, ForceMode.Impulse);
         }
       
         if (crouch.action.WasReleasedThisFrame())

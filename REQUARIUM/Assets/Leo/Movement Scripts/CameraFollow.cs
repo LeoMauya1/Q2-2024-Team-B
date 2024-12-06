@@ -13,8 +13,8 @@ public class CameraFollow : MonoBehaviour
     public Vector3 offset;
     private Vector2 aimAt;
 
-    float Yrotation;
-    float xRotation;
+   public static float Yrotation;
+   public static float xRotation;
 
 
     void Start()
@@ -38,6 +38,8 @@ public class CameraFollow : MonoBehaviour
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
         transform.rotation = Quaternion.Euler(xRotation, Yrotation, 0);
+       // Debug.Log(transform.rotation.x);
+       // Debug.Log(transform.rotation.y);
         PlayerPos.rotation = Quaternion.Euler(0, Yrotation, 0);
     }
 }
