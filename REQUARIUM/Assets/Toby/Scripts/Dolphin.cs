@@ -88,20 +88,19 @@ public class Dolphin : MonoBehaviour
             return;
         }
 
-        if (targetDistance <= leaveDistance && switchWait == false)
+        if (currentWaypoint >= dolphinPath.vectorPath.Count)
         {
             reachedEndOfPath = true;
             return;
         }
         else
         {
-            switchWait = false;
             reachedEndOfPath = false;
         }
 
-        Vector3 direction = (dolphin.currentTarget.transform.position - transform.position).normalized;
+        Vector3 direction = (dolphinPath.vectorPath[currentWaypoint] - transform.position).normalized;
         rb.velocity = Vector3.Slerp(rb.velocity, direction * dolphin.speed, Time.deltaTime * slerp);
-        float distance = Vector3.Distance(rb.position, dolphin.currentTarget.transform.position);
+        float distance = Vector3.Distance(rb.position, dolphinPath.vectorPath[currentWaypoint]);
         //transform.forward = ghost.currentTarget.transform.position - transform.position;
         //vision._rotation = transform.rotation;
         if (distance < nextWaypointDistance)
