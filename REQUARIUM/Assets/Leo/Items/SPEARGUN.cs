@@ -25,6 +25,7 @@ public class SPEARGUN : MonoBehaviour
 
     private PLAYERCONTROLLER shootingEvent;
     private bool hasShot;
+    private GameObject spear;
 
 
 
@@ -37,11 +38,13 @@ public class SPEARGUN : MonoBehaviour
 
 
 
-        if (hasShot && rb != null )
+        if (hasShot)
         {
             Debug.Log("POW!");
-            spears.transform.position = new Vector3(spears.transform.position.x,spears.transform.position.y,transform.position.z * 10 * Time.deltaTime * 5);
+
+            spear.transform.position = new Vector3(spear.transform.position.x, spear.transform.position.y, spear.transform.position.z * 20 * Time.deltaTime);
         }
+            
      
     }
 
@@ -67,7 +70,7 @@ public class SPEARGUN : MonoBehaviour
     {
         Debug.Log("spear was shot!");
 
-        Instantiate(spears, FiringPoint.transform.position, FiringPoint.transform.rotation);
+        spear = Instantiate(spears, FiringPoint.transform.position, FiringPoint.transform.rotation);
         hasShot = true;
 
         
