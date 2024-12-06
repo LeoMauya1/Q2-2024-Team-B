@@ -42,7 +42,7 @@ public class SPEARGUN : MonoBehaviour
         {
             Debug.Log("POW!");
 
-            spear.transform.position = new Vector3(spear.transform.position.x, spear.transform.position.y, spear.transform.position.z * 20 * Time.deltaTime);
+           spear.transform.position = new Vector3(spear.transform.position.x,spear.transform.position.y,spear.transform.position.z + 3 * Time.deltaTime);
         }
             
      
@@ -70,7 +70,7 @@ public class SPEARGUN : MonoBehaviour
     {
         Debug.Log("spear was shot!");
 
-        spear = Instantiate(spears, FiringPoint.transform.position, FiringPoint.transform.rotation);
+        spear = Instantiate(spears, FiringPoint.transform.position,FiringPoint.transform.localRotation * Quaternion.Euler(spearRotation));
         hasShot = true;
 
         
