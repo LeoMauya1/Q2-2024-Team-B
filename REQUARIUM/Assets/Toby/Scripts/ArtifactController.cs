@@ -25,8 +25,7 @@ public class ArtifactController : MonoBehaviour
 
     public void CreateArtifact()
     {
-        System.Random rand = new System.Random();
-        List<GameObject> shuffledNodes = artifactNodes.OrderBy(x => rand.Next()).ToList();
+        List<GameObject> shuffledNodes = artifactNodes.OrderBy(x => Artifact.randyTheRandom.Next()).ToList();
         targetNode = shuffledNodes[0];
         artifactNodes.Remove(shuffledNodes[0]);
         Instantiate(artifactBase, targetNode.gameObject.transform.position, spawnRotation);
