@@ -5,8 +5,10 @@ using System.Runtime.InteropServices;
 using UnityEditor.Experimental.GraphView;
 using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.EnhancedTouch;
+using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -22,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
     public InputActionReference Jump;
     public Transform crouchPos;
     public InputActionReference sprint;
+    private PLAYERCONTROLLER playerController;
+
 
 
     public float playerheight;
@@ -39,6 +43,8 @@ public class PlayerMovement : MonoBehaviour
     private float playerOriginalPos;
     public float crouchSpeed;
     public float crouchScale;
+    public InputAction ScrollEvent;
+    public float CurrentIndex;
     
    
 
@@ -108,6 +114,24 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
+
+    private void Awake()
+    {
+        playerController = new PLAYERCONTROLLER();
+    }
+
+    private void OnEnable()
+    {
+        ScrollEvent = playerController.GamePlay1.scrolling;
+        ScrollEvent.Enable();
+    }
+    private void OnDisable()
+    {
+       
+    }
+
+
+
     private bool IsGrounded()
     {
         return Physics.Raycast(transform.position, Vector3.down, playerheight * 0.5f + 0.2f, theGroud);
@@ -164,6 +188,7 @@ public class PlayerMovement : MonoBehaviour
     {
         readyToJump = true;
     }
+
 
 }
     

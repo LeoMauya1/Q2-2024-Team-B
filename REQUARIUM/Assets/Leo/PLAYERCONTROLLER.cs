@@ -89,6 +89,15 @@ public partial class @PLAYERCONTROLLER : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""scrolling"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""132f19a6-13e0-4ae7-bd24-636c5e21163d"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -256,6 +265,50 @@ public partial class @PLAYERCONTROLLER : IInputActionCollection2, IDisposable
                     ""action"": ""shootSpear"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ddbbf35a-8e3e-42f7-acad-7246a00d9bcd"",
+                    ""path"": ""<Mouse>/scroll/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""scrolling"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""1D Axis"",
+                    ""id"": ""9ec74007-23ca-4976-b0fd-2e29052e6383"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""scrolling"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""81f2b70c-0d7b-4fc8-91db-1b23a911e634"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""scrolling"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""94f7190c-bd81-45bd-8fa5-dc0f29b8cd56"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""scrolling"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -288,6 +341,7 @@ public partial class @PLAYERCONTROLLER : IInputActionCollection2, IDisposable
         m_GamePlay1_Sprint = m_GamePlay1.FindAction("Sprint", throwIfNotFound: true);
         m_GamePlay1_FlashLight = m_GamePlay1.FindAction("FlashLight", throwIfNotFound: true);
         m_GamePlay1_shootSpear = m_GamePlay1.FindAction("shootSpear", throwIfNotFound: true);
+        m_GamePlay1_scrolling = m_GamePlay1.FindAction("scrolling", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -354,6 +408,7 @@ public partial class @PLAYERCONTROLLER : IInputActionCollection2, IDisposable
     private readonly InputAction m_GamePlay1_Sprint;
     private readonly InputAction m_GamePlay1_FlashLight;
     private readonly InputAction m_GamePlay1_shootSpear;
+    private readonly InputAction m_GamePlay1_scrolling;
     public struct GamePlay1Actions
     {
         private @PLAYERCONTROLLER m_Wrapper;
@@ -365,6 +420,7 @@ public partial class @PLAYERCONTROLLER : IInputActionCollection2, IDisposable
         public InputAction @Sprint => m_Wrapper.m_GamePlay1_Sprint;
         public InputAction @FlashLight => m_Wrapper.m_GamePlay1_FlashLight;
         public InputAction @shootSpear => m_Wrapper.m_GamePlay1_shootSpear;
+        public InputAction @scrolling => m_Wrapper.m_GamePlay1_scrolling;
         public InputActionMap Get() { return m_Wrapper.m_GamePlay1; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -395,6 +451,9 @@ public partial class @PLAYERCONTROLLER : IInputActionCollection2, IDisposable
                 @shootSpear.started -= m_Wrapper.m_GamePlay1ActionsCallbackInterface.OnShootSpear;
                 @shootSpear.performed -= m_Wrapper.m_GamePlay1ActionsCallbackInterface.OnShootSpear;
                 @shootSpear.canceled -= m_Wrapper.m_GamePlay1ActionsCallbackInterface.OnShootSpear;
+                @scrolling.started -= m_Wrapper.m_GamePlay1ActionsCallbackInterface.OnScrolling;
+                @scrolling.performed -= m_Wrapper.m_GamePlay1ActionsCallbackInterface.OnScrolling;
+                @scrolling.canceled -= m_Wrapper.m_GamePlay1ActionsCallbackInterface.OnScrolling;
             }
             m_Wrapper.m_GamePlay1ActionsCallbackInterface = instance;
             if (instance != null)
@@ -420,6 +479,9 @@ public partial class @PLAYERCONTROLLER : IInputActionCollection2, IDisposable
                 @shootSpear.started += instance.OnShootSpear;
                 @shootSpear.performed += instance.OnShootSpear;
                 @shootSpear.canceled += instance.OnShootSpear;
+                @scrolling.started += instance.OnScrolling;
+                @scrolling.performed += instance.OnScrolling;
+                @scrolling.canceled += instance.OnScrolling;
             }
         }
     }
@@ -451,5 +513,6 @@ public partial class @PLAYERCONTROLLER : IInputActionCollection2, IDisposable
         void OnSprint(InputAction.CallbackContext context);
         void OnFlashLight(InputAction.CallbackContext context);
         void OnShootSpear(InputAction.CallbackContext context);
+        void OnScrolling(InputAction.CallbackContext context);
     }
 }

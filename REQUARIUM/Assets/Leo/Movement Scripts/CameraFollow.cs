@@ -19,7 +19,7 @@ public class CameraFollow : MonoBehaviour
 
     void Start()
     {
-        //Cursor.lockState = CursorLockMode.Locked;
+       // Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame
