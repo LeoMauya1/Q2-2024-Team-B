@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 9044754903827543807}
   - component: {fileID: 9044754903827543806}
   - component: {fileID: 9044754903827543801}
+  - component: {fileID: 3616607764480826810}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -100,7 +101,7 @@ Transform:
   - {fileID: 9044754902898441165}
   - {fileID: 9044754902671884503}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &9044754903827543794
 MeshFilter:
@@ -242,6 +243,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: f6e4c48f-8642-4b25-89e2-a155de14c705
     m_ActionName: GamePlay1/New action
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c7444b7d-24ae-48e9-b367-8ab534e66ce4
+    m_ActionName: GamePlay1/FlashLight[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9e5f7f4e-15e1-43cf-826f-4b662b2b6598
+    m_ActionName: GamePlay1/shootSpear[/Mouse/rightButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: GamePlay1
@@ -290,3 +299,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Inventory: []
+--- !u!114 &3616607764480826810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9044754903827543799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5043497088e0a9c4abdba9ef908b5ef4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pNodes: []
+  sortedNodes: []
+  saveData:
+    money: 0
+    health: 0
+    workDay: 0

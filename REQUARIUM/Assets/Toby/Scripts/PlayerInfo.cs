@@ -29,7 +29,7 @@ public class PlayerInfo : MonoBehaviour
     }
     void Start()
     {
-        
+        FindNodes();
     }
 
     // Update is called once per frame

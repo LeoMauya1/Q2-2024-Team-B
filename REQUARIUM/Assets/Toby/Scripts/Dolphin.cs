@@ -1,8 +1,12 @@
-using Pathfinding;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
+using Pathfinding;
+using UnityEditor.Rendering;
+using UnityEngine.Events;
+using System.Linq;
+using System.ComponentModel.Design;
 
 public class Dolphin : MonoBehaviour
 {
@@ -20,13 +24,13 @@ public class Dolphin : MonoBehaviour
 
     public float maxStunTime;
 
-    private float leaveDistance = 0;
+    private float leaveDistance = 10;
 
     private Pathfinding.Path dolphinPath;
 
     private float nextWaypointDistance = 3f;
 
-    private int currentWaypoint = 0;
+    public int currentWaypoint = 10;
 
     private bool reachedEndOfPath = false;
 
@@ -97,12 +101,11 @@ public class Dolphin : MonoBehaviour
         {
             reachedEndOfPath = false;
         }
-
-        Vector3 direction = (dolphinPath.vectorPath[currentWaypoint] - transform.position).normalized;
-        rb.velocity = Vector3.Slerp(rb.velocity, direction * dolphin.speed, Time.deltaTime * slerp);
-        float distance = Vector3.Distance(rb.position, dolphinPath.vectorPath[currentWaypoint]);
-        //transform.forward = ghost.currentTarget.transform.position - transform.position;
-        //vision._rotation = transform.rotation;
+        Debug.Log($"Direction: {dolphinPath.vectorPath[currentWaypoint]}");
+        Vector3 direction = (dolphinPath.vectorPath[currentWaypoint + 1] - transform.position).normalized;
+        direction.y = 0;
+        rb.velocity = Vector3.Lerp(rb.velocity, direction * dolphin.speed, Time.deltaTime * slerp);
+        float distance = Vector3.Distance(rb.position, dolphinPath.vectorPath[currentWaypoint + 1]);
         if (distance < nextWaypointDistance)
         {
             currentWaypoint++;

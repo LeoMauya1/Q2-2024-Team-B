@@ -86,6 +86,7 @@ public class Ghost : MonoBehaviour
 
     void Start()
     {
+        state = States.Roaming;
         player = GameObject.FindGameObjectWithTag("Player");
         playerInfo = player.GetComponent<PlayerInfo>();
         FindNodes();
@@ -156,41 +157,34 @@ public class Ghost : MonoBehaviour
     public void IsRoaming()
     {
         GetInfo();
-        if (reachedEndOfPath == true)
-        {
-            switchWait = true;
-            sortedNodes.Remove(ghost.currentTarget);
-            reachedEndOfPath = false;
-            if (sortedNodes.Count == 0)
-            {
-                sortedNodes = ghost.nodes.OrderBy(x => Vector3.Distance(this.transform.position, x.transform.position)).ToList();
-                ghost.currentTarget = sortedNodes[0];
-                ghost.nextTarget = sortedNodes[1];
-            }
-            ghost.currentTarget = ghost.nextTarget;
-            ghost.nextTarget = sortedNodes[1];
-        }
         if (ghostPath == null)
         {
             return;
         }
 
-        if (targetDistance <= leaveDistance && switchWait == false)
+        if (currentWaypoint >= ghostPath.vectorPath.Count)
         {
             reachedEndOfPath = true;
             return;
         }
         else
         {
-            switchWait = false;
             reachedEndOfPath = false;
         }
-
-        Vector3 direction = (ghost.currentTarget.transform.position - transform.position).normalized;
-        rb.velocity = Vector3.Slerp(rb.velocity, direction * ghost.speed, Time.deltaTime * slerp);
-        float distance = Vector3.Distance(rb.position, ghost.currentTarget.transform.position);
-        //transform.forward = ghost.currentTarget.transform.position - transform.position;
-        //vision._rotation = transform.rotation;
+        if (targetDistance <= leaveDistance)
+        {
+            sortedNodes.Remove(ghost.currentTarget);
+            ghost.currentTarget = ghost.nextTarget;
+            ghost.nextTarget = sortedNodes[1];
+            if (sortedNodes.Count == 0)
+            {
+                SortNodes();
+            }
+        }
+        Vector3 direction = (ghostPath.vectorPath[currentWaypoint + 1] - transform.position).normalized;
+        direction.y = 0;
+        rb.velocity = Vector3.Lerp(rb.velocity, direction * ghost.speed, Time.deltaTime * slerp);
+        float distance = Vector3.Distance(rb.position, ghostPath.vectorPath[currentWaypoint + 1]);
         if (distance < nextWaypointDistance)
         {
             currentWaypoint++;
@@ -226,7 +220,7 @@ public class Ghost : MonoBehaviour
         }
 
         Vector3 direction = (ghost.currentTarget.transform.position - transform.position).normalized;
-        rb.velocity = Vector3.Slerp(rb.velocity, direction * ghost.speed, Time.deltaTime * slerp);
+        rb.velocity = direction * ghost.speed;
         //transform.forward = ghost.currentTarget.transform.position - transform.position;
         //vision._rotation = transform.rotation;
         float distance = Vector3.Distance(rb.position, ghost.currentTarget.transform.position);
