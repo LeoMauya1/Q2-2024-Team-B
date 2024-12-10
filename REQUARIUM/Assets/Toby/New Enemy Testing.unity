@@ -20251,6 +20251,16 @@ MonoBehaviour:
   SprintSpeed: 11
   crouchSpeed: 17.15
   crouchScale: 0.5
+  ScrollEvent:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  CurrentIndex: 0
 --- !u!33 &7006094135431390614
 MeshFilter:
   m_ObjectHideFlags: 0

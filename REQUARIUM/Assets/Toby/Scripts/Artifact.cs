@@ -16,6 +16,9 @@ public class Artifact : MonoBehaviour
     public List<AudioClip> artifactSounds;
     public float lightIntensity;
     public List<float> lightIntensities;
+    public List<float> switchTimes;
+    public float switchTime;
+    private float switchTimeMax;
 
     public bool HasOctopus;
     public int price;
@@ -26,7 +29,7 @@ public class Artifact : MonoBehaviour
     public int corruptionCount;
     public static System.Random randyTheRandom = new();
     public static bool isHaunted;
-    public static bool isHardmode; 
+    public static bool isSwitch; 
     void Start()
     {
        lightMoment = GameObject.FindGameObjectWithTag("Light");
@@ -41,36 +44,62 @@ public class Artifact : MonoBehaviour
             lightIntensity = 0;
             thisArtifact.GetComponent<Light>().intensity = lightIntensity;
         }
-        else if (corruptionCount == 5 || corruptionCount == 6)
+        else if (corruptionCount == 5 || corruptionCount == 7)
         {
             RandomizeHauntedSprite();
             isHaunted = true;
         }
-        else if (corruptionCount == 7 || corruptionCount == 8)
+        else if (corruptionCount == 7 || corruptionCount == 9)
         {
             RandomizeLightCue();
+            RandomizeNormalSprite();
             isHaunted = true;
         }
-        else if (corruptionCount == 9 || corruptionCount == 10)
+        else if (corruptionCount == 9 || corruptionCount == 11)
         {
             RandomizeSound();
-            isHaunted = true;
-        }
-        else if (corruptionCount == 11)
-        {
-            HasOctopus = true;
+            RandomizeNormalSprite();
             isHaunted = true;
         }
         else if (corruptionCount == 12)
         {
+            RandomizeNormalSprite();
+            HasOctopus = true;
+        }
+        else if (corruptionCount == 13)
+        {
+            RandomizeNormalSprite();
+            RandomizeLightCue();
+            HasOctopus = true;
+            isHaunted = true;
+        }
+        else if (corruptionCount == 14)
+        {
+            RandomizeHauntedSprite();
+            HasOctopus = true;
+            isHaunted = true;
+        }
+        else if (corruptionCount == 15)
+        {
+            RandomizeHauntedSprite();
+            RandomizeSound();
+            RandomizeLightCue();
+            isHaunted = true;
+        }
+        else if (corruptionCount == 16)
+        {
             isHaunted = true;
         }
         RandomizePrice();
-
     }
     public void RandomizeHauntedValue()
     {
-        corruptionCount = randyTheRandom.Next(0, 12);
+        corruptionCount = randyTheRandom.Next(0, 16);
+        if (corruptionCount == 16)
+        {
+            List<float> shuffledFloats = switchTimes.OrderBy(x => randyTheRandom.Next()).ToList();
+            switchTimeMax = shuffledFloats[0];
+        }
     }
     public void RandomizeNormalSprite()
     {
@@ -112,8 +141,23 @@ public class Artifact : MonoBehaviour
         }
     }
     // Update is called once per frame
+    public void SwitchSprite()
+    {
+        if (switchTime <= 0)
+        {
+            RandomizeNormalSprite();
+            switchTime = switchTimeMax;
+        }
+        else
+        {
+            switchTime -= Time.deltaTime;
+        }
+    }
     void Update()
     {
-        
+        if (isSwitch == true)
+        {
+            SwitchSprite();
+        }
     }
 }
