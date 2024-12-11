@@ -74,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
         {
            transform.localScale = new Vector3(transform.localScale.x, crouchScale, transform.localScale.z);
             Debug.Log("ur Crouching");
-           rb.AddForce(Vector3.down * 7*Time.deltaTime, ForceMode.Impulse);
+           rb.AddForce(Vector3.down * 10*Time.deltaTime, ForceMode.Impulse);
         }
       
         if (crouch.action.WasReleasedThisFrame())

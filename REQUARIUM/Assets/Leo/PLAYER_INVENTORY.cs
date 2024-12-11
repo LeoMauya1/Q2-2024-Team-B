@@ -12,7 +12,7 @@ public class PLAYER_INVENTORY : MonoBehaviour
    public List<GameObject> Inventory = new List<GameObject>();
     public PLAYERCONTROLLER playerInputActions;
     public InputAction ScrollingEvent;
-    private int currentIndex;
+    private int currentIndex = 0;
 
 
 
@@ -36,7 +36,7 @@ public class PLAYER_INVENTORY : MonoBehaviour
     {
         ScrollingEvent = playerInputActions.GamePlay1.scrolling;
         ScrollingEvent.Enable();
-        ScrollingEvent.performed += ScrollItems;
+        ScrollingEvent.performed += Scroll;
     }
     private void OnDisable()
     {
@@ -46,14 +46,27 @@ public class PLAYER_INVENTORY : MonoBehaviour
 
 
 
-    private void ScrollItems(InputAction.CallbackContext context)
+    private void Scroll(InputAction.CallbackContext context)
     {
-        currentIndex = Inventory.IndexOf(gameObject);
-        Debug.Log(Inventory.Count);
+
+        currentIndex++;
+       currentIndex = (int)Mathf.Repeat(currentIndex,Inventory.Count);
         Debug.Log(currentIndex);
-        Mathf.Repeat(currentIndex, Inventory.LastIndexOf(gameObject));
 
     }
+
+    private void ToItem(int currentIndex)
+    {
+       foreach (var item in Inventory)
+        {
+            
+        }
+    }
+
+
+
+
+
 
 }
 
