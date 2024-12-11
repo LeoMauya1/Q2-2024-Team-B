@@ -115,20 +115,9 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-    private void Awake()
-    {
-        playerController = new PLAYERCONTROLLER();
-    }
+   
 
-    private void OnEnable()
-    {
-        ScrollEvent = playerController.GamePlay1.scrolling;
-        ScrollEvent.Enable();
-    }
-    private void OnDisable()
-    {
-       
-    }
+   
 
 
 

@@ -1986,8 +1986,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9044754903827543801, guid: ae05913c4428bad4eb5cbcdbdf58d653,
         type: 3}
+      propertyPath: ScrollingEvent.m_Id
+      value: 29af0fcd-200d-4ffd-b67f-552b16b1636f
+      objectReference: {fileID: 0}
+    - target: {fileID: 9044754903827543801, guid: ae05913c4428bad4eb5cbcdbdf58d653,
+        type: 3}
       propertyPath: Inventory.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9044754903827543801, guid: ae05913c4428bad4eb5cbcdbdf58d653,
+        type: 3}
+      propertyPath: ScrollingEvent.m_Name
+      value: Scrolling Event
       objectReference: {fileID: 0}
     - target: {fileID: 9044754903827543801, guid: ae05913c4428bad4eb5cbcdbdf58d653,
         type: 3}

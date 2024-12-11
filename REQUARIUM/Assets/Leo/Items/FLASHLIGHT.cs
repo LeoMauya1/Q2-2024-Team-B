@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 public class FLASHLIGHT : MonoBehaviour
 {
     public InputAction flashLightButton;
+    
     public Light switchOn;
     public Vector3 lightPos;
     public Quaternion lightRot;
