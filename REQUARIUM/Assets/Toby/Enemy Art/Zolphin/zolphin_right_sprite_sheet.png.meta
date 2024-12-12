@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 800
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -139,14 +139,14 @@ TextureImporter:
         width: 800
         height: 800
       alignment: 9
-      pivot: {x: 0.52626055, y: 0.5035014}
+      pivot: {x: 0.50700283, y: 0.5455183}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bfb4f0dd1691864408d1ce95ec64f7a0
-      internalID: 824533312
+      spriteID: e66f1e56138a7e24384a45a88a98cf1c
+      internalID: -168156752
       vertices: []
       indices: 
       edges: []
@@ -159,15 +159,15 @@ TextureImporter:
         y: 0
         width: 800
         height: 800
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5437676, y: 0.52100843}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6975dfeb0a46854479ebae1208252e67
-      internalID: -737381891
+      spriteID: 046d732975381a44ca6e30b67adaa941
+      internalID: -454802308
       vertices: []
       indices: 
       edges: []
@@ -180,15 +180,15 @@ TextureImporter:
         y: 0
         width: 800
         height: 800
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.58053225, y: 0.5455183}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5b354454f59123945913ebb76956d0ce
-      internalID: -1926277967
+      spriteID: 7ee7b9fdd6b842a4a88ebd0279153f98
+      internalID: -970350253
       vertices: []
       indices: 
       edges: []
@@ -196,7 +196,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 1e3f72ac18cc43149b76100096b18fd3
+    spriteID: 258f998187d68974982fce3cf056ba95
     internalID: 0
     vertices: []
     indices: 
@@ -204,9 +204,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      zolphin_right_sprite_sheet_1: -737381891
-      zolphin_right_sprite_sheet_0: 824533312
-      zolphin_right_sprite_sheet_2: -1926277967
+      zolphin_right_sprite_sheet_1: -454802308
+      zolphin_right_sprite_sheet_0: -168156752
+      zolphin_right_sprite_sheet_2: -970350253
   spritePackingTag: 
   pSDRemoveMatte: 0
   userData: 

@@ -83,6 +83,7 @@ public class Dolphin : MonoBehaviour
         {
             IsStunned();
         }
+        //dolphin.animator.SetFloat("Velocity");
     }
 
     public void IsChasing()
@@ -103,13 +104,13 @@ public class Dolphin : MonoBehaviour
         }
         Debug.Log($"Direction: {dolphinPath.vectorPath[currentWaypoint]}");
         Vector3 direction = (dolphinPath.vectorPath[currentWaypoint + 1] - transform.position).normalized;
-        direction.y = 0;
         rb.velocity = Vector3.Lerp(rb.velocity, direction * dolphin.speed, Time.deltaTime * slerp);
         float distance = Vector3.Distance(rb.position, dolphinPath.vectorPath[currentWaypoint + 1]);
         if (distance < nextWaypointDistance)
         {
             currentWaypoint++;
         }
+        Animate(direction);
     }
     public void IsStunned()
     {
@@ -164,5 +165,11 @@ public class Dolphin : MonoBehaviour
             //stunned animation
             state = States.Stunned;
         }
+    }
+
+    public void Animate(Vector3 direction)
+    {
+        dolphin.animator.SetFloat("AnimMoveX", direction.x);
+        dolphin.animator.SetFloat("AnimMoveY", direction.y);
     }
 }

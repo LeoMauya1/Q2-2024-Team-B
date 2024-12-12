@@ -29,7 +29,8 @@ public class Artifact : MonoBehaviour
     public int corruptionCount;
     public static System.Random randyTheRandom = new();
     public static bool isHaunted;
-    public static bool isSwitch; 
+    private bool isSwitch;
+    private bool isSound;
     void Start()
     {
        lightMoment = GameObject.FindGameObjectWithTag("Light");
@@ -95,11 +96,8 @@ public class Artifact : MonoBehaviour
     public void RandomizeHauntedValue()
     {
         corruptionCount = randyTheRandom.Next(0, 16);
-        if (corruptionCount == 16)
-        {
-            List<float> shuffledFloats = switchTimes.OrderBy(x => randyTheRandom.Next()).ToList();
-            switchTimeMax = shuffledFloats[0];
-        }
+        List<float> shuffledFloats = switchTimes.OrderBy(x => randyTheRandom.Next()).ToList();
+        switchTimeMax = shuffledFloats[0];
     }
     public void RandomizeNormalSprite()
     {
@@ -153,11 +151,27 @@ public class Artifact : MonoBehaviour
             switchTime -= Time.deltaTime;
         }
     }
+    public void PlaySound()
+    {
+        if (switchTime <= 0)
+        {
+            thisArtifact.GetComponent<AudioSource>().Play();
+            switchTime = switchTimeMax;
+        }
+        else
+        {
+            switchTime -= Time.deltaTime;
+        }
+    }
     void Update()
     {
         if (isSwitch == true)
         {
             SwitchSprite();
+        }
+        if (isSound == true)
+        {
+            PlaySound();
         }
     }
 }
