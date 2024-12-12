@@ -117,7 +117,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2580605143185429792
 Transform:
   m_ObjectHideFlags: 0
@@ -125,8 +125,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2580605143185429820}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -25.242, y: -3.782, z: -3.21}
+  m_LocalRotation: {x: -0.000000017129421, y: 0.005781812, z: 4.0745357e-10, w: 0.9999833}
+  m_LocalPosition: {x: -24.948, y: -3.8, z: -3.9810438}
   m_LocalScale: {x: 0.16, y: 0.3676103, z: 0.15160558}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -228,7 +228,14 @@ MonoBehaviour:
     m_Flags: 0
   spears: {fileID: 0}
   FiringPoint: {fileID: 0}
+  spearReticle: {fileID: 0}
+  rb: {fileID: 0}
+  playerPos: {fileID: 0}
+  spearPos: {x: 0, y: 0, z: 0}
+  spearRotation: {x: 0, y: 0, z: 0}
+  spearSpeed: 0
   stunTime: 0
+  fp: {fileID: 0}
 --- !u!1 &2580605143585670155
 GameObject:
   m_ObjectHideFlags: 0

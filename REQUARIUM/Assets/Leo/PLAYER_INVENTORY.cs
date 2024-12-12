@@ -9,10 +9,26 @@ using UnityEngine.UIElements;
 
 public class PLAYER_INVENTORY : MonoBehaviour
 {
-   public List<GameObject> Inventory = new List<GameObject>();
+
+    [Header("Item placement")]
+    public Transform playerPos;
+    public Vector3 itemPos;
+    public Vector3 rotationOffset;
+
+
+
+
+
+
+
+    public List<GameObject> Inventory = new List<GameObject>();
     public PLAYERCONTROLLER playerInputActions;
     public InputAction ScrollingEvent;
     private int currentIndex = 0;
+    private int scrollValue;
+    private int previousIndex;
+    private Transform Item;
+
 
 
 
@@ -26,6 +42,19 @@ public class PLAYER_INVENTORY : MonoBehaviour
         
     }
 
+
+
+    private void Update()
+    {
+        foreach (var item in Inventory)
+        {
+             Instantiate(item);
+        }
+        
+        
+        Inventory[currentIndex].transform.position = playerPos.position + playerPos.TransformDirection(itemPos);
+        Inventory[currentIndex].transform.rotation = playerPos.rotation * Quaternion.Euler(rotationOffset);
+    }
 
     private void Awake()
     {
@@ -48,19 +77,46 @@ public class PLAYER_INVENTORY : MonoBehaviour
 
     private void Scroll(InputAction.CallbackContext context)
     {
+        scrollValue = MathF.Sign(ScrollingEvent.ReadValue<float>());
+        previousIndex = currentIndex;
+        if(scrollValue < 0)
+        {
+            currentIndex = (int)Mathf.Repeat(currentIndex - 1, Inventory.Count);
+            Debug.Log("left in the inventory");
+            Debug.Log(currentIndex);
+            ToItem(currentIndex, previousIndex);
 
-        currentIndex++;
-       currentIndex = (int)Mathf.Repeat(currentIndex,Inventory.Count);
-        Debug.Log(currentIndex);
+        }
+        if(scrollValue > 0)
+        {
+            currentIndex = (int)Mathf.Repeat(currentIndex + 1, Inventory.Count);
+            Debug.Log("right in the inventory");
+            Debug.Log(currentIndex);
+            ToItem(currentIndex, previousIndex);
+
+        }
+
+          
+       
+       
 
     }
 
-    private void ToItem(int currentIndex)
+    private void ToItem(int currentIndex, int previousIndex)
     {
-       foreach (var item in Inventory)
+
+       
+      
+        foreach (var item in Inventory)
         {
-            
+            Inventory[currentIndex].SetActive(true);
+
         }
+
+       
+
+       
+       
     }
 
 
