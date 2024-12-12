@@ -7,6 +7,8 @@ using UnityEditor.Rendering;
 using UnityEngine.Events;
 using System.Linq;
 using System.ComponentModel.Design;
+using System;
+using UnityEngine.EventSystems;
 
 public class Dolphin : MonoBehaviour
 {
@@ -83,7 +85,7 @@ public class Dolphin : MonoBehaviour
         {
             IsStunned();
         }
-        //dolphin.animator.SetFloat("Velocity");
+        dolphin.animator.SetFloat("Velocity", rb.velocity.magnitude);
     }
 
     public void IsChasing()
@@ -110,7 +112,9 @@ public class Dolphin : MonoBehaviour
         {
             currentWaypoint++;
         }
-        Animate(direction);
+        Vector3 oldDirection = new Vector3(dolphin.animator.GetFloat("AnimMoveX"), 0, dolphin.animator.GetFloat("AnimMoveY"));
+        Vector3 moveDirection = Vector3.Lerp(transform.forward * direction.y + transform.right * direction.x, oldDirection, slerp);
+        Animate(moveDirection);
     }
     public void IsStunned()
     {
@@ -170,6 +174,6 @@ public class Dolphin : MonoBehaviour
     public void Animate(Vector3 direction)
     {
         dolphin.animator.SetFloat("AnimMoveX", direction.x);
-        dolphin.animator.SetFloat("AnimMoveY", direction.y);
+        dolphin.animator.SetFloat("AnimMoveY", direction.z);
     }
 }
