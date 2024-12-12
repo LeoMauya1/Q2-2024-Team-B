@@ -20351,7 +20351,7 @@ MonoBehaviour:
   state: 0
   walkSpeed: 5.5
   SprintSpeed: 11
-  crouchSpeed: 17.15
+  crouchSpeed: 5
   crouchScale: 0.5
   ScrollEvent:
     m_Name: Scroll Event

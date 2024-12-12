@@ -112,8 +112,8 @@ public class Dolphin : MonoBehaviour
         {
             currentWaypoint++;
         }
-        Vector3 oldDirection = new Vector3(dolphin.animator.GetFloat("AnimMoveX"), 0, dolphin.animator.GetFloat("AnimMoveY"));
-        Vector3 moveDirection = Vector3.Lerp(transform.forward * direction.y + transform.right * direction.x, oldDirection, slerp);
+        Vector3 oldDirection = new Vector3(dolphin.animator.GetFloat("AnimMoveX"), dolphin.animator.GetFloat("AnimMoveY"), 0);
+        Vector3 moveDirection = Vector3.Lerp(transform.forward * direction.y + transform.right * direction.x, oldDirection, 1);
         Animate(moveDirection);
     }
     public void IsStunned()
