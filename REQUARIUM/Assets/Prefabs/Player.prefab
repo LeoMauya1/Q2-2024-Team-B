@@ -185,6 +185,16 @@ MonoBehaviour:
   SprintSpeed: 9
   crouchSpeed: 17.15
   crouchScale: 0.5
+  ScrollEvent:
+    m_Name: Scroll Event
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 067baf30-738c-4ae6-a2fb-72f261906b5a
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  CurrentIndex: 0
 --- !u!114 &9044754903827543804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,6 +261,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9e5f7f4e-15e1-43cf-826f-4b662b2b6598
     m_ActionName: GamePlay1/shootSpear[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 132f19a6-13e0-4ae7-bd24-636c5e21163d
+    m_ActionName: GamePlay1/scrolling[/Mouse/scroll/y]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: GamePlay1
@@ -299,6 +313,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Inventory: []
+  ScrollingEvent:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: e5ad0777-1efc-46e5-9942-45d0a51e18bd
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
 --- !u!114 &3616607764480826810
 MonoBehaviour:
   m_ObjectHideFlags: 0
