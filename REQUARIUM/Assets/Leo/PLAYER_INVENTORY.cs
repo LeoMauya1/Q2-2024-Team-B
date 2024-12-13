@@ -72,6 +72,7 @@ public class PLAYER_INVENTORY : MonoBehaviour
 
     private void Scroll(InputAction.CallbackContext context)
     {
+
         scrollValue = MathF.Sign(ScrollingEvent.ReadValue<float>());
         previousIndex = currentIndex;
         if(scrollValue < 0)
@@ -100,19 +101,23 @@ public class PLAYER_INVENTORY : MonoBehaviour
     private void ToItem(int currentIndex, int previousIndex)
     {
 
-
         Inventory[previousIndex].SetActive(false);
+     
         foreach (var item in Inventory)
-        {
+        
             Inventory[currentIndex].SetActive(true);
-
-        }
-
-       
-
-       
-       
     }
+    
+
+
+
+        
+
+       
+
+       
+       
+    
 
 
 
