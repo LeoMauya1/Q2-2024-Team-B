@@ -46,14 +46,9 @@ public class PLAYER_INVENTORY : MonoBehaviour
 
     private void Update()
     {
-        foreach (var item in Inventory)
-        {
-             Instantiate(item);
-        }
-        
-        
-        Inventory[currentIndex].transform.position = playerPos.position + playerPos.TransformDirection(itemPos);
-        Inventory[currentIndex].transform.rotation = playerPos.rotation * Quaternion.Euler(rotationOffset);
+       
+        //Inventory[currentIndex].transform.position = playerPos.position + playerPos.TransformDirection(itemPos);
+        //Inventory[currentIndex].transform.rotation = playerPos.rotation * Quaternion.Euler(rotationOffset);
     }
 
     private void Awake()
@@ -105,8 +100,8 @@ public class PLAYER_INVENTORY : MonoBehaviour
     private void ToItem(int currentIndex, int previousIndex)
     {
 
-       
-      
+
+        Inventory[previousIndex].SetActive(false);
         foreach (var item in Inventory)
         {
             Inventory[currentIndex].SetActive(true);
