@@ -44,9 +44,17 @@ public class PlayerMovement : MonoBehaviour
     public float crouchSpeed;
     public float crouchScale;
     public InputAction ScrollEvent;
-    public float CurrentIndex;
-    
-   
+
+
+
+    public Camera CAM;
+    public float targetFOV;
+    public float fovLerpSpeed;
+
+    private bool sprintTimeReady = true;
+
+
+
 
     public enum MovementState
     {
@@ -108,6 +116,11 @@ public class PlayerMovement : MonoBehaviour
         else
             rb.drag = 0;
         
+
+        if(!sprintTimeReady)
+        {
+            StartCoroutine(SprintCooldown());
+        }
         
 
 
@@ -144,16 +157,18 @@ public class PlayerMovement : MonoBehaviour
     {
         if(crouch.action.IsPressed())
         {
+
+            
             state = MovementState.crouching;
             movementSpeed = crouchSpeed;
         }
-        else if( IsGrounded() && sprint.action.IsPressed())
+        else if( IsGrounded() && sprint.action.IsPressed() && sprintTimeReady)
         {
-            state = MovementState.sprint;
-            movementSpeed = SprintSpeed;
+            StartCoroutine(Sprinting());
         } 
         else if (IsGrounded())
         {
+            CAM.fieldOfView = Mathf.Lerp(CAM.fieldOfView, 60f, fovLerpSpeed * Time.deltaTime);
             state = MovementState.walking;
             movementSpeed = walkSpeed;
             
@@ -176,6 +191,19 @@ public class PlayerMovement : MonoBehaviour
     private void ResetJump()
     {
         readyToJump = true;
+    }
+    private IEnumerator Sprinting()
+    {
+        CAM.fieldOfView = Mathf.Lerp(CAM.fieldOfView, targetFOV, fovLerpSpeed * Time.deltaTime);
+        state = MovementState.sprint;
+        movementSpeed = SprintSpeed;
+        yield return new WaitForSeconds(4f);
+        sprintTimeReady = false;
+    }
+    private IEnumerator SprintCooldown()
+    {
+        yield return new WaitForSeconds(4f);
+        sprintTimeReady = true;
     }
 
 

@@ -28,6 +28,8 @@ public class PLAYER_INVENTORY : MonoBehaviour
     private int scrollValue;
     private int previousIndex;
     private Transform Item;
+    private List<GameObject> instantiatedItems = new List<GameObject>();
+    private GameObject instantiatedItem;
 
 
 
@@ -39,7 +41,7 @@ public class PLAYER_INVENTORY : MonoBehaviour
 
     private void Start()
     {
-        
+        InstantiateItems();
     }
 
 
@@ -101,11 +103,32 @@ public class PLAYER_INVENTORY : MonoBehaviour
     private void ToItem(int currentIndex, int previousIndex)
     {
 
-        Inventory[previousIndex].SetActive(false);
+        instantiatedItems[previousIndex].SetActive(false);
      
         foreach (var item in Inventory)
-        
-            Inventory[currentIndex].SetActive(true);
+        {
+            instantiatedItems[currentIndex].SetActive(true);
+
+        }
+
+    }
+
+    private void InstantiateItems()
+    {
+        foreach(var item in Inventory)
+        {
+            if(item != null)
+            {
+                instantiatedItem = Instantiate(item, playerPos.position, playerPos.rotation);
+                instantiatedItem.SetActive(false);
+
+            }
+        }
+
+        if(instantiatedItems.Count > 0)
+        {
+            instantiatedItems[0].SetActive(true);
+        }
     }
     
 
