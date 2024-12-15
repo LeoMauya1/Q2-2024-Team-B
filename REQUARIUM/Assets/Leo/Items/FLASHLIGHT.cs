@@ -16,8 +16,8 @@ public class FLASHLIGHT : MonoBehaviour
     public Transform camPos;
     public Vector3 rotationOffset;
     private PLAYERCONTROLLER playerInputActions;
-    
-
+    public static bool isPossessed;
+    public SphereCollider sphere;
     void Start()
     {
 
@@ -33,7 +33,6 @@ public class FLASHLIGHT : MonoBehaviour
         flashLightButton = playerInputActions.GamePlay1.FlashLight;
         flashLightButton.Enable();
         flashLightButton.performed += FlashLightActions;
-        
 
 
 
@@ -63,6 +62,7 @@ public class FLASHLIGHT : MonoBehaviour
         
             Debug.Log("light on");
             switchOn.enabled =! switchOn.enabled;
+        sphere.enabled = !sphere.enabled;
         
        
 

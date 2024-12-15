@@ -8,4 +8,13 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Toby/Scenes/Title Screen.unity
+    guid: 0ba669181abaab64da40f262f32d96ed
+  - enabled: 1
+    path: Assets/Toby/Scenes/Game Over.unity
+    guid: d7a2e71ac8fe3a74a8a9511fd2820c26
+  - enabled: 1
+    path: Assets/Toby/Scenes/Credits.unity
+    guid: ade8127a64826524a9529f6019e2fe11
   m_configObjects: {}

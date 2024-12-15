@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class PlayerInfo : MonoBehaviour
 {
     
     public List<GameObject> pNodes;
     public List<GameObject> sortedNodes;
+    public int possessedNumber;
 
     public SaveData saveData;
 
@@ -35,6 +37,19 @@ public class PlayerInfo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (possessedNumber >= 3)
+        {
+            saveData.health -= 0.5f;
+        }
+        if (saveData.health <= 0)
+        {
+            GameOver();
+        }
+    }
+
+    public void GameOver()
+    {
+        SceneManager.LoadScene("Game Over");
+
     }
 }

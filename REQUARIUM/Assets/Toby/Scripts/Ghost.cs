@@ -14,6 +14,12 @@ public class Ghost : MonoBehaviour
 
     public GameObject player;
 
+    private GameObject flashlight;
+
+    private GameObject spearGun;
+
+    private GameObject cruciFish;
+
     public float playerDistance;
 
     public float watchDistance;
@@ -53,6 +59,10 @@ public class Ghost : MonoBehaviour
 
     public float speedCap;
 
+    public float possessedSpeedCap;
+
+    public float possessedSpeed;
+
     public float slerp;
 
     public float possessTimeMax;
@@ -73,6 +83,13 @@ public class Ghost : MonoBehaviour
 
     public EnemyType ghost;
 
+    private float speed;
+
+    private float spedCep;
+
+    public Color possessColor;
+
+
 
     [ContextMenu("FindNodes")]
     public void FindNodes()
@@ -86,6 +103,8 @@ public class Ghost : MonoBehaviour
 
     void Start()
     {
+        speed = ghost.speed;
+        spedCep = speedCap;
         state = States.Roaming;
         player = GameObject.FindGameObjectWithTag("Player");
         playerInfo = player.GetComponent<PlayerInfo>();
@@ -136,6 +155,8 @@ public class Ghost : MonoBehaviour
         if (state == States.Roaming)
         {
             watchTime = watchTimeMax;
+            ghost.speed = speed;
+            speedCap = spedCep;
             doneWatching = false;
             IsRoaming();
         }
@@ -221,8 +242,6 @@ public class Ghost : MonoBehaviour
 
         Vector3 direction = (ghost.currentTarget.transform.position - transform.position).normalized;
         rb.velocity = direction * ghost.speed;
-        //transform.forward = ghost.currentTarget.transform.position - transform.position;
-        //vision._rotation = transform.rotation;
         float distance = Vector3.Distance(rb.position, ghost.currentTarget.transform.position);
         if (distance < nextWaypointDistance)
         {
@@ -240,6 +259,7 @@ public class Ghost : MonoBehaviour
         {
             unpossess.Invoke();
             isPossessing = false;
+            playerInfo.possessedNumber -= 1;
             playerInfo.SortNodesBD();
             transform.position = playerInfo.sortedNodes[0].transform.position;
             SortNodes();
@@ -252,7 +272,32 @@ public class Ghost : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isPossessing = true;
+            playerInfo.possessedNumber += 1;
+            flashlight = GameObject.FindGameObjectWithTag("Light");
+            //spearGun = GameObject.FindGameObjectWithTag("Speargun");
+            //cruciFish = GameObject.FindGameObjectWithTag("Cruci-Fish");
         }
+        if (other.CompareTag("Flashlight") && FLASHLIGHT.isPossessed == false)
+        {
+            state = States.Watching;
+            watchTime = watchTimeMax + 1.5f;
+        }
+        else if (other.CompareTag("Flashlight") && FLASHLIGHT.isPossessed == true)
+        {
+            ghost.speed = possessedSpeed;
+            speedCap = possessedSpeedCap;
+        }
+    }
+
+    public void PossessFlashlight()
+    {
+        FLASHLIGHT.isPossessed = true;
+        flashlight.GetComponent<Light>().color = possessColor;
+    }
+    public void unPossessFlashlight()
+    {
+        FLASHLIGHT.isPossessed = false;
+        flashlight.GetComponent<Light>().color = Color.white;
     }
 
     public void CapVelocity()

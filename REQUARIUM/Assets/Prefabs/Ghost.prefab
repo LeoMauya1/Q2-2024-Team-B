@@ -145,6 +145,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 5279816517324214820}
+        m_TargetAssemblyTypeName: Ghost, Assembly-CSharp
+        m_MethodName: PossessFlashlight
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   unpossess:
     m_PersistentCalls:
       m_Calls:
@@ -172,6 +184,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 5279816517324214820}
+        m_TargetAssemblyTypeName: Ghost, Assembly-CSharp
+        m_MethodName: unPossessFlashlight
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   foundPlayer: 0
   doneWatching: 0
   rb: {fileID: 5279816517324214827}
@@ -187,6 +211,8 @@ MonoBehaviour:
   targetDistance: 0
   leaveDistance: 5
   speedCap: 9
+  possessedSpeedCap: 20
+  possessedSpeed: 15
   slerp: 0.5
   possessTimeMax: 25
   possessTime: 25
@@ -202,6 +228,7 @@ MonoBehaviour:
     currentTarget: {fileID: 0}
     nextTarget: {fileID: 0}
     animator: {fileID: 0}
+  possessColor: {r: 0.7597288, g: 0.23113209, b: 1, a: 1}
 --- !u!54 &5279816517324214827
 Rigidbody:
   m_ObjectHideFlags: 0
