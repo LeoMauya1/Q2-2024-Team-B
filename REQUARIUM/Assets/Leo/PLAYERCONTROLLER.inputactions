@@ -76,6 +76,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Crucifish",
+                    "type": "Button",
+                    "id": "d4699c11-1f96-490e-936b-66324c47ae0c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -287,6 +296,17 @@
                     "action": "scrolling",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "0a514eb0-e84d-4761-98e4-86d9ba2928bb",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Crucifish",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

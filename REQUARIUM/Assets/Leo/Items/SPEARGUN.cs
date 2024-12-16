@@ -20,7 +20,8 @@ public class SPEARGUN : MonoBehaviour
 
 
     [Header("SPEAR UI")]
-    public GameObject spearReticle;
+    public Sprite itemReticle;
+    
   
     [Header("SPEAR ATRIBUTES")]
     public Rigidbody rb;
@@ -36,26 +37,44 @@ public class SPEARGUN : MonoBehaviour
     public Camera fp;
     private Vector3 targetpoint;
 
+    
+
 
 
     private void Update()
     {
-        //transform.position = Camera.main.transform.position + Camera.main.transform.TransformDirection(spearPos);
-       // transform.rotation = playerPos.rotation * Quaternion.Euler(spearRotation);
+       
 
 
 
 
 
-        if (hasShot)
+        if (hasShot && spear != null)
         {
             Debug.Log("POW!");
 
            spear.transform.position = Vector3.MoveTowards(spear.transform.position, targetpoint, spearSpeed * Time.deltaTime);
+            
         }
             
      
     }
+    private void Start()
+    {
+
+        
+
+
+
+
+
+
+
+
+
+
+
+}
 
 
     private void Awake()
@@ -98,7 +117,7 @@ public class SPEARGUN : MonoBehaviour
         Debug.Log("spear was shot!");
 
         spear = Instantiate(spears, FiringPoint.transform.position, FiringPoint.transform.rotation);
-        spear.transform.forward = direction.normalized;
+        
         hasShot = true;
 
         
@@ -106,9 +125,5 @@ public class SPEARGUN : MonoBehaviour
         
     }
 
-    private void spearUI(InputAction.CallbackContext contxt)
-    {
-        
-        spearReticle.SetActive(true);
-    }
+    
 }

@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class SPEAR : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+
+
+
+
+    private void Update()
     {
-        
+        StartCoroutine(destroy());
     }
 
-    // Update is called once per frame
-    void Update()
+
+
+    private IEnumerator destroy()
     {
-        
+        yield return new WaitForSeconds(4f);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Destroy(gameObject);
     }
 }

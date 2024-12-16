@@ -77,6 +77,7 @@ public class PLAYER_INVENTORY : MonoBehaviour
     private void OnDisable()
     {
         ScrollingEvent.Disable();
+        ScrollingEvent.performed -= Scroll;
     }
 
 

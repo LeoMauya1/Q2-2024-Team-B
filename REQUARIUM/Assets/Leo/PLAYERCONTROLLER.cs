@@ -98,6 +98,15 @@ public partial class @PLAYERCONTROLLER : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Crucifish"",
+                    ""type"": ""Button"",
+                    ""id"": ""d4699c11-1f96-490e-936b-66324c47ae0c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -309,6 +318,17 @@ public partial class @PLAYERCONTROLLER : IInputActionCollection2, IDisposable
                     ""action"": ""scrolling"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0a514eb0-e84d-4761-98e4-86d9ba2928bb"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Crucifish"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -342,6 +362,7 @@ public partial class @PLAYERCONTROLLER : IInputActionCollection2, IDisposable
         m_GamePlay1_FlashLight = m_GamePlay1.FindAction("FlashLight", throwIfNotFound: true);
         m_GamePlay1_shootSpear = m_GamePlay1.FindAction("shootSpear", throwIfNotFound: true);
         m_GamePlay1_scrolling = m_GamePlay1.FindAction("scrolling", throwIfNotFound: true);
+        m_GamePlay1_Crucifish = m_GamePlay1.FindAction("Crucifish", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -409,6 +430,7 @@ public partial class @PLAYERCONTROLLER : IInputActionCollection2, IDisposable
     private readonly InputAction m_GamePlay1_FlashLight;
     private readonly InputAction m_GamePlay1_shootSpear;
     private readonly InputAction m_GamePlay1_scrolling;
+    private readonly InputAction m_GamePlay1_Crucifish;
     public struct GamePlay1Actions
     {
         private @PLAYERCONTROLLER m_Wrapper;
@@ -421,6 +443,7 @@ public partial class @PLAYERCONTROLLER : IInputActionCollection2, IDisposable
         public InputAction @FlashLight => m_Wrapper.m_GamePlay1_FlashLight;
         public InputAction @shootSpear => m_Wrapper.m_GamePlay1_shootSpear;
         public InputAction @scrolling => m_Wrapper.m_GamePlay1_scrolling;
+        public InputAction @Crucifish => m_Wrapper.m_GamePlay1_Crucifish;
         public InputActionMap Get() { return m_Wrapper.m_GamePlay1; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -454,6 +477,9 @@ public partial class @PLAYERCONTROLLER : IInputActionCollection2, IDisposable
                 @scrolling.started -= m_Wrapper.m_GamePlay1ActionsCallbackInterface.OnScrolling;
                 @scrolling.performed -= m_Wrapper.m_GamePlay1ActionsCallbackInterface.OnScrolling;
                 @scrolling.canceled -= m_Wrapper.m_GamePlay1ActionsCallbackInterface.OnScrolling;
+                @Crucifish.started -= m_Wrapper.m_GamePlay1ActionsCallbackInterface.OnCrucifish;
+                @Crucifish.performed -= m_Wrapper.m_GamePlay1ActionsCallbackInterface.OnCrucifish;
+                @Crucifish.canceled -= m_Wrapper.m_GamePlay1ActionsCallbackInterface.OnCrucifish;
             }
             m_Wrapper.m_GamePlay1ActionsCallbackInterface = instance;
             if (instance != null)
@@ -482,6 +508,9 @@ public partial class @PLAYERCONTROLLER : IInputActionCollection2, IDisposable
                 @scrolling.started += instance.OnScrolling;
                 @scrolling.performed += instance.OnScrolling;
                 @scrolling.canceled += instance.OnScrolling;
+                @Crucifish.started += instance.OnCrucifish;
+                @Crucifish.performed += instance.OnCrucifish;
+                @Crucifish.canceled += instance.OnCrucifish;
             }
         }
     }
@@ -514,5 +543,6 @@ public partial class @PLAYERCONTROLLER : IInputActionCollection2, IDisposable
         void OnFlashLight(InputAction.CallbackContext context);
         void OnShootSpear(InputAction.CallbackContext context);
         void OnScrolling(InputAction.CallbackContext context);
+        void OnCrucifish(InputAction.CallbackContext context);
     }
 }
