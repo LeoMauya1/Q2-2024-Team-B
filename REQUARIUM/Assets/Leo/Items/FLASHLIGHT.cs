@@ -20,7 +20,7 @@ public class FLASHLIGHT : MonoBehaviour
     public SphereCollider sphere;
     void Start()
     {
-
+        switchOn.transform.SetParent(null);
     }
 
     private void Awake()
@@ -47,10 +47,8 @@ public class FLASHLIGHT : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-      
-       // transform.position = playerPos.position + playerPos.TransformDirection(lightPos);
-        //transform.rotation = playerPos.rotation * Quaternion.Euler(rotationOffset);
+        switchOn.transform.position = Camera.main.transform.position + Camera.main.transform.TransformDirection(lightPos);
+        switchOn.transform.rotation = Camera.main.transform.rotation * Quaternion.Euler(rotationOffset);
 
         
     }

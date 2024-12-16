@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4009086616681177698}
   - component: {fileID: 6657489637311983054}
   - component: {fileID: 8198511024993338622}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,14 +26,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5549660123819754300}
-  m_LocalRotation: {x: 0.004488617, y: -0.009956449, z: 0.4004888, w: 0.9162366}
-  m_LocalPosition: {x: 13.0014305, y: -12.039033, z: -0.00036507845}
+  m_LocalRotation: {x: 0, y: 0, z: 0.62854695, w: 0.7777717}
+  m_LocalPosition: {x: 13.001452, y: -12.0389805, z: -0.00035762787}
   m_LocalScale: {x: 1.0600001, y: 17.87366, z: -1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7424190133295772888}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 77.886}
 --- !u!33 &4009086616681177698
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 8503935995342466697}
   - component: {fileID: 3656923699835325370}
   - component: {fileID: 4323842485039142736}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: SPEAR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -209,11 +209,11 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 118
-  m_CollisionDetection: 0
+  m_Constraints: 112
+  m_CollisionDetection: 1
 --- !u!114 &4323842485039142736
 MonoBehaviour:
   m_ObjectHideFlags: 0

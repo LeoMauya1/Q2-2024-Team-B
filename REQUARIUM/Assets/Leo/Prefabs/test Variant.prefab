@@ -13,10 +13,30 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5168558219266622002, guid: 9241a63772879fa4f99f6eda12c73c02,
+        type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 5595111608257486866, guid: 9241a63772879fa4f99f6eda12c73c02,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5595111608587268723, guid: 9241a63772879fa4f99f6eda12c73c02,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5595111609004942148, guid: 9241a63772879fa4f99f6eda12c73c02,
         type: 3}
       propertyPath: m_Name
       value: test Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 5595111609004942148, guid: 9241a63772879fa4f99f6eda12c73c02,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5595111609004942168, guid: 9241a63772879fa4f99f6eda12c73c02,
         type: 3}
@@ -73,10 +93,40 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5595111609235284082, guid: 9241a63772879fa4f99f6eda12c73c02,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5595111609514931307, guid: 9241a63772879fa4f99f6eda12c73c02,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5595111609724362175, guid: 9241a63772879fa4f99f6eda12c73c02,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5595111609848587912, guid: 9241a63772879fa4f99f6eda12c73c02,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5595111610105796639, guid: 9241a63772879fa4f99f6eda12c73c02,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7227389314898101634, guid: 9241a63772879fa4f99f6eda12c73c02,
         type: 3}
       propertyPath: spearSpeed
-      value: 20
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9144395926926583780, guid: 9241a63772879fa4f99f6eda12c73c02,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

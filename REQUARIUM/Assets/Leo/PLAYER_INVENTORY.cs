@@ -33,6 +33,8 @@ public class PLAYER_INVENTORY : MonoBehaviour
     private List<GameObject> instantiatedItems = new List<GameObject>();
     private GameObject instantiatedItem;
 
+    public Camera rightHandCam;
+
 
 
 
@@ -53,13 +55,13 @@ public class PLAYER_INVENTORY : MonoBehaviour
        if(instantiatedItems.Count > 0)
         {
 
-            instantiatedItems[currentIndex].transform.position = Camera.main.transform.position + Camera.main.transform.TransformDirection(itemPos);
-            instantiatedItems[currentIndex].transform.rotation = Camera.main.transform.rotation * Quaternion.Euler(rotationOffset);
+            instantiatedItems[currentIndex].transform.position = rightHandCam.transform.position + rightHandCam.transform.TransformDirection(itemPos);
+            instantiatedItems[currentIndex].transform.rotation = rightHandCam.transform.rotation * Quaternion.Euler(rotationOffset);
         }
         if(instantiatedItems[currentIndex].tag == "FlashLight")
         {
-            instantiatedItems[currentIndex].transform.position = Camera.main.transform.position + Camera.main.transform.TransformDirection(itemPos);
-            instantiatedItems[currentIndex].transform.rotation = Camera.main.transform.rotation * Quaternion.Euler(flashLightsRotationOffset);
+            instantiatedItems[currentIndex].transform.position = rightHandCam.transform.position + rightHandCam.transform.TransformDirection(itemPos);
+            instantiatedItems[currentIndex].transform.rotation = rightHandCam.transform.rotation * Quaternion.Euler(flashLightsRotationOffset);
         }
     }
 

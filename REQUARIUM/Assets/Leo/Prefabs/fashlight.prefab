@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8708863119133998536}
   - component: {fileID: 8708863119133998543}
   - component: {fileID: 125551083239116206}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: fashlight
   m_TagString: FlashLight
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ MonoBehaviour:
   lightRot: {x: 0, y: 0, z: 0, w: 0}
   playerPos: {fileID: 0}
   camPos: {fileID: 0}
-  rotationOffset: {x: 90, y: 0, z: 0}
+  rotationOffset: {x: 0, y: 0, z: 0}
   sphere: {fileID: 125551083239116206}
 --- !u!114 &8708863119133998543
 MonoBehaviour:
@@ -186,7 +186,7 @@ GameObject:
   - component: {fileID: 8708863119314434127}
   - component: {fileID: 8708863119314434121}
   - component: {fileID: 8708863119314434120}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Spot Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -302,7 +302,7 @@ GameObject:
   - component: {fileID: 8708863120782833251}
   - component: {fileID: 8708863120782833250}
   - component: {fileID: 8708863120782833249}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

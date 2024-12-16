@@ -45,6 +45,11 @@ PrefabInstance:
       propertyPath: FiringPoint
       value: 
       objectReference: {fileID: 5168558219266622002}
+    - target: {fileID: 736666896363877370, guid: 8099a7fb0d718f14fbf6ecb67a90c4ef,
+        type: 3}
+      propertyPath: spearLayer.m_Bits
+      value: 511
+      objectReference: {fileID: 0}
     - target: {fileID: 2580605143185429792, guid: 8099a7fb0d718f14fbf6ecb67a90c4ef,
         type: 3}
       propertyPath: m_RootOrder

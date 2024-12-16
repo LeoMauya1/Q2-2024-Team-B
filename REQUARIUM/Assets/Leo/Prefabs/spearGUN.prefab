@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 2580605143185429822}
   - component: {fileID: 2580605143185429821}
   - component: {fileID: 736666896363877370}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: spearGUN
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -228,7 +228,7 @@ MonoBehaviour:
     m_Flags: 0
   spears: {fileID: 7535248569347170646, guid: 6f5bde6103b9242438c8a3a55ba5f78f, type: 3}
   FiringPoint: {fileID: 0}
-  spearReticle: {fileID: 0}
+  itemReticle: {fileID: 0}
   rb: {fileID: 0}
   playerPos: {fileID: 0}
   spearPos: {x: 0, y: 0, z: 0}
@@ -236,6 +236,9 @@ MonoBehaviour:
   spearSpeed: 0
   stunTime: 0
   fp: {fileID: 0}
+  spearLayer:
+    serializedVersion: 2
+    m_Bits: 511
 --- !u!1 &2580605143585670155
 GameObject:
   m_ObjectHideFlags: 0
@@ -924,7 +927,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3221559259764579568}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Firing Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -69,6 +69,8 @@ public class PlayerMovement : MonoBehaviour
     {
         readyToJump = true;
         playerOriginalPos = transform.localScale.y;
+
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
     } 
 
     // Update is called once per frame

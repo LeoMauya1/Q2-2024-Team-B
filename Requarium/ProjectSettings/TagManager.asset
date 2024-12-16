@@ -8,6 +8,7 @@ TagManager:
   - Artifact Node
   - Ghost Node
   - Dolphin Node
+  - FlashLight
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - Spear
   - Camera
   - Flashlight
-  - 
+  - Spear2
   - 
   - 
   - 

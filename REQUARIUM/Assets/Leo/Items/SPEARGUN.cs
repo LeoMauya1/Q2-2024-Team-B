@@ -36,24 +36,25 @@ public class SPEARGUN : MonoBehaviour
     private GameObject spear;
     public Camera fp;
     private Vector3 targetpoint;
+    private Camera rightHandCam;
+    public LayerMask spearLayer;
 
     
 
-
-
     private void Update()
     {
-       
 
 
+
+
+        FiringPoint.transform.position = Camera.main.transform.position + Camera.main.transform.TransformDirection(spearPos);
+        FiringPoint.transform.rotation = Camera.main.transform.rotation;
 
 
 
         if (hasShot && spear != null)
         {
             Debug.Log("POW!");
-
-           spear.transform.position = Vector3.MoveTowards(spear.transform.position, targetpoint, spearSpeed * Time.deltaTime);
             
         }
             
@@ -62,19 +63,13 @@ public class SPEARGUN : MonoBehaviour
     private void Start()
     {
 
-        
+        rightHandCam = GameObject.Find("Hand Camera").GetComponent<Camera>();
 
 
+        FiringPoint.transform.SetParent(null);
 
 
-
-
-
-
-
-
-
-}
+    }
 
 
     private void Awake()
@@ -103,10 +98,12 @@ public class SPEARGUN : MonoBehaviour
         RaycastHit hit;
        
 
-        if ( Physics.Raycast(ray,out hit))
+        if ( Physics.Raycast(ray,out hit, 1000, spearLayer))
         {
             targetpoint = hit.point;
             Debug.Log("hit item");
+
+            Debug.Log(hit.collider.gameObject);
         }
         else
         {
@@ -117,12 +114,13 @@ public class SPEARGUN : MonoBehaviour
         Debug.Log("spear was shot!");
 
         spear = Instantiate(spears, FiringPoint.transform.position, FiringPoint.transform.rotation);
+        //spear.transform.forward = Camera.main.transform.forward;
         
         hasShot = true;
 
-        
+        spear.GetComponent<Rigidbody>().velocity = Camera.main.transform.forward * spearSpeed;
 
-        
+
     }
 
     
