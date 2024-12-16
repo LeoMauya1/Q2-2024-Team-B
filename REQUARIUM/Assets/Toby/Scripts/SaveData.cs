@@ -6,6 +6,11 @@ using UnityEngine;
 [System.Serializable]
 public struct SaveData
     {
+        public static SaveData daveSata;
+   // public SaveData(string filePath)
+        //{
+            
+        //}
         //[JsonInclude]
         public int money;
         //[JsonInclude]

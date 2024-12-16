@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Artifact : MonoBehaviour
 {
@@ -31,10 +32,17 @@ public class Artifact : MonoBehaviour
     private bool isSwitch;
     private bool isSound;
     private float playerDistance;
+    public float targetDistance;
     private GameObject player;
+    private PlayerInfo playerInfo;
+    private GameObject ghost;
+    public Ghost ghostes;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        playerInfo = player.GetComponent<PlayerInfo>();
+        ghost = GameObject.FindGameObjectWithTag("Ghost");
+        ghostes = ghost.GetComponent<Ghost>();
         List<float> shuffledFloats = switchTimes.OrderBy(x => randyTheRandom.Next()).ToList();
         switchTimeMax = shuffledFloats[0];
         switchTime = switchTimeMax;
@@ -182,9 +190,22 @@ public class Artifact : MonoBehaviour
             }
         }
     }
+    
     void Update()
     {
         playerDistance = Vector3.Distance(this.transform.position, player.transform.position);
+        if (playerDistance <= targetDistance && Input.GetKeyDown(KeyCode.E))
+        {
+            if (isHaunted == true)
+            {
+                ghostes.isPossessing = true;
+                playerInfo.possessedNumber += 1;
+                ghostes.flashlight = GameObject.FindGameObjectWithTag("Light");
+                //spearGun = GameObject.FindGameObjectWithTag("Speargun");
+                //cruciFish = GameObject.FindGameObjectWithTag("Cruci-Fish");
+                ghostes.state = Ghost.States.Possessing;
+            }
+        }
         if (isSwitch == true)
         {
             SwitchSprite();
