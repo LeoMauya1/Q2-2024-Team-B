@@ -169,6 +169,11 @@ public class Dolphin : MonoBehaviour
             //stunned animation
             state = States.Stunned;
         }
+        else if (other.gameObject.CompareTag("Spear"))
+        {
+            stunTime = maxStunTime;
+            state = States.Stunned;
+        }
     }
 
     public void Animate(Vector3 direction)

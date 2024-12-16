@@ -37,7 +37,7 @@ public class PlayerInfo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (possessedNumber >= 3)
+        if (possessedNumber >= 4)
         {
             saveData.health -= 0.5f;
         }

@@ -289,15 +289,37 @@ public class Ghost : MonoBehaviour
         }
     }
 
-    public void PossessFlashlight()
+    public void PossessItem()
     {
-        FLASHLIGHT.isPossessed = true;
-        flashlight.GetComponent<Light>().color = possessColor;
+        if (playerInfo.possessedNumber == 1)
+        {
+            FLASHLIGHT.isPossessed = true;
+            flashlight.GetComponent<Light>().color = possessColor;
+        }
+        else if (playerInfo.possessedNumber == 2)
+        {
+            //Speargun possession
+        }
+        else if (playerInfo.possessedNumber >= 3)
+        {
+            //Cruci-Fish Possession
+        }
     }
-    public void unPossessFlashlight()
+    public void unPossessItem()
     {
-        FLASHLIGHT.isPossessed = false;
-        flashlight.GetComponent<Light>().color = Color.white;
+        if (playerInfo.possessedNumber == 1)
+        {
+            FLASHLIGHT.isPossessed = false;
+            flashlight.GetComponent<Light>().color = Color.white;
+        }
+         else if (playerInfo.possessedNumber == 2)
+        {
+            //Speargun possession
+        }
+        else if (playerInfo.possessedNumber >= 3)
+        {
+            //Cruci-Fish unPossession
+        }
     }
 
     public void CapVelocity()

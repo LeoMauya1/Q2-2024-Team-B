@@ -30,8 +30,11 @@ public class Artifact : MonoBehaviour
     public static bool isHaunted;
     private bool isSwitch;
     private bool isSound;
+    private float playerDistance;
+    private GameObject player;
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         List<float> shuffledFloats = switchTimes.OrderBy(x => randyTheRandom.Next()).ToList();
         switchTimeMax = shuffledFloats[0];
         switchTime = switchTimeMax;
@@ -164,8 +167,24 @@ public class Artifact : MonoBehaviour
             switchTime -= Time.deltaTime;
         }
     }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Cruci-Fish"))
+        {
+            if (isHaunted == true)
+            {
+                isHaunted = false;
+            }
+            if (isHaunted == false)
+            {
+                Destroy(this);
+            }
+        }
+    }
     void Update()
     {
+        playerDistance = Vector3.Distance(this.transform.position, player.transform.position);
         if (isSwitch == true)
         {
             SwitchSprite();

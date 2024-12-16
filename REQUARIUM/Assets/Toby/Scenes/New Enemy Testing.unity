@@ -4400,7 +4400,7 @@ PrefabInstance:
     - target: {fileID: 8708863119133998515, guid: 9f09a5e3c3dd02449bbd45acf05ee30e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.9810092
+      value: -106
       objectReference: {fileID: 0}
     - target: {fileID: 8708863119133998515, guid: 9f09a5e3c3dd02449bbd45acf05ee30e,
         type: 3}
@@ -4447,6 +4447,11 @@ PrefabInstance:
       propertyPath: playerPos
       value: 
       objectReference: {fileID: 4613528018595935741}
+    - target: {fileID: 8708863119133998543, guid: 9f09a5e3c3dd02449bbd45acf05ee30e,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 4613528018595935738}
     - target: {fileID: 8708863119314434126, guid: 9f09a5e3c3dd02449bbd45acf05ee30e,
         type: 3}
       propertyPath: m_Layer
@@ -4456,6 +4461,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Light
+      objectReference: {fileID: 0}
+    - target: {fileID: 8708863119314434127, guid: 9f09a5e3c3dd02449bbd45acf05ee30e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 41.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8708863119314434127, guid: 9f09a5e3c3dd02449bbd45acf05ee30e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8708863119314434127, guid: 9f09a5e3c3dd02449bbd45acf05ee30e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -209.5
       objectReference: {fileID: 0}
     - target: {fileID: 8708863120782833255, guid: 9f09a5e3c3dd02449bbd45acf05ee30e,
         type: 3}
@@ -26358,7 +26378,9 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
-  CurrentIndex: 0
+  CAM: {fileID: 0}
+  targetFOV: 0
+  fovLerpSpeed: 0
 --- !u!33 &7006094135431390614
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -26479,6 +26501,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 132f19a6-13e0-4ae7-bd24-636c5e21163d
     m_ActionName: GamePlay1/scrolling[/Mouse/scroll/y]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d4699c11-1f96-490e-936b-66324c47ae0c
+    m_ActionName: GamePlay1/Crucifish[/Mouse/rightButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: GamePlay1
@@ -26543,9 +26569,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b41cc7a00cf977c48b2248c3f595c5c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPos: {fileID: 0}
+  playerPos: {fileID: 4613528018595935741}
   itemPos: {x: 0, y: 0, z: 0}
   rotationOffset: {x: 0, y: 0, z: 0}
+  flashLightsRotationOffset: {x: 0, y: 0, z: 0}
   Inventory: []
   ScrollingEvent:
     m_Name: Scrolling Event
