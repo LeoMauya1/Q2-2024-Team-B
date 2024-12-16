@@ -14,6 +14,8 @@ public class PLAYER_INVENTORY : MonoBehaviour
     public Transform playerPos;
     public Vector3 itemPos;
     public Vector3 rotationOffset;
+    [Header("FlashLight rotation")]
+    public Vector3 flashLightsRotationOffset;
 
 
 
@@ -48,9 +50,17 @@ public class PLAYER_INVENTORY : MonoBehaviour
 
     private void Update()
     {
-       
-        //Inventory[currentIndex].transform.position = playerPos.position + playerPos.TransformDirection(itemPos);
-        //Inventory[currentIndex].transform.rotation = playerPos.rotation * Quaternion.Euler(rotationOffset);
+       if(instantiatedItems.Count > 0)
+        {
+
+            instantiatedItems[currentIndex].transform.position = Camera.main.transform.position + Camera.main.transform.TransformDirection(itemPos);
+            instantiatedItems[currentIndex].transform.rotation = Camera.main.transform.rotation * Quaternion.Euler(rotationOffset);
+        }
+        if(instantiatedItems[currentIndex].tag == "FlashLight")
+        {
+            instantiatedItems[currentIndex].transform.position = Camera.main.transform.position + Camera.main.transform.TransformDirection(itemPos);
+            instantiatedItems[currentIndex].transform.rotation = Camera.main.transform.rotation * Quaternion.Euler(flashLightsRotationOffset);
+        }
     }
 
     private void Awake()
@@ -121,6 +131,7 @@ public class PLAYER_INVENTORY : MonoBehaviour
             {
                 instantiatedItem = Instantiate(item, playerPos.position, playerPos.rotation);
                 instantiatedItem.SetActive(false);
+                instantiatedItems.Add(instantiatedItem);
 
             }
         }

@@ -150,7 +150,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 281582709}
   m_LocalRotation: {x: 0.028501963, y: 0.046041667, z: 0.0013142072, w: 0.99853206}
-  m_LocalPosition: {x: -3.479, y: 0.208, z: -0.414}
+  m_LocalPosition: {x: -2.802, y: 0.338, z: -0.615}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1583,6 +1583,11 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3616607764480826810, guid: ae05913c4428bad4eb5cbcdbdf58d653,
+        type: 3}
+      propertyPath: saveData.health
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9044754903827543793, guid: ae05913c4428bad4eb5cbcdbdf58d653,
         type: 3}
       propertyPath: CAM
@@ -1630,6 +1635,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9044754903827543801, guid: ae05913c4428bad4eb5cbcdbdf58d653,
         type: 3}
+      propertyPath: itemPos.x
+      value: 0.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 9044754903827543801, guid: ae05913c4428bad4eb5cbcdbdf58d653,
+        type: 3}
+      propertyPath: itemPos.y
+      value: -0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 9044754903827543801, guid: ae05913c4428bad4eb5cbcdbdf58d653,
+        type: 3}
+      propertyPath: itemPos.z
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 9044754903827543801, guid: ae05913c4428bad4eb5cbcdbdf58d653,
+        type: 3}
       propertyPath: playerPos
       value: 
       objectReference: {fileID: 725758824}
@@ -1652,7 +1672,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Inventory.Array.data[0]
       value: 
-      objectReference: {fileID: 2580605143185429820, guid: 8099a7fb0d718f14fbf6ecb67a90c4ef,
+      objectReference: {fileID: 8386286990590656953, guid: 85688b3322b705541a1112d23078324b,
         type: 3}
     - target: {fileID: 9044754903827543801, guid: ae05913c4428bad4eb5cbcdbdf58d653,
         type: 3}
@@ -1669,6 +1689,11 @@ PrefabInstance:
         type: 3}
       propertyPath: Inventory.Array.data[3]
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9044754903827543801, guid: ae05913c4428bad4eb5cbcdbdf58d653,
+        type: 3}
+      propertyPath: flashLightsRotationOffset.x
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 9044754903827543804, guid: ae05913c4428bad4eb5cbcdbdf58d653,
         type: 3}

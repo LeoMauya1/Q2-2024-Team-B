@@ -40,8 +40,8 @@ public class SPEARGUN : MonoBehaviour
 
     private void Update()
     {
-        transform.position = playerPos.position + playerPos.TransformDirection(spearPos);
-        transform.rotation = playerPos.rotation * Quaternion.Euler(spearRotation);
+        //transform.position = Camera.main.transform.position + Camera.main.transform.TransformDirection(spearPos);
+       // transform.rotation = playerPos.rotation * Quaternion.Euler(spearRotation);
 
 
 
@@ -80,7 +80,7 @@ public class SPEARGUN : MonoBehaviour
 
     private void ShootSpear(InputAction.CallbackContext contxt)
     {
-        Ray ray = fp.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
        
 

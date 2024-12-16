@@ -49,8 +49,8 @@ public class FLASHLIGHT : MonoBehaviour
     {
 
       
-        transform.position = playerPos.position + playerPos.TransformDirection(lightPos);
-        transform.rotation = playerPos.rotation * Quaternion.Euler(rotationOffset);
+       // transform.position = playerPos.position + playerPos.TransformDirection(lightPos);
+        //transform.rotation = playerPos.rotation * Quaternion.Euler(rotationOffset);
 
         
     }

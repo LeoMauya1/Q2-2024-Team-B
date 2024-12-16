@@ -226,7 +226,7 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
-  spears: {fileID: 0}
+  spears: {fileID: 7535248569347170646, guid: 6f5bde6103b9242438c8a3a55ba5f78f, type: 3}
   FiringPoint: {fileID: 0}
   spearReticle: {fileID: 0}
   rb: {fileID: 0}

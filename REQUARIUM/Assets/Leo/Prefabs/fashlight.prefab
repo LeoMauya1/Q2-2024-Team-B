@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 125551083239116206}
   m_Layer: 0
   m_Name: fashlight
-  m_TagString: Untagged
+  m_TagString: FlashLight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +29,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8708863119133998514}
-  m_LocalRotation: {x: -0.000000005667971, y: 0.06996126, z: 4.656613e-10, w: 0.9975498}
+  m_LocalRotation: {x: -0.049246322, y: 0.049692877, z: 0.70218354, w: 0.7085505}
   m_LocalPosition: {x: -24.95, y: 3.55, z: -3.9810092}
   m_LocalScale: {x: 0.2628164, y: 0.15822504, z: 0.37284526}
   m_ConstrainProportionsScale: 0
@@ -38,7 +38,7 @@ Transform:
   - {fileID: 8708863119314434127}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 95.84201, y: 110.541, z: 109.361}
+  m_LocalEulerAnglesHint: {x: 188.023, y: 180.073, z: 269.478}
 --- !u!33 &8708863119133998542
 MeshFilter:
   m_ObjectHideFlags: 0
