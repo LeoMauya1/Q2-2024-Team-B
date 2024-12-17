@@ -89,6 +89,7 @@ public class Ghost : MonoBehaviour
 
     public Color possessColor;
 
+    public bool isArtifact;
 
 
     [ContextMenu("FindNodes")]
@@ -261,7 +262,10 @@ public class Ghost : MonoBehaviour
             isPossessing = false;
             playerInfo.possessedNumber -= 1;
             playerInfo.SortNodesBD();
-            transform.position = playerInfo.sortedNodes[0].transform.position;
+            if (isArtifact == false)
+            {
+                transform.position = playerInfo.sortedNodes[0].transform.position;
+            }
             SortNodes();
             state = States.Roaming;
         }

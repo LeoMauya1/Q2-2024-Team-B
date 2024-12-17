@@ -39,7 +39,7 @@ public class PlayerInfo : MonoBehaviour
     {
         if (possessedNumber >= 4)
         {
-            saveData.health -= 0.5f;
+            saveData.health -= 0.05f;
         }
         if (saveData.health <= 0)
         {
