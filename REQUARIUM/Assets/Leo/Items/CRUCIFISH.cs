@@ -15,8 +15,7 @@ public class CRUCIFISH : MonoBehaviour
     private Quaternion crucifishOriginalRotation;
     public float crucifishLagTime;
 
-
-
+    public static bool isHaunted;
 
 
 

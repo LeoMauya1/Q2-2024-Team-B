@@ -39,7 +39,7 @@ public class SPEARGUN : MonoBehaviour
     private Camera rightHandCam;
     public LayerMask spearLayer;
 
-    
+    public static bool isHaunted;
 
     private void Update()
     {
