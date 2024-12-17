@@ -3,38 +3,74 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Artifact : MonoBehaviour
 {
     public GameObject thisArtifact;
+   
     public Light lightMoment;
+   
     public Sprite artifactLook;
+   
     public List<Sprite> artifactNormalSprites;
+   
     public List<Sprite> artifactHauntedSprites;
+   
     public AudioClip artifactSound;
+   
     public List<AudioClip> artifactSounds;
+   
     public float lightIntensity;
+   
     public List<float> lightIntensities;
+   
     public List<float> switchTimes;
+   
     public float switchTime;
+   
     private float switchTimeMax;
 
     public bool HasOctopus;
+   
     public int price;
+   
     public int maxPriceNorm;
+   
     public int minPriceNorm;
+   
     public int maxPriceHaunt; 
+   
     public int minPriceHaunt;
+   
     public int corruptionCount;
+   
     public static System.Random randyTheRandom = new();
+   
     public static bool isHaunted;
+   
     private bool isSwitch;
+    
     private bool isSound;
+    
     private float playerDistance;
+    
+    private float targetDistance = 5;
+   
     private GameObject player;
+    
+    private PlayerInfo playerInfo;
+   
+    private GameObject ghost;
+    
+    public Ghost ghostes;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        playerInfo = player.GetComponent<PlayerInfo>();
+        ghost = GameObject.FindGameObjectWithTag("Ghost");
+        ghostes = ghost.GetComponent<Ghost>();
+        ghostes.isArtifact = true;
         List<float> shuffledFloats = switchTimes.OrderBy(x => randyTheRandom.Next()).ToList();
         switchTimeMax = shuffledFloats[0];
         switchTime = switchTimeMax;
@@ -62,8 +98,8 @@ public class Artifact : MonoBehaviour
         }
         else if (corruptionCount == 11 || corruptionCount == 12 || corruptionCount == 13)
         {
-            RandomizeSound();
             RandomizeNormalSprite();
+            RandomizeSound();
             isHaunted = true;
             isSound = true; 
         }
@@ -182,9 +218,29 @@ public class Artifact : MonoBehaviour
             }
         }
     }
+    
     void Update()
     {
         playerDistance = Vector3.Distance(this.transform.position, player.transform.position);
+        if (playerDistance <= targetDistance && Input.GetKeyDown(KeyCode.E))
+        {
+            if (isHaunted == true)
+            {
+                ghostes.isPossessing = true;
+                playerInfo.possessedNumber += 1;
+                ghostes.flashlight = GameObject.FindGameObjectWithTag("Light");
+                //spearGun = GameObject.FindGameObjectWithTag("Speargun");
+                //cruciFish = GameObject.FindGameObjectWithTag("Cruci-Fish");
+                ghostes.state = Ghost.States.Possessing;
+                playerInfo.saveData.money += price / 2;
+                Destroy(thisArtifact);
+            }
+            else if (isHaunted == false)
+            {
+                playerInfo.saveData.money += price;
+                Destroy(thisArtifact);
+            }
+        }
         if (isSwitch == true)
         {
             SwitchSprite();

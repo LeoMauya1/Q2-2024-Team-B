@@ -14,11 +14,11 @@ public class Ghost : MonoBehaviour
 
     public GameObject player;
 
-    private GameObject flashlight;
+    public GameObject flashlight;
 
-    private GameObject spearGun;
+    public GameObject spearGun;
 
-    private GameObject cruciFish;
+    public GameObject cruciFish;
 
     public float playerDistance;
 
@@ -40,7 +40,7 @@ public class Ghost : MonoBehaviour
 
     private bool switchWait;
 
-    private bool isPossessing;
+    public bool isPossessing;
 
     public bool foundPlayer;
 
@@ -79,7 +79,7 @@ public class Ghost : MonoBehaviour
 
     public List<GameObject> sortedNodes;
 
-    private States state = States.Roaming;
+    public States state = States.Roaming;
 
     public EnemyType ghost;
 
@@ -89,6 +89,7 @@ public class Ghost : MonoBehaviour
 
     public Color possessColor;
 
+    public bool isArtifact;
 
 
     [ContextMenu("FindNodes")]
@@ -261,7 +262,10 @@ public class Ghost : MonoBehaviour
             isPossessing = false;
             playerInfo.possessedNumber -= 1;
             playerInfo.SortNodesBD();
-            transform.position = playerInfo.sortedNodes[0].transform.position;
+            if (isArtifact == false)
+            {
+                transform.position = playerInfo.sortedNodes[0].transform.position;
+            }
             SortNodes();
             state = States.Roaming;
         }
