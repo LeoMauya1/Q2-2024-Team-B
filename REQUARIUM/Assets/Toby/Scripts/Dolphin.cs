@@ -165,7 +165,7 @@ public class Dolphin : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             stunTime = maxStunTime;
-            playerInfo.saveData.health -= 50;
+            SaveDataManager.Instance.daveSata.health -= 50;
             //stunned animation
             state = States.Stunned;
         }

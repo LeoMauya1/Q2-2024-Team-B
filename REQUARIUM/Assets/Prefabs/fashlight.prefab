@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 8708863119133998540}
   - component: {fileID: 8708863119133998536}
   - component: {fileID: 8708863119133998543}
-  - component: {fileID: 125551083239116206}
   m_Layer: 10
   m_Name: fashlight
   m_TagString: FlashLight
@@ -130,7 +129,7 @@ MonoBehaviour:
   playerPos: {fileID: 0}
   camPos: {fileID: 0}
   rotationOffset: {x: 0, y: 0, z: 0}
-  sphere: {fileID: 125551083239116206}
+  sphere: {fileID: 5611000319101018913}
 --- !u!114 &8708863119133998543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,19 +161,6 @@ MonoBehaviour:
   m_DefaultActionMap: GamePlay1
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!135 &125551083239116206
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8708863119133998514}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 24.913082
-  m_Center: {x: -0.00000004126004, y: 38.153084, z: -7.721404}
 --- !u!1 &8708863119314434126
 GameObject:
   m_ObjectHideFlags: 0
@@ -186,9 +172,10 @@ GameObject:
   - component: {fileID: 8708863119314434127}
   - component: {fileID: 8708863119314434121}
   - component: {fileID: 8708863119314434120}
+  - component: {fileID: 5611000319101018913}
   m_Layer: 10
   m_Name: Spot Light
-  m_TagString: Untagged
+  m_TagString: Light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -290,6 +277,19 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
+--- !u!135 &5611000319101018913
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8708863119314434126}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 19.726013
+  m_Center: {x: -3.4021463, y: -1.3118464, z: 53.003044}
 --- !u!1 &8708863120782833255
 GameObject:
   m_ObjectHideFlags: 0

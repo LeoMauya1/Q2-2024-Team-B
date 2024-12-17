@@ -278,8 +278,8 @@ public class Ghost : MonoBehaviour
             isPossessing = true;
             playerInfo.possessedNumber += 1;
             flashlight = GameObject.FindGameObjectWithTag("Light");
-            //spearGun = GameObject.FindGameObjectWithTag("Speargun");
-            //cruciFish = GameObject.FindGameObjectWithTag("Cruci-Fish");
+            spearGun = GameObject.FindGameObjectWithTag("Speargun");
+            cruciFish = GameObject.FindGameObjectWithTag("Cruci-Fish");
         }
         if (other.CompareTag("Flashlight") && FLASHLIGHT.isPossessed == false)
         {
@@ -302,11 +302,11 @@ public class Ghost : MonoBehaviour
         }
         else if (playerInfo.possessedNumber == 2)
         {
-            //Speargun possession
+            SPEARGUN.isHaunted = true;
         }
         else if (playerInfo.possessedNumber >= 3)
         {
-            //Cruci-Fish Possession
+            CRUCIFISH.isHaunted = true;
         }
     }
     public void unPossessItem()

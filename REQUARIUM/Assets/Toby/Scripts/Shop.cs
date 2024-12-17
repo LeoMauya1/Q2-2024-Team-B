@@ -21,49 +21,53 @@ public class Shop : MonoBehaviour
 
     public void AddBattery()
     {
-        if (playerInfo.saveData.money >= batteryCost)
+        if (SaveDataManager.Instance.daveSata.money >= batteryCost)
         {
-            playerInfo.saveData.batteries += 1;
+            SaveDataManager.Instance.daveSata.batteries += 1;
         }
         else
         {
-            //rejection
+            Rejection();
         }
     }
     public void AddSpear()
     {
-        if (playerInfo.saveData.money >= spearCost)
+        if (SaveDataManager.Instance.daveSata.money >= spearCost)
         {
-            playerInfo.saveData.spears += 1;
+            SaveDataManager.Instance.daveSata.spears += 1;
         }
         else
         {
-            //rejection
+            Rejection();
         }
     }
     public void BuyOxygen()
     {
-        if (playerInfo.saveData.money >= oxygenTankCost)
+        if (SaveDataManager.Instance.daveSata.money >= oxygenTankCost)
         {
-            playerInfo.saveData.health += 50;
+            SaveDataManager.Instance.daveSata.health += 50;
         }
         else
         {
-            //rejection
+            Rejection();
         }
     }
     public void AddTime()
     {
-        if (playerInfo.saveData.money >= timerCost)
+        if (SaveDataManager.Instance.daveSata.money >= timerCost)
         {
             timer.remainingTime += 60;
         }
         else
         {
-            //rejection
+            Rejection();
         }
     }
-    // Update is called once per frame
+    
+    public void Rejection()
+    {
+
+    }
     void Update()
     {
         
