@@ -4,6 +4,7 @@ using System.Linq;
 using System;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class Artifact : MonoBehaviour
 {
@@ -64,6 +65,8 @@ public class Artifact : MonoBehaviour
     private GameObject ghost;
     
     public Ghost ghostes;
+
+    public GameObject inkSplot;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -71,6 +74,7 @@ public class Artifact : MonoBehaviour
         ghost = GameObject.FindGameObjectWithTag("Ghost");
         ghostes = ghost.GetComponent<Ghost>();
         ghostes.isArtifact = true;
+        inkSplot = GameObject.FindGameObjectWithTag("Ink");
         List<float> shuffledFloats = switchTimes.OrderBy(x => randyTheRandom.Next()).ToList();
         switchTimeMax = shuffledFloats[0];
         switchTime = switchTimeMax;
@@ -174,7 +178,7 @@ public class Artifact : MonoBehaviour
         {
             price = randyTheRandom.Next(minPriceHaunt, maxPriceHaunt);
         }
-        else if (corruptionCount > 10)
+        else if (corruptionCount > 16)
         {
             price = randyTheRandom.Next(1000, 3000);
         }
@@ -224,20 +228,24 @@ public class Artifact : MonoBehaviour
         playerDistance = Vector3.Distance(this.transform.position, player.transform.position);
         if (playerDistance <= targetDistance && Input.GetKeyDown(KeyCode.E))
         {
+            if (HasOctopus == true)
+            {
+                inkSplot.SetActive(true);
+            }
             if (isHaunted == true)
             {
                 ghostes.isPossessing = true;
                 playerInfo.possessedNumber += 1;
                 ghostes.flashlight = GameObject.FindGameObjectWithTag("Light");
-                //spearGun = GameObject.FindGameObjectWithTag("Speargun");
-                //cruciFish = GameObject.FindGameObjectWithTag("Cruci-Fish");
+                ghostes.spearGun = GameObject.FindGameObjectWithTag("Speargun");
+                ghostes.cruciFish = GameObject.FindGameObjectWithTag("Cruci-Fish");
                 ghostes.state = Ghost.States.Possessing;
-                playerInfo.saveData.money += price / 2;
+                SaveDataManager.Instance.daveSata.money += price / 2;
                 Destroy(thisArtifact);
             }
             else if (isHaunted == false)
             {
-                playerInfo.saveData.money += price;
+                SaveDataManager.Instance.daveSata.money += price;
                 Destroy(thisArtifact);
             }
         }

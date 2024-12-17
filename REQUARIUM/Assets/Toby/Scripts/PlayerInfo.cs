@@ -12,8 +12,6 @@ public class PlayerInfo : MonoBehaviour
     public List<GameObject> sortedNodes;
     public int possessedNumber;
 
-    public SaveData saveData;
-
     [ContextMenu("FindNodes")]
     public void FindNodes()
     {
@@ -39,9 +37,9 @@ public class PlayerInfo : MonoBehaviour
     {
         if (possessedNumber >= 4)
         {
-            saveData.health -= 0.05f;
+            SaveDataManager.Instance.daveSata.health -= 0.05f;
         }
-        if (saveData.health <= 0)
+        if (SaveDataManager.Instance.daveSata.health <= 0)
         {
             GameOver();
         }
@@ -49,7 +47,7 @@ public class PlayerInfo : MonoBehaviour
 
     public void GameOver()
     {
+        SaveDataManager.Instance.daveSata.isNewGame = true;
         SceneManager.LoadScene("Game Over");
-
     }
 }
