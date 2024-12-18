@@ -16,10 +16,6 @@ public class Ghost : MonoBehaviour
 
     public GameObject flashlight;
 
-    public GameObject spearGun;
-
-    public GameObject cruciFish;
-
     public float playerDistance;
 
     public float watchDistance;
@@ -92,6 +88,7 @@ public class Ghost : MonoBehaviour
     public bool isArtifact;
 
 
+
     [ContextMenu("FindNodes")]
     public void FindNodes()
     {
@@ -111,6 +108,7 @@ public class Ghost : MonoBehaviour
         playerInfo = player.GetComponent<PlayerInfo>();
         FindNodes();
         SortNodes();
+        
     }
     void UpdatePath()
     {
@@ -131,6 +129,8 @@ public class Ghost : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        ghost.animator.SetBool("IsWatching", doneWatching);
         Debug.Log($"Current Target: {ghost.currentTarget}");
         Debug.Log($"Current State: {state}");
         targetDistance = Vector3.Distance(this.transform.position, ghost.currentTarget.transform.position);
@@ -211,16 +211,16 @@ public class Ghost : MonoBehaviour
         {
             currentWaypoint++;
         }
+        Animate(direction);
     }
-
     [ContextMenu("IsWatching")]
     public void IsWatching()
     {
         rb.velocity = Vector3.zero;
         GetInfo();
     }
-
     [ContextMenu("IsAttacking")]
+
     public void IsAttacking()
     {
         GetInfo();
@@ -248,9 +248,12 @@ public class Ghost : MonoBehaviour
         {
             currentWaypoint++;
         }
+        Vector3 oldDirection = new Vector3(ghost.animator.GetFloat("AnimMoveX"), ghost.animator.GetFloat("AnimMoveY"), 0);
+        Vector3 moveDirection = Vector3.Lerp(transform.forward * direction.y + transform.right * direction.x, oldDirection, 1);
+        Animate(moveDirection);
     }
-
     [ContextMenu("IsPossessing")]
+
     public void IsPossessing()
     {
         rb.velocity = Vector3.zero;
@@ -278,8 +281,6 @@ public class Ghost : MonoBehaviour
             isPossessing = true;
             playerInfo.possessedNumber += 1;
             flashlight = GameObject.FindGameObjectWithTag("Light");
-            spearGun = GameObject.FindGameObjectWithTag("Speargun");
-            cruciFish = GameObject.FindGameObjectWithTag("Cruci-Fish");
         }
         if (other.CompareTag("FlashLight") && FLASHLIGHT.isPossessed == false)
         {
@@ -309,6 +310,7 @@ public class Ghost : MonoBehaviour
             CRUCIFISH.isHaunted = true;
         }
     }
+
     public void unPossessItem()
     {
         if (playerInfo.possessedNumber == 1)
@@ -406,8 +408,15 @@ public class Ghost : MonoBehaviour
             
         }
     }
+
     public void OnDrawGizmos()
     {
         vision.Draw(transform);
+    }
+
+    public void Animate(Vector3 direction)
+    {
+        ghost.animator.SetFloat("AnimMoveX", direction.x);
+        ghost.animator.SetFloat("AnimMoveY", direction.z);
     }
 }

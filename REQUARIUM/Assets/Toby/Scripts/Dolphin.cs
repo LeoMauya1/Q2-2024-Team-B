@@ -47,6 +47,8 @@ public class Dolphin : MonoBehaviour
     public float targetDistance;
 
     public EnemyType dolphin;
+
+    private bool stunned;
     // Start is called before the first frame update
     void Start()
     {
@@ -74,6 +76,7 @@ public class Dolphin : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        dolphin.animator.SetBool("IsStunned", stunned);
         targetDistance = Vector3.Distance(this.transform.position, dolphin.currentTarget.transform.position);
         UpdatePath();
         CapVelocity();
@@ -118,11 +121,13 @@ public class Dolphin : MonoBehaviour
     }
     public void IsStunned()
     {
+        stunned = true;
         rb.velocity = Vector3.zero;
         stunTime -= Time.deltaTime;
         if (stunTime <= 0)
         {
             state = States.Chasing;
+            stunned = false;
         }    
     }
     public void CapVelocity()

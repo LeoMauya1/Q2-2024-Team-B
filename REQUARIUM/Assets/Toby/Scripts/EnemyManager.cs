@@ -16,6 +16,7 @@ public class EnemyManager : MonoBehaviour
     public float maxDolphinTime;
     public bool dolphinSpawned;
     private Quaternion spawnRotation = Quaternion.identity;
+    public Vector3 offset;
     void Start()
     {
         SpawnGhost();
@@ -40,13 +41,13 @@ public class EnemyManager : MonoBehaviour
     {
         RandomizeGhost();
         RandomizeSpawn();
-        Instantiate(ghost, spawnPoint.gameObject.transform.position, spawnRotation);
+        Instantiate(ghost, spawnPoint.gameObject.transform.position + offset, spawnRotation);
     }
 
     public void SpawnDolphin()
     {
         dolphinSpawned = true;
-        Instantiate(dolphin, dolphinSpawn.gameObject.transform.position, spawnRotation);
+        Instantiate(dolphin, dolphinSpawn.gameObject.transform.position + offset, spawnRotation);
     }
 
     void Update()

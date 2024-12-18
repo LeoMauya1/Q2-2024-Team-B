@@ -48,7 +48,7 @@ public class Artifact : MonoBehaviour
    
     public static System.Random randyTheRandom = new();
    
-    public static bool isHaunted;
+    public bool isHaunted;
    
     private bool isSwitch;
     
@@ -66,7 +66,12 @@ public class Artifact : MonoBehaviour
     
     public Ghost ghostes;
 
-    public GameObject inkSplot;
+    private float waitToBeHitAgain = 10f;
+
+    private float max = 10f;
+
+
+    //public GameObject inkSplot;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -74,7 +79,7 @@ public class Artifact : MonoBehaviour
         ghost = GameObject.FindGameObjectWithTag("Ghost");
         ghostes = ghost.GetComponent<Ghost>();
         ghostes.isArtifact = true;
-        inkSplot = GameObject.FindGameObjectWithTag("Ink");
+        //inkSplot = GameObject.FindGameObjectWithTag("Ink");
         List<float> shuffledFloats = switchTimes.OrderBy(x => randyTheRandom.Next()).ToList();
         switchTimeMax = shuffledFloats[0];
         switchTime = switchTimeMax;
@@ -219,10 +224,11 @@ public class Artifact : MonoBehaviour
             if (isHaunted == true)
             {
                 isHaunted = false;
+                Debug.Log(isHaunted);
             }
-            if (isHaunted == false)
+            else if (isHaunted == false)
             {
-                Destroy(this);
+                Destroy(thisArtifact);
             }
         }
     }
@@ -234,15 +240,13 @@ public class Artifact : MonoBehaviour
         {
             if (HasOctopus == true)
             {
-                inkSplot.SetActive(true);
+                //inkSplot.SetActive(true);
             }
             if (isHaunted == true)
             {
                 ghostes.isPossessing = true;
                 playerInfo.possessedNumber += 1;
                 ghostes.flashlight = GameObject.FindGameObjectWithTag("Light");
-                ghostes.spearGun = GameObject.FindGameObjectWithTag("Speargun");
-                ghostes.cruciFish = GameObject.FindGameObjectWithTag("Cruci-Fish");
                 ghostes.state = Ghost.States.Possessing;
                 SaveDataManager.Instance.daveSata.money += price / 2;
                 Destroy(thisArtifact);
