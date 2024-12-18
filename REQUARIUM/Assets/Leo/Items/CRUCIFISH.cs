@@ -9,22 +9,28 @@ public class CRUCIFISH : MonoBehaviour
     public PLAYERCONTROLLER playerInputs;
     public InputAction crucifishEvent;
     public Transform SwingTo;
-    public Quaternion swingRotation;
+    public Vector3 swingRotation;
     public float swingSpeed;
     private Transform crucifishOriginalPosition;
     private Quaternion crucifishOriginalRotation;
-    public float crucifishLagTime;
+    public float CrucifishSwingTime;
+    private bool canSwing = true;
+    public GameObject hitBox;
 
     public static bool isHaunted;
 
+    private float elapsedTime = 0;
+    public Vector3 HitBoxPosition;
 
-
-
-
-
+    private void Update()
+    {
+        hitBox.transform.position = Camera.main.transform.position + Camera.main.transform.TransformDirection(HitBoxPosition);
+        
+    }
 
     private void Start()
     {
+        hitBox.transform.SetParent(null);
         crucifishOriginalPosition = transform;
         crucifishOriginalRotation = transform.rotation;
 
@@ -47,27 +53,69 @@ public class CRUCIFISH : MonoBehaviour
         crucifishEvent.Disable();
     }
 
-
-
-
-
-
-
     private void swingCrucifish(InputAction.CallbackContext contxt)
     {
-        StartCoroutine(swinging());
+       if(canSwing == false)
+        {
+            StartCoroutine(SwingCooldown());
+        }
+        
+        if( canSwing == true)
+        {
+         StartCoroutine(swinging());
+
+        }
     }
 
     private IEnumerator swinging()
 
 
     {
-        Debug.Log("crucified!");
-        transform.position = Vector3.Lerp(transform.position, SwingTo.position, swingSpeed * Time.deltaTime);
-        transform.rotation = Quaternion.RotateTowards(crucifishOriginalRotation, Quaternion.LookRotation(SwingTo.position - transform.position), swingSpeed * Time.deltaTime);
-        yield return new WaitForSeconds(crucifishLagTime);
-        transform.position = Vector3.Lerp(SwingTo.position, crucifishOriginalPosition.position, swingSpeed * Time.deltaTime);
-        transform.rotation = Quaternion.Euler(Vector3.RotateTowards(SwingTo.position, crucifishOriginalPosition.position, 3, 4));
+        canSwing = false;
+        
+        while (elapsedTime < CrucifishSwingTime)
+        {
+            transform.position = Vector3.Lerp(crucifishOriginalPosition.position, SwingTo.position, elapsedTime / CrucifishSwingTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(SwingTo.position - transform.position), elapsedTime / CrucifishSwingTime) * Quaternion.Euler(swingRotation);
+
+            elapsedTime += Time.deltaTime;
+            yield return null;  
+        }
+
+        StartCoroutine(HitBox());
+        elapsedTime = 0f;
+
+       
+        while (elapsedTime < CrucifishSwingTime)
+        {
+            transform.position = Vector3.Lerp(SwingTo.position, crucifishOriginalPosition.position, elapsedTime / CrucifishSwingTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(SwingTo.position - transform.position), elapsedTime / CrucifishSwingTime) * Quaternion.Euler(swingRotation);
+
+            elapsedTime += Time.deltaTime;
+            yield return null; 
+        }
+        elapsedTime = 0f;
+        
+
+        transform.position = crucifishOriginalPosition.position;
+        transform.rotation = crucifishOriginalRotation;
+
+
     }
+
+    private IEnumerator SwingCooldown()
+    {
+        yield return new WaitForSeconds(2f);
+        canSwing = true;
+    }
+
+    private IEnumerator HitBox()
+    {
+        hitBox.SetActive(true);
+        yield return new WaitForSeconds(0.3f);
+        hitBox.SetActive(false);
+    }
+
+  
 
 }

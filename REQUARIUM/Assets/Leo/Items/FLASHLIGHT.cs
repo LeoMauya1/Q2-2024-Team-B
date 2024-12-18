@@ -9,6 +9,7 @@ public class FLASHLIGHT : MonoBehaviour
 {
     public InputAction flashLightButton;
     
+    
     public Light switchOn;
     public Vector3 lightPos;
     public Quaternion lightRot;
@@ -17,7 +18,7 @@ public class FLASHLIGHT : MonoBehaviour
     public Vector3 rotationOffset;
     private PLAYERCONTROLLER playerInputActions;
     public static bool isPossessed;
-    public SphereCollider sphere;
+    public Collider flashLightHitbox;
     void Start()
     {
         switchOn.transform.SetParent(null);
@@ -32,7 +33,10 @@ public class FLASHLIGHT : MonoBehaviour
     {
         flashLightButton = playerInputActions.GamePlay1.FlashLight;
         flashLightButton.Enable();
+        
+       
         flashLightButton.performed += FlashLightActions;
+        
 
 
 
@@ -41,6 +45,9 @@ public class FLASHLIGHT : MonoBehaviour
     {
         flashLightButton.Disable();
         flashLightButton.performed -= FlashLightActions;
+
+    
+        
     }
 
 
@@ -56,14 +63,17 @@ public class FLASHLIGHT : MonoBehaviour
 
     private void FlashLightActions(InputAction.CallbackContext contxt)
     {
-        
-        
+
+        flashLightHitbox.enabled =! flashLightHitbox.enabled;
             Debug.Log("light on");
             switchOn.enabled =! switchOn.enabled;
-        sphere.enabled = !sphere.enabled;
+       
         
        
 
     }
+
     
+
+
 }

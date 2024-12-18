@@ -34,6 +34,7 @@ public class PLAYER_INVENTORY : MonoBehaviour
     private GameObject instantiatedItem;
 
     public Camera rightHandCam;
+    private Light flashLight;
 
 
 
@@ -88,9 +89,11 @@ public class PLAYER_INVENTORY : MonoBehaviour
     private void Scroll(InputAction.CallbackContext context)
     {
 
+     
         scrollValue = MathF.Sign(ScrollingEvent.ReadValue<float>());
         previousIndex = currentIndex;
-        if(scrollValue < 0)
+       
+        if (scrollValue < 0)
         {
             currentIndex = (int)Mathf.Repeat(currentIndex - 1, Inventory.Count);
             Debug.Log("left in the inventory");
@@ -106,24 +109,39 @@ public class PLAYER_INVENTORY : MonoBehaviour
             ToItem(currentIndex, previousIndex);
 
         }
+      
 
-          
-       
-       
+
+
+
 
     }
 
     private void ToItem(int currentIndex, int previousIndex)
     {
 
+
+       
         instantiatedItems[previousIndex].SetActive(false);
-     
+        
+
+
         foreach (var item in Inventory)
         {
             instantiatedItems[currentIndex].SetActive(true);
+            
+            if (instantiatedItems[previousIndex].tag == "FlashLight")
+            {
+                flashLight = GameObject.Find("light").GetComponent<Light>();
+                flashLight.GetComponentInChildren<SphereCollider>().enabled = false;
+                flashLight.enabled = false;
+                Debug.Log("flash turned off");
+                
+            }
 
         }
 
+      
     }
 
     private void InstantiateItems()

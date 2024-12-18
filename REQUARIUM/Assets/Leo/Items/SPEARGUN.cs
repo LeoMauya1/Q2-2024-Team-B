@@ -48,7 +48,7 @@ public class SPEARGUN : MonoBehaviour
 
 
         FiringPoint.transform.position = Camera.main.transform.position + Camera.main.transform.TransformDirection(spearPos);
-        FiringPoint.transform.rotation = Camera.main.transform.rotation;
+        FiringPoint.transform.rotation = Camera.main.transform.rotation * Quaternion.Euler(spearRotation);
 
 
 
