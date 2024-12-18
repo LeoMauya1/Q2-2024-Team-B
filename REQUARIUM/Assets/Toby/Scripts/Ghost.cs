@@ -281,12 +281,12 @@ public class Ghost : MonoBehaviour
             spearGun = GameObject.FindGameObjectWithTag("Speargun");
             cruciFish = GameObject.FindGameObjectWithTag("Cruci-Fish");
         }
-        if (other.CompareTag("Flashlight") && FLASHLIGHT.isPossessed == false)
+        if (other.CompareTag("FlashLight") && FLASHLIGHT.isPossessed == false)
         {
             state = States.Watching;
             watchTime = watchTimeMax + 1.5f;
         }
-        else if (other.CompareTag("Flashlight") && FLASHLIGHT.isPossessed == true)
+        else if (other.CompareTag("FlashLight") && FLASHLIGHT.isPossessed == true)
         {
             ghost.speed = possessedSpeed;
             speedCap = possessedSpeedCap;
@@ -318,11 +318,11 @@ public class Ghost : MonoBehaviour
         }
          else if (playerInfo.possessedNumber == 2)
         {
-            //Speargun possession
+            SPEARGUN.isHaunted = false;
         }
         else if (playerInfo.possessedNumber >= 3)
         {
-            //Cruci-Fish unPossession
+            CRUCIFISH.isHaunted = false;
         }
     }
 

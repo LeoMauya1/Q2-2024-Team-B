@@ -212,6 +212,10 @@ public class Artifact : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Cruci-Fish"))
         {
+            if (CRUCIFISH.isHaunted == true)
+            {
+                price = price / 2;
+            }
             if (isHaunted == true)
             {
                 isHaunted = false;

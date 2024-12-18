@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7608469034510647696}
   m_Layer: 0
   m_Name: hitbox
-  m_TagString: Untagged
+  m_TagString: FlashLight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 8467559163556987890}
   m_Layer: 0
   m_Name: light
-  m_TagString: Untagged
+  m_TagString: Light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
