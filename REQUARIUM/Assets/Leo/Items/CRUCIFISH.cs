@@ -21,11 +21,14 @@ public class CRUCIFISH : MonoBehaviour
 
     private float elapsedTime = 0;
     public Vector3 HitBoxPosition;
+    public Vector3 HitBoxRotation;
 
     private void Update()
     {
         hitBox.transform.position = Camera.main.transform.position + Camera.main.transform.TransformDirection(HitBoxPosition);
-        
+        hitBox.transform.rotation = Camera.main.transform.rotation * Quaternion.Euler(HitBoxRotation);
+
+
     }
 
     private void Start()

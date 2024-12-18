@@ -45,7 +45,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.9426926, y: 2.5874093, z: 7.3376384}
+  m_Size: {x: 1.9426926, y: 2.5874093, z: 1.809588}
   m_Center: {x: 0.01592873, y: 0.036608476, z: 3.6876693}
 --- !u!114 &2586115881885931796
 MonoBehaviour:
@@ -239,7 +239,8 @@ MonoBehaviour:
   swingSpeed: 5
   CrucifishSwingTime: 0.2
   hitBox: {fileID: 172224388868821427}
-  HitBoxPosition: {x: 0.1, y: -0.2, z: 0.8}
+  HitBoxPosition: {x: 0.02, y: -0.09, z: 0.34}
+  HitBoxRotation: {x: 0, y: 0, z: 0}
 --- !u!1 &6520186099645537060
 GameObject:
   m_ObjectHideFlags: 0

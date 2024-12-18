@@ -256,7 +256,7 @@ public partial class @PLAYERCONTROLLER : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""15fa7ba3-78e1-4f28-b03b-1b8b927de2ac"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
