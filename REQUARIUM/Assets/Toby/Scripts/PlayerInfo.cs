@@ -11,6 +11,7 @@ public class PlayerInfo : MonoBehaviour
     public List<GameObject> pNodes;
     public List<GameObject> sortedNodes;
     public int possessedNumber;
+    public int artifactsGrabbed;
 
     [ContextMenu("FindNodes")]
     public void FindNodes()
@@ -47,7 +48,7 @@ public class PlayerInfo : MonoBehaviour
 
     public void GameOver()
     {
-        SaveDataManager.Instance.daveSata.isNewGame = true;
+        SaveDataManager.Instance.daveSata = SaveDataManager.Instance.defaultData;
         SceneManager.LoadScene("Game Over");
     }
 }

@@ -211,7 +211,8 @@ public class Ghost : MonoBehaviour
         {
             currentWaypoint++;
         }
-        Animate(direction);
+        Vector3 moveDirection = (transform.forward * direction.y + transform.right * direction.x);
+        Animate(moveDirection);
     }
     [ContextMenu("IsWatching")]
     public void IsWatching()
@@ -285,7 +286,7 @@ public class Ghost : MonoBehaviour
         if (other.CompareTag("FlashLight") && FLASHLIGHT.isPossessed == false)
         {
             state = States.Watching;
-            watchTime = watchTimeMax + 1.5f;
+            watchTime = watchTimeMax + 3f;
         }
         else if (other.CompareTag("FlashLight") && FLASHLIGHT.isPossessed == true)
         {

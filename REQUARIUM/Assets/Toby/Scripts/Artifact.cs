@@ -70,6 +70,8 @@ public class Artifact : MonoBehaviour
 
     private float max = 10f;
 
+    public GameObject enemyManager;
+
 
     //public GameObject inkSplot;
     void Start()
@@ -244,16 +246,34 @@ public class Artifact : MonoBehaviour
             }
             if (isHaunted == true)
             {
+                playerInfo.artifactsGrabbed += 1;
                 ghostes.isPossessing = true;
                 playerInfo.possessedNumber += 1;
                 ghostes.flashlight = GameObject.FindGameObjectWithTag("Light");
                 ghostes.state = Ghost.States.Possessing;
                 SaveDataManager.Instance.daveSata.money += price / 2;
+                if (playerInfo.artifactsGrabbed == 3)
+                {
+                    enemyManager.GetComponent<EnemyManager>().SpawnGhost();
+                }
+                else if (playerInfo.artifactsGrabbed == 6)
+                {
+                    enemyManager.GetComponent<EnemyManager>().SpawnGhost();
+                }
                 Destroy(thisArtifact);
             }
             else if (isHaunted == false)
             {
                 SaveDataManager.Instance.daveSata.money += price;
+                playerInfo.artifactsGrabbed += 1;
+                if (playerInfo.artifactsGrabbed == 3)
+                {
+                    enemyManager.GetComponent<EnemyManager>().SpawnGhost();
+                }
+                else if (playerInfo.artifactsGrabbed == 6)
+                {
+                    enemyManager.GetComponent<EnemyManager>().SpawnGhost();
+                }
                 Destroy(thisArtifact);
             }
         }

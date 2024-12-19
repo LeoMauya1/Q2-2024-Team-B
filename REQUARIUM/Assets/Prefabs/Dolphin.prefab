@@ -111,7 +111,7 @@ MonoBehaviour:
   player: {fileID: 0}
   playerInfo: {fileID: 0}
   stunTime: 0
-  maxStunTime: 0
+  maxStunTime: 10
   currentWaypoint: 10
   rb: {fileID: 2701589663163777129}
   seeker: {fileID: 2701589663163777128}
@@ -125,6 +125,7 @@ MonoBehaviour:
     currentTarget: {fileID: 0}
     nextTarget: {fileID: 0}
     animator: {fileID: 8981541749828831284}
+  stunned: 0
 --- !u!114 &-8944591510728512540
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -48,7 +48,7 @@ public class Dolphin : MonoBehaviour
 
     public EnemyType dolphin;
 
-    private bool stunned;
+    public bool stunned;
     // Start is called before the first frame update
     void Start()
     {
@@ -171,7 +171,6 @@ public class Dolphin : MonoBehaviour
         {
             stunTime = maxStunTime;
             SaveDataManager.Instance.daveSata.health -= 50;
-            //stunned animation
             state = States.Stunned;
         }
         else if (other.gameObject.CompareTag("Spear"))

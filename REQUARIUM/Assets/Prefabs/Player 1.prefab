@@ -32,7 +32,7 @@ Transform:
   - {fileID: 7893717943037388533}
   - {fileID: 6033313607063546883}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1655394666065882762
 PrefabInstance:
@@ -101,6 +101,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4990980627221398155, guid: 4829d6eba3f4fca4cafdcf3222091030,
+        type: 3}
+      propertyPath: offset.y
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 4990980627221398155, guid: 4829d6eba3f4fca4cafdcf3222091030,
         type: 3}
@@ -223,6 +228,21 @@ PrefabInstance:
       propertyPath: CAM
       value: 
       objectReference: {fileID: 6033313607063546884}
+    - target: {fileID: 7921720499899931570, guid: 6b6d485acfe6d64458f4f74866e1429f,
+        type: 3}
+      propertyPath: jumpPower
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7921720499899931570, guid: 6b6d485acfe6d64458f4f74866e1429f,
+        type: 3}
+      propertyPath: walkSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7921720499899931570, guid: 6b6d485acfe6d64458f4f74866e1429f,
+        type: 3}
+      propertyPath: SprintSpeed
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7921720499899931572, guid: 6b6d485acfe6d64458f4f74866e1429f,
         type: 3}
       propertyPath: m_Name
@@ -237,6 +257,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7921720499899931582, guid: 6b6d485acfe6d64458f4f74866e1429f,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.7317
       objectReference: {fileID: 0}
     - target: {fileID: 7921720499899931582, guid: 6b6d485acfe6d64458f4f74866e1429f,
         type: 3}
