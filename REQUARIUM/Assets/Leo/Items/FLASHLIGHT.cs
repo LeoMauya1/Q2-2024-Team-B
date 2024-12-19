@@ -19,13 +19,15 @@ public class FLASHLIGHT : MonoBehaviour
     private PLAYERCONTROLLER playerInputActions;
     public static bool isPossessed;
     public Collider flashLightHitbox;
-    private float batteryTime = 360f;
-    private int battery;
-    private bool batteryDead;
+    private float batteryTime = 0;
+    public int battery = 1;
+    private bool batteryDead = false;
+    private float MinutesPassed;
     void Start()
     {
         switchOn.transform.SetParent(null);
-        battery = SaveDataManager.Instance.daveSata.batteries;
+        //battery = SaveDataManager.Instance.daveSata.batteries; null rn
+       
     }
 
     private void Awake()
@@ -60,37 +62,70 @@ public class FLASHLIGHT : MonoBehaviour
     {
         switchOn.transform.position = Camera.main.transform.position + Camera.main.transform.TransformDirection(lightPos);
         switchOn.transform.rotation = Camera.main.transform.rotation * Quaternion.Euler(rotationOffset);
+        MinutesPassed += Time.deltaTime;
 
-        
+        if ( batteryDead)
+        {
+            StopCoroutine(FlashLightCooldown());
+            switchOn.enabled = false;
+            
+
+        }
+        if (MinutesPassed == 60f)
+        {
+            Debug.Log("one battery donw");
+            battery -= 1;
+            Debug.Log(battery);
+        }
+
+
+
+
     }
 
 
     private void FlashLightActions(InputAction.CallbackContext contxt)
     {
-
-        if( !batteryDead )
+        if(!batteryDead || battery > 0 )
         {
-        flashLightHitbox.enabled =! flashLightHitbox.enabled;
-            Debug.Log("light on");
-            switchOn.enabled = !switchOn.enabled;
+            StartCoroutine(FlashLightCooldown());
         }
-
-        StartCoroutine(FlashLightCooldown(battery, batteryTime));
+        
+      
         
        
 
     }
 
-    private IEnumerator FlashLightCooldown(int battery, float batteryTime)
+    private IEnumerator FlashLightCooldown()
     {
 
+        flashLightHitbox.enabled = !flashLightHitbox.enabled;
+        Debug.Log("light on");
+        switchOn.enabled = !switchOn.enabled;
 
-        battery = battery * 60;
-        batteryTime = battery + batteryTime;
+        batteryTime = battery * 60 + batteryTime;
         Debug.Log(batteryTime/60);
         Debug.Log("THATS YOUR BATTERY TIME!");
-        yield return new WaitForSeconds(batteryTime);
+        
+
+        while (batteryTime > 0)
+        {
+            Debug.Log("Battery depleating");
+            batteryTime -= Time.deltaTime;
+            Mathf.Clamp(batteryTime,0, batteryTime);
+            Debug.Log(batteryTime);
+            yield return null;
+           
+           
+        }
+        
         batteryDead = true;
+        Debug.Log("dead");
+        Debug.Log(battery);
+        
+
+        
     }
 
 
