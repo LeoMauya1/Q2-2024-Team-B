@@ -67,9 +67,12 @@ public class Artifact : MonoBehaviour
     public Ghost ghostes;
 
     private int amountToSpawnGhost = 3;
+    
+    public GameObject inkSplot;
 
+    public GameObject mocktopus;
 
-    //public GameObject inkSplot;
+    public float jumpscareTime;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -77,7 +80,8 @@ public class Artifact : MonoBehaviour
         ghost = GameObject.FindGameObjectWithTag("Ghost");
         ghostes = ghost.GetComponent<Ghost>();
         ghostes.isArtifact = true;
-        //inkSplot = GameObject.FindGameObjectWithTag("Ink");
+        inkSplot = GameObject.FindGameObjectWithTag("Ink");
+        mocktopus = GameObject.FindGameObjectWithTag("Moctopus");
         List<float> shuffledFloats = switchTimes.OrderBy(x => randyTheRandom.Next()).ToList();
         switchTimeMax = shuffledFloats[0];
         switchTime = switchTimeMax;
@@ -237,7 +241,12 @@ public class Artifact : MonoBehaviour
         {
             if (HasOctopus == true)
             {
-                //inkSplot.SetActive(true);
+                mocktopus.GetComponent<Image>().gameObject.SetActive(true);
+                jumpscareTime -= Time.deltaTime;
+                if (jumpscareTime <= 0)
+                {
+                    inkSplot.GetComponent<Image>().gameObject.SetActive(true);
+                }
             }
             if (isHaunted == true)
             {

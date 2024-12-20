@@ -12,6 +12,11 @@ public class Shop : MonoBehaviour
     public int oxygenTankCost;
     public int timerCost;
 
+    private float playerDistance;
+
+    private float targetDistance = 5;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -70,6 +75,6 @@ public class Shop : MonoBehaviour
     }
     void Update()
     {
-        
+        playerDistance = Vector3.Distance(this.transform.position, player.transform.position);
     }
 }

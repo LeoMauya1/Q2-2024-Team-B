@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerInfo : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class PlayerInfo : MonoBehaviour
     public List<GameObject> sortedNodes;
     public int possessedNumber;
     public int artifactsGrabbed;
+    public bool killedByDolphin;
+    public float jumpscareTime;
 
     [ContextMenu("FindNodes")]
     public void FindNodes()
@@ -40,9 +43,15 @@ public class PlayerInfo : MonoBehaviour
         {
             SaveDataManager.Instance.daveSata.health -= 0.05f;
         }
-        if (SaveDataManager.Instance.daveSata.health <= 0)
+        if (SaveDataManager.Instance.daveSata.health <= 0 && killedByDolphin == true)
         {
-            GameOver();
+            FindObjectOfType<Dolphin>().jumpscare.GetComponent<Image>().gameObject.SetActive(true);
+            jumpscareTime -= Time.deltaTime;
+            if (jumpscareTime <= 0)
+            {
+                FindObjectOfType<Dolphin>().jumpscare.GetComponent<Image>().gameObject.SetActive(false);
+                GameOver();
+            }
         }
     }
 

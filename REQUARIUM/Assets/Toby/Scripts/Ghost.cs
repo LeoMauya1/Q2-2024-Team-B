@@ -7,6 +7,7 @@ using UnityEditor.Rendering;
 using UnityEngine.Events;
 using System.Linq;
 using System.ComponentModel.Design;
+using UnityEngine.UI;
 
 public class Ghost : MonoBehaviour
 {
@@ -87,8 +88,13 @@ public class Ghost : MonoBehaviour
 
     public bool isArtifact;
 
+    public GameObject jumpscare;
 
+    public float jumpscareTime;
 
+    public float jumpscareMax;
+
+    public bool ganglerScare;
     [ContextMenu("FindNodes")]
     public void FindNodes()
     {
@@ -106,6 +112,7 @@ public class Ghost : MonoBehaviour
         state = States.Roaming;
         player = GameObject.FindGameObjectWithTag("Player");
         playerInfo = player.GetComponent<PlayerInfo>();
+        jumpscare = GameObject.FindGameObjectWithTag("Gangler");
         FindNodes();
         SortNodes();
         
@@ -129,7 +136,10 @@ public class Ghost : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (ganglerScare == true)
+        {
+            Jumpscare();
+        }
         ghost.animator.SetBool("IsWatching", doneWatching);
         Debug.Log($"Current Target: {ghost.currentTarget}");
         Debug.Log($"Current State: {state}");
@@ -257,6 +267,7 @@ public class Ghost : MonoBehaviour
 
     public void IsPossessing()
     {
+        jumpscareTime = jumpscareMax;
         rb.velocity = Vector3.zero;
         possessing.Invoke();
         possessTime -= Time.deltaTime;
@@ -279,9 +290,12 @@ public class Ghost : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            jumpscare.GetComponent<Image>().gameObject.SetActive(true);
+            ganglerScare = true;
             isPossessing = true;
             playerInfo.possessedNumber += 1;
             flashlight = GameObject.FindGameObjectWithTag("Light");
+
         }
         if (other.CompareTag("FlashLight") && FLASHLIGHT.isPossessed == false)
         {
@@ -292,6 +306,16 @@ public class Ghost : MonoBehaviour
         {
             ghost.speed = possessedSpeed;
             speedCap = possessedSpeedCap;
+        }
+    }
+
+    public void Jumpscare()
+    {
+        jumpscareTime -= Time.deltaTime;
+        if (jumpscareTime <= 0)
+        {
+            ganglerScare = false;
+            jumpscare.GetComponent<Image>().gameObject.SetActive(false);
         }
     }
 

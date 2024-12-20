@@ -131,7 +131,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: ffdebfb2e5a274b419e00f5e774201c8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -194,7 +194,9 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
-  CurrentIndex: 0
+  CAM: {fileID: 0}
+  targetFOV: 0
+  fovLerpSpeed: 0
 --- !u!114 &9044754903827543804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,6 +267,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 132f19a6-13e0-4ae7-bd24-636c5e21163d
     m_ActionName: GamePlay1/scrolling[/Mouse/scroll/y]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d4699c11-1f96-490e-936b-66324c47ae0c
+    m_ActionName: GamePlay1/Crucifish[/Mouse/rightButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard
   m_DefaultActionMap: GamePlay1
@@ -312,6 +318,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b41cc7a00cf977c48b2248c3f595c5c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerPos: {fileID: 0}
+  itemPos: {x: 0, y: 0, z: 0}
+  rotationOffset: {x: 0, y: 0, z: 0}
+  flashLightsRotationOffset: {x: 0, y: 0, z: 0}
   Inventory: []
   ScrollingEvent:
     m_Name: 
@@ -322,6 +332,7 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+  rightHandCam: {fileID: 0}
 --- !u!114 &3616607764480826810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -336,7 +347,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pNodes: []
   sortedNodes: []
-  saveData:
-    money: 0
-    health: 0
-    workDay: 0
+  possessedNumber: 0
+  artifactsGrabbed: 0

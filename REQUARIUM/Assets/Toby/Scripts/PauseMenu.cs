@@ -31,7 +31,7 @@ public class PauseMenu : MonoBehaviour
         {
             Continue();
         }
-        if (Input.GetKeyDown(pause) && isOpen == false)
+        else if (Input.GetKeyDown(pause) && isOpen == false)
         {
             Pause();
         }

@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 98498817fb76ddb4ab4dd6ee61999778, type: 2}
+  - {fileID: 2100000, guid: ffdebfb2e5a274b419e00f5e774201c8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -159,7 +159,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: ffdebfb2e5a274b419e00f5e774201c8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -257,7 +257,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: ffdebfb2e5a274b419e00f5e774201c8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -344,7 +344,7 @@ PrefabInstance:
     - target: {fileID: 9044754903827543799, guid: ae05913c4428bad4eb5cbcdbdf58d653,
         type: 3}
       propertyPath: m_Name
-      value: Player
+      value: New player prefab
       objectReference: {fileID: 0}
     - target: {fileID: 9044754903827543801, guid: ae05913c4428bad4eb5cbcdbdf58d653,
         type: 3}
@@ -427,7 +427,7 @@ PrefabInstance:
     - target: {fileID: 9044754903827543805, guid: ae05913c4428bad4eb5cbcdbdf58d653,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9044754903827543805, guid: ae05913c4428bad4eb5cbcdbdf58d653,
         type: 3}
