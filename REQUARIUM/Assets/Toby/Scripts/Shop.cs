@@ -21,7 +21,7 @@ public class Shop : MonoBehaviour
 
     public void AddBattery()
     {
-        if (SaveDataManager.Instance.daveSata.money >= batteryCost)
+        if (SaveDataManager.Instance.daveSata.spendingMoney >= batteryCost)
         {
             SaveDataManager.Instance.daveSata.batteries += 1;
         }
@@ -32,7 +32,7 @@ public class Shop : MonoBehaviour
     }
     public void AddSpear()
     {
-        if (SaveDataManager.Instance.daveSata.money >= spearCost)
+        if (SaveDataManager.Instance.daveSata.spendingMoney >= spearCost)
         {
             SaveDataManager.Instance.daveSata.spears += 1;
         }
@@ -43,7 +43,7 @@ public class Shop : MonoBehaviour
     }
     public void BuyOxygen()
     {
-        if (SaveDataManager.Instance.daveSata.money >= oxygenTankCost)
+        if (SaveDataManager.Instance.daveSata.spendingMoney >= oxygenTankCost)
         {
             SaveDataManager.Instance.daveSata.health += 50;
         }
@@ -54,7 +54,7 @@ public class Shop : MonoBehaviour
     }
     public void AddTime()
     {
-        if (SaveDataManager.Instance.daveSata.money >= timerCost)
+        if (SaveDataManager.Instance.daveSata.spendingMoney >= timerCost)
         {
             timer.remainingTime += 60;
         }

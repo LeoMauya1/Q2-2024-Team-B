@@ -12,8 +12,20 @@ EditorBuildSettings:
     path: Assets/Toby/Scenes/Title Screen.unity
     guid: 0ba669181abaab64da40f262f32d96ed
   - enabled: 1
+    path: Assets/Toby/Scenes/New Game.unity
+    guid: 3468a83a628ec00498ac231e66dd9afa
+  - enabled: 1
+    path: Assets/Toby/Scenes/Main Level.unity
+    guid: 4f8595f1c5a26074f9d18ba4f4fc8edf
+  - enabled: 1
+    path: Assets/Toby/Scenes/Result Screen.unity
+    guid: 0a96af09c59f82b49a1994e573897b5b
+  - enabled: 1
     path: Assets/Toby/Scenes/Game Over.unity
     guid: d7a2e71ac8fe3a74a8a9511fd2820c26
+  - enabled: 1
+    path: Assets/Toby/Scenes/Fired Game Over.unity
+    guid: aba6375a34173e04eb3f05ef3fff8c7f
   - enabled: 1
     path: Assets/Toby/Scenes/Credits.unity
     guid: ade8127a64826524a9529f6019e2fe11

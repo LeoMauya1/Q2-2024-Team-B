@@ -26,8 +26,6 @@ public class Dolphin : MonoBehaviour
 
     public float maxStunTime;
 
-    private float leaveDistance = 10;
-
     private Pathfinding.Path dolphinPath;
 
     private float nextWaypointDistance = 3f;

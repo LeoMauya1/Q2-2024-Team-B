@@ -11,6 +11,7 @@ public class ArtifactController : MonoBehaviour
     public GameObject targetNode;
     public GameObject artifactBase;
     public Quaternion spawnRotation = Quaternion.identity;
+    public Vector3 offset;
     // Start is called before the first frame update
 
     [ContextMenu("FindArtifactNodes")]
@@ -25,10 +26,14 @@ public class ArtifactController : MonoBehaviour
 
     public void CreateArtifact()
     {
+        if (artifactNodes.Count == 0)
+        {
+            FindArtifactNodes();
+        }
         List<GameObject> shuffledNodes = artifactNodes.OrderBy(x => Artifact.randyTheRandom.Next()).ToList();
         targetNode = shuffledNodes[0];
         artifactNodes.Remove(shuffledNodes[0]);
-        Instantiate(artifactBase, targetNode.gameObject.transform.position, spawnRotation);
+        Instantiate(artifactBase, targetNode.gameObject.transform.position + offset, spawnRotation);
     }
     void Start()
     {

@@ -7,7 +7,9 @@ using UnityEngine;
 [System.Serializable]
 public struct SaveData
 {
-    public int money;
+    public int spendingMoney;
+
+    public int quotaMoney;
    
     public int batteries;
    
@@ -18,6 +20,8 @@ public struct SaveData
     public int workDay;
   
     public bool isNewGame;
+
+    public int quota;
     public static SaveData Load(string filePath, SaveData defaultData)
     {
         if (!File.Exists(filePath))

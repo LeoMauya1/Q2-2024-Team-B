@@ -19,7 +19,6 @@ public class EnemyManager : MonoBehaviour
     public Vector3 offset;
     void Start()
     {
-        SpawnGhost();
         dolphinTimer = maxDolphinTime;
     }
     public void RandomizeGhost()

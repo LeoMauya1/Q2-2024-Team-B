@@ -99,15 +99,15 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8640826105933002843}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 36
-  m_Range: 10
-  m_SpotAngle: 69.3
-  m_InnerSpotAngle: 38.7
+  m_Intensity: 50
+  m_Range: 15.916153
+  m_SpotAngle: 110.06729
+  m_InnerSpotAngle: 75.08784
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -304,6 +304,7 @@ MonoBehaviour:
   camPos: {fileID: 0}
   rotationOffset: {x: 0, y: 0, z: 0}
   flashLightHitbox: {fileID: 1518604118532214254}
+  battery: 1
 --- !u!114 &8708863119133998543
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -66,11 +66,7 @@ public class Artifact : MonoBehaviour
     
     public Ghost ghostes;
 
-    private float waitToBeHitAgain = 10f;
-
-    private float max = 10f;
-
-    public GameObject enemyManager;
+    private int amountToSpawnGhost = 3;
 
 
     //public GameObject inkSplot;
@@ -223,18 +219,17 @@ public class Artifact : MonoBehaviour
             {
                 price = price / 2;
             }
-            if (isHaunted == true)
+            if (isHaunted == false)
+            {
+                Destroy(thisArtifact);
+            }
+            else if (isHaunted == true)
             {
                 isHaunted = false;
                 Debug.Log(isHaunted);
             }
-            else if (isHaunted == false)
-            {
-                Destroy(thisArtifact);
-            }
         }
     }
-    
     void Update()
     {
         playerDistance = Vector3.Distance(this.transform.position, player.transform.position);
@@ -251,29 +246,26 @@ public class Artifact : MonoBehaviour
                 playerInfo.possessedNumber += 1;
                 ghostes.flashlight = GameObject.FindGameObjectWithTag("Light");
                 ghostes.state = Ghost.States.Possessing;
-                SaveDataManager.Instance.daveSata.money += price / 2;
-                if (playerInfo.artifactsGrabbed == 3)
-                {
-                    enemyManager.GetComponent<EnemyManager>().SpawnGhost();
-                }
-                else if (playerInfo.artifactsGrabbed == 6)
-                {
-                    enemyManager.GetComponent<EnemyManager>().SpawnGhost();
-                }
+                SaveDataManager.Instance.daveSata.quotaMoney += price / 2;
+                SaveDataManager.Instance.daveSata.spendingMoney += price / 2;
+                if (playerInfo.artifactsGrabbed == amountToSpawnGhost && SaveDataManager.Instance.daveSata.isNewGame == false)
+                 {
+                     FindObjectOfType<EnemyManager>().SpawnGhost();
+                     amountToSpawnGhost = amountToSpawnGhost + 3;
+                 }
                 Destroy(thisArtifact);
             }
             else if (isHaunted == false)
             {
-                SaveDataManager.Instance.daveSata.money += price;
+                SaveDataManager.Instance.daveSata.quotaMoney += price;
+                SaveDataManager.Instance.daveSata.spendingMoney += price;
                 playerInfo.artifactsGrabbed += 1;
-                if (playerInfo.artifactsGrabbed == 3)
+                if (playerInfo.artifactsGrabbed == amountToSpawnGhost && SaveDataManager.Instance.daveSata.isNewGame == false)
                 {
-                    enemyManager.GetComponent<EnemyManager>().SpawnGhost();
+                    FindObjectOfType<EnemyManager>().SpawnGhost();
+                    amountToSpawnGhost = amountToSpawnGhost + 3;
                 }
-                else if (playerInfo.artifactsGrabbed == 6)
-                {
-                    enemyManager.GetComponent<EnemyManager>().SpawnGhost();
-                }
+                FindObjectOfType<ArtifactController>().CreateArtifact();
                 Destroy(thisArtifact);
             }
         }

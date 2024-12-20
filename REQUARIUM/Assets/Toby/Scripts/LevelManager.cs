@@ -6,18 +6,77 @@ public class LevelManager : MonoBehaviour
 {
     public ArtifactController artifactController;
     public EnemyManager enemyManager;
-    public GameObject playerPrefab;
-    public GameObject playerSpawn;
+    public int artifactAmount;
+    public int maxArtifacts;
+    public int minArtifacts;
+    public int ghostAmount;
+    public int maxGhosts;
+    public int minGhosts;
+    public Vector3 offset;
+    public bool canSpawnArtifacts;
+    public bool canSpawnGhosts;
 
     // Start is called before the first frame update
     void Start()
     {
+        SaveDataManager.Instance.daveSata.quotaMoney = 0;
+        if (SaveDataManager.Instance.daveSata.isNewGame == true)
+        {
+            artifactAmount = 3;
+            canSpawnArtifacts = true;
+        }
+        else if (SaveDataManager.Instance.daveSata.workDay == 1)
+        {
+            artifactAmount = 5;
+            ghostAmount = 1;
+        }
+        else if (SaveDataManager.Instance.daveSata.workDay == 2)
+        {
+            artifactAmount = 6;
+            ghostAmount = 2;
+        }
+        else if (SaveDataManager.Instance.daveSata.workDay >= 3)
+        {
+            SetBaseArtifactValue();
+            SetBaseGhostValue();
+        }   
+    }
+    public void SetBaseArtifactValue()
+    {
+        artifactAmount = Artifact.randyTheRandom.Next(minArtifacts, maxArtifacts);
+        if (artifactAmount > 0)
+        {
+            canSpawnArtifacts = true;
+        }
         
     }
-
-    // Update is called once per frame
+    public void SetBaseGhostValue()
+    {
+        ghostAmount = Artifact.randyTheRandom.Next(minGhosts, maxGhosts);
+        if (ghostAmount > 0)
+        {
+            canSpawnGhosts = true;
+        }
+    }
     void Update()
     {
-        
+        if (artifactAmount <= 0)
+        {
+            canSpawnArtifacts = false;
+        }
+        if (canSpawnArtifacts == true)
+        {
+            artifactAmount -= 1;
+            artifactController.CreateArtifact();
+        }
+        if (ghostAmount <= 0)
+        {
+            canSpawnGhosts = false;
+        }
+        if (canSpawnGhosts == true)
+        {
+            ghostAmount -= 1;
+            enemyManager.SpawnGhost();
+        }
     }
 }
