@@ -53,7 +53,12 @@ public class PLAYER_INVENTORY : MonoBehaviour
 
     private void Update()
     {
-       if(instantiatedItems.Count > 0)
+
+        instantiatedItems[currentIndex].transform.SetParent(GameObject.Find("Main Camera").GetComponent<Camera>().transform);
+
+
+
+        if (instantiatedItems.Count > 0)
         {
 
             instantiatedItems[currentIndex].transform.position = rightHandCam.transform.position + rightHandCam.transform.TransformDirection(itemPos);

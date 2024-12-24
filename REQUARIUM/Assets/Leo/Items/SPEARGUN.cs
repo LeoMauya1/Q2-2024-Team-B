@@ -63,7 +63,7 @@ public class SPEARGUN : MonoBehaviour
     private void Start()
     {
 
-        rightHandCam = GameObject.Find("Hand Camera").GetComponent<Camera>();
+        //rightHandCam = GameObject.Find("Hand Camera").GetComponent<Camera>();
 
 
         FiringPoint.transform.SetParent(null);
