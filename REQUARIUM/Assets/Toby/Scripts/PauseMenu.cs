@@ -36,8 +36,8 @@ public class PauseMenu : MonoBehaviour
             Pause();
         }
         batteryText.text = string.Format($"Batteries: {SaveDataManager.Instance.daveSata.batteries}");
-        quotaText.text = string.Format($"Quota: {SaveDataManager.Instance.daveSata.quota}");
-        moneyText.text = string.Format($"Money: {SaveDataManager.Instance.daveSata.spendingMoney}");
+        quotaText.text = string.Format($"Money needed for Quota: {SaveDataManager.Instance.daveSata.quota - SaveDataManager.Instance.daveSata.quotaMoney}");
+        moneyText.text = string.Format($"Money To Spend: {SaveDataManager.Instance.daveSata.spendingMoney}");
         spearText.text = string.Format($"Spears: {SaveDataManager.Instance.daveSata.spears}");
         dayText.text = string.Format($"Day: {SaveDataManager.Instance.daveSata.workDay}");
         //timerText.text = string.Format($"{timer.timerText}");

@@ -8,29 +8,27 @@ public class GhostHeadLight : MonoBehaviour
     public GameObject lightPositionFront;
     public GameObject lightPositionLeft;
     public GameObject lightPositionRight;
+    public string clipName;
 
-    public void FindAnimation (Animator animator)
+    public void FindAnimation()
     {
-        foreach (AnimationClip clip in animator.runtimeAnimatorController.animationClips)
+        if (clipName == "Gangler Front" || clipName == "Gangler Back" || clipName == "Gangler Watching")
         {
-            if (clip.name == "Gangler Front" || clip.name == "Gangler Back" || clip.name == "Gangler Watching")
-            {
-                lightPositionFront.SetActive(true);
-                lightPositionLeft.SetActive(false);
-                lightPositionRight.SetActive(false);
-            }
-            else if (clip.name == "Gangler Left")
-            {
-                lightPositionLeft.SetActive(true);
-                lightPositionFront.SetActive(false);
-                lightPositionRight.SetActive(false);
-            }
-            else if (clip.name == "Gangler Right")
-            {
-                lightPositionRight.SetActive(true);
-                lightPositionFront.SetActive(false);
-                lightPositionLeft.SetActive(false);
-            }
+            lightPositionFront.SetActive(true);
+            lightPositionLeft.SetActive(false);
+            lightPositionRight.SetActive(false);
+        }
+        else if (clipName == "Gangler Left")
+        {
+            lightPositionLeft.SetActive(true);
+            lightPositionFront.SetActive(false);
+            lightPositionRight.SetActive(false);
+        }
+        else if (clipName == "Gangler Right")
+        {
+            lightPositionRight.SetActive(true);
+            lightPositionFront.SetActive(false);
+            lightPositionLeft.SetActive(false);
         }
     }
     // Start is called before the first frame update
@@ -42,6 +40,8 @@ public class GhostHeadLight : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        FindAnimation(animator);
+        FindAnimation();
     }
 }
+
+

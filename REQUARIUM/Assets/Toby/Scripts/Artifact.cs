@@ -175,11 +175,11 @@ public class Artifact : MonoBehaviour
         {
             price = randyTheRandom.Next(minPriceNorm, maxPriceNorm);
         }
-        else if (corruptionCount >= 5 && corruptionCount < 11)
+        else if (corruptionCount >= 5 && corruptionCount < 13)
         {
             price = randyTheRandom.Next(minPriceHaunt, maxPriceHaunt);
         }
-        else if (corruptionCount > 16)
+        else if (corruptionCount > 14)
         {
             price = randyTheRandom.Next(1000, 3000);
         }

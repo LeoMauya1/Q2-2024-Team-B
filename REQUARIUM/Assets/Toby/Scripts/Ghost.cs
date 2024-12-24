@@ -90,6 +90,8 @@ public class Ghost : MonoBehaviour
 
     public JumpscareController jumpscare;
 
+    public GhostHeadLight headLight;
+
     [ContextMenu("FindNodes")]
     public void FindNodes()
     {
@@ -135,8 +137,6 @@ public class Ghost : MonoBehaviour
         {
             ghost.animator.SetBool("IsWatching", doneWatching);
         }
-        Debug.Log($"Current Target: {ghost.currentTarget}");
-        Debug.Log($"Current State: {state}");
         targetDistance = Vector3.Distance(this.transform.position, ghost.currentTarget.transform.position);
         playerDistance = Vector3.Distance(this.transform.position, player.transform.position);
         UpdatePath();
@@ -178,7 +178,6 @@ public class Ghost : MonoBehaviour
             IsPossessing();
         }
     }
-
     [ContextMenu("IsRoaming")]
     public void IsRoaming()
     {
@@ -422,5 +421,25 @@ public class Ghost : MonoBehaviour
     {
         ghost.animator.SetFloat("AnimMoveX", direction.x);
         ghost.animator.SetFloat("AnimMoveY", direction.z);
+        if (doneWatching == false)
+        {
+            headLight.clipName = "Gangler Watching";
+        }
+        if ((direction.x >= 0 && direction.x < 1) && (direction.z >= -1 && direction.z < 0))
+        {
+            headLight.clipName = "Gangler Front";
+        }
+        if ((direction.x >= -1 && direction.x < 0) && (direction.z >= 0 && direction.z < 1))
+        {
+            headLight.clipName = "Gangler Left";
+        }
+        if ((direction.x >= 1 && direction.x > 0) && (direction.z <= 0 && direction.z < 1))
+        {
+            headLight.clipName = "Gangler Right";
+        }
+        if ((direction.x <= 0 && direction.x < 1) && (direction.z <= 1 && direction.z > 0))
+        {
+            headLight.clipName = "Gangler Back";
+        }
     }
 }

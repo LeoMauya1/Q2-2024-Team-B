@@ -60,23 +60,31 @@ public class LevelManager : MonoBehaviour
     }
     void Update()
     {
-        if (artifactAmount <= 0)
+        if (artifactAmount > 0)
         {
-            canSpawnArtifacts = false;
+            canSpawnArtifacts = true;
         }
         if (canSpawnArtifacts == true)
         {
             artifactAmount -= 1;
             artifactController.CreateArtifact();
         }
-        if (ghostAmount <= 0)
+        if (artifactAmount <= 0)
         {
-            canSpawnGhosts = false;
+            canSpawnArtifacts = false;
+        }
+        if (ghostAmount > 0)
+        {
+            canSpawnGhosts = true;
         }
         if (canSpawnGhosts == true)
         {
             ghostAmount -= 1;
             enemyManager.SpawnGhost();
+        }
+        if (ghostAmount <= 0)
+        {
+            canSpawnGhosts = false;
         }
     }
 }

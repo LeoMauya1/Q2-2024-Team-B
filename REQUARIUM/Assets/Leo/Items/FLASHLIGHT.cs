@@ -73,9 +73,9 @@ public class FLASHLIGHT : MonoBehaviour
         }
         if (MinutesPassed == 60f)
         {
-            Debug.Log("one battery donw");
+            //Debug.Log("one battery donw");
             battery -= 1;
-            Debug.Log(battery);
+            //Debug.Log(battery);
         }
 
 
@@ -101,28 +101,28 @@ public class FLASHLIGHT : MonoBehaviour
     {
 
         flashLightHitbox.enabled = !flashLightHitbox.enabled;
-        Debug.Log("light on");
+        //Debug.Log("light on");
         switchOn.enabled = !switchOn.enabled;
 
         batteryTime = battery * 60 + batteryTime;
-        Debug.Log(batteryTime/60);
-        Debug.Log("THATS YOUR BATTERY TIME!");
+        //Debug.Log(batteryTime/60);
+        //Debug.Log("THATS YOUR BATTERY TIME!");
         
 
         while (batteryTime > 0)
         {
-            Debug.Log("Battery depleating");
+            //Debug.Log("Battery depleating");
             batteryTime -= Time.deltaTime;
             Mathf.Clamp(batteryTime,0, batteryTime);
-            Debug.Log(batteryTime);
+            //Debug.Log(batteryTime);
             yield return null;
            
            
         }
         
         batteryDead = true;
-        Debug.Log("dead");
-        Debug.Log(battery);
+        //Debug.Log("dead");
+        //Debug.Log(battery);
         
 
         

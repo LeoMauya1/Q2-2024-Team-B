@@ -45,7 +45,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.8431373, g: 0.8431373, b: 0.56078434, a: 1}
-  m_Intensity: 55.633495
+  m_Intensity: 37.419163
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 118.941185
+  m_Intensity: 80
   m_EnableSpotReflector: 1
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
@@ -262,7 +262,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.8941177, g: 0.8941177, b: 0.6156863, a: 1}
-  m_Intensity: 55.633495
+  m_Intensity: 37.419163
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -324,7 +324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 118.941185
+  m_Intensity: 80
   m_EnableSpotReflector: 1
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
@@ -479,7 +479,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.8431373, g: 0.8431373, b: 0.56078434, a: 1}
-  m_Intensity: 55.633495
+  m_Intensity: 37.419163
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -541,7 +541,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 118.941185
+  m_Intensity: 80
   m_EnableSpotReflector: 1
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
@@ -667,10 +667,10 @@ GameObject:
   - component: {fileID: 4319929303804281267}
   - component: {fileID: -7045060631812304669}
   - component: {fileID: 4526980296351748981}
-  - component: {fileID: 5979773019583357813}
-  - component: {fileID: 6898787752210381823}
   - component: {fileID: 6923744734331632345}
   - component: {fileID: 6981322856547276546}
+  - component: {fileID: 3804848626982078723}
+  - component: {fileID: 58724383728261402}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: Untagged
@@ -842,6 +842,7 @@ MonoBehaviour:
   possessColor: {r: 0.7597288, g: 0.23113209, b: 1, a: 1}
   isArtifact: 0
   jumpscare: {fileID: 6923744734331632345}
+  headLight: {fileID: 6981322856547276546}
 --- !u!54 &5279816517324214827
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -970,7 +971,46 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!108 &5979773019583357813
+--- !u!114 &6923744734331632345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5279816517324214830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f66727c5e8691b4181bf7f4292fc266, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpscare:
+    jumpscareTime: 2
+    jumpscareMax: 2
+    jumpscareImage: {fileID: 2296200648149348869, guid: 03877e1fe1b560a42b1a4edcdef34b57,
+      type: 3}
+  parent: {fileID: 0}
+  jumping: 0
+  spawnedJumpscare: {fileID: 0}
+  player: {fileID: 0}
+  storedSpeed: 0
+--- !u!114 &6981322856547276546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5279816517324214830}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b75091faa2cff44d9ed2db1007f5429, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 4526980296351748981}
+  lightPositionFront: {fileID: 472941293752235040}
+  lightPositionLeft: {fileID: 175202052441018518}
+  lightPositionRight: {fileID: 679198101197355376}
+  clipName: 
+--- !u!108 &3804848626982078723
 Light:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -982,9 +1022,9 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 5.6717973
-  m_Range: 8.8480835
-  m_SpotAngle: 66.22375
+  m_Intensity: 2.702426
+  m_Range: 10
+  m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
@@ -1025,14 +1065,14 @@ Light:
   m_LightShadowCasterMode: 2
   m_AreaSize: {x: 0.5, y: 0.5}
   m_BounceIntensity: 1
-  m_ColorTemperature: 18096
+  m_ColorTemperature: 20000
   m_UseColorTemperature: 1
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 10}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &6898787752210381823
+--- !u!114 &58724383728261402
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1044,7 +1084,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 71.27391
+  m_Intensity: 33.959686
   m_EnableSpotReflector: 1
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
@@ -1154,41 +1194,3 @@ MonoBehaviour:
   m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 0
---- !u!114 &6923744734331632345
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5279816517324214830}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f66727c5e8691b4181bf7f4292fc266, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jumpscare:
-    jumpscareTime: 2
-    jumpscareMax: 2
-    jumpscareImage: {fileID: 2296200648149348869, guid: 03877e1fe1b560a42b1a4edcdef34b57,
-      type: 3}
-  parent: {fileID: 0}
-  jumping: 0
-  spawnedJumpscare: {fileID: 0}
-  player: {fileID: 0}
-  storedSpeed: 0
---- !u!114 &6981322856547276546
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5279816517324214830}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b75091faa2cff44d9ed2db1007f5429, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 4526980296351748981}
-  lightPositionFront: {fileID: 472941293752235040}
-  lightPositionLeft: {fileID: 175202052441018518}
-  lightPositionRight: {fileID: 679198101197355376}
