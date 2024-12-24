@@ -22,17 +22,17 @@ public class LevelManager : MonoBehaviour
         SaveDataManager.Instance.daveSata.quotaMoney = 0;
         if (SaveDataManager.Instance.daveSata.isNewGame == true)
         {
-            artifactAmount = 3;
+            artifactAmount = 5;
             canSpawnArtifacts = true;
         }
         else if (SaveDataManager.Instance.daveSata.workDay == 1)
         {
-            artifactAmount = 5;
+            artifactAmount = 6;
             ghostAmount = 1;
         }
         else if (SaveDataManager.Instance.daveSata.workDay == 2)
         {
-            artifactAmount = 6;
+            artifactAmount = 8;
             ghostAmount = 2;
         }
         else if (SaveDataManager.Instance.daveSata.workDay >= 3)

@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 8981541749828831284}
   - component: {fileID: 7252109209179979393}
   - component: {fileID: 6482223898331988488}
+  - component: {fileID: 4340180309809026937}
   m_Layer: 0
   m_Name: Dolphin
   m_TagString: Untagged
@@ -128,7 +129,7 @@ MonoBehaviour:
     nextTarget: {fileID: 0}
     animator: {fileID: 8981541749828831284}
   stunned: 0
-  jumpscare: {fileID: 0}
+  jumpscare: {fileID: 4340180309809026937}
 --- !u!114 &-8944591510728512540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,3 +398,22 @@ MonoBehaviour:
   m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 0
+--- !u!114 &4340180309809026937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2701589663163777130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f66727c5e8691b4181bf7f4292fc266, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpscare:
+    jumpscareTime: 3
+    jumpscareMax: 3
+    jumpscareImage: {fileID: 8988615050749542646, guid: fe08d58a3b95266418938c8525f1c0b2,
+      type: 3}
+  parent: {fileID: 0}
+  jumping: 0

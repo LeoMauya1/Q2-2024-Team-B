@@ -47,14 +47,13 @@ public class Dolphin : MonoBehaviour
     public EnemyType dolphin;
 
     public bool stunned;
-
-    public GameObject jumpscare;
+    
+    public JumpscareController jumpscare;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         playerInfo = player.GetComponent<PlayerInfo>();
-        jumpscare = GameObject.FindGameObjectWithTag("Zolphin");
         dolphin.currentTarget = player;
     }
 
@@ -170,6 +169,7 @@ public class Dolphin : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            jumpscare.SpawnScare();
             stunTime = maxStunTime;
             SaveDataManager.Instance.daveSata.health -= 50;
             state = States.Stunned;
