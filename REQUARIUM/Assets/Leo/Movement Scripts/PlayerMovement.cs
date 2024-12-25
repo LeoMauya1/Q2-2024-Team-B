@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.EnhancedTouch;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -46,14 +46,20 @@ public class PlayerMovement : MonoBehaviour
     public InputAction ScrollEvent;
 
 
-
+    [Header("sprint settings")]
     public Camera CAM;
     public float targetFOV;
     public float fovLerpSpeed;
-
+    public Slider sprintSlider;
     private bool sprintTimeReady = true;
+    public float endSlider;
+    public float beginningSlider;
+    public float slideSpeed;
 
+    
+   
 
+    
 
 
     public enum MovementState
@@ -67,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+      
         readyToJump = true;
         playerOriginalPos = transform.localScale.y;
 
@@ -171,6 +178,7 @@ public class PlayerMovement : MonoBehaviour
         else if (IsGrounded())
         {
             CAM.fieldOfView = Mathf.Lerp(CAM.fieldOfView, 60f, fovLerpSpeed * Time.deltaTime);
+            sprintSlider.value = Mathf.MoveTowards(sprintSlider.value, beginningSlider, slideSpeed * Time.deltaTime);
             state = MovementState.walking;
             movementSpeed = walkSpeed;
             
@@ -197,6 +205,8 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator Sprinting()
     {
         CAM.fieldOfView = Mathf.Lerp(CAM.fieldOfView, targetFOV, fovLerpSpeed * Time.deltaTime);
+        sprintSlider.GetComponent<Animator>().SetBool("isSprinting", true);
+        sprintSlider.value = Mathf.MoveTowards(sprintSlider.value, endSlider, slideSpeed * Time.deltaTime);
         state = MovementState.sprint;
         movementSpeed = SprintSpeed;
         yield return new WaitForSeconds(4f);
@@ -204,11 +214,13 @@ public class PlayerMovement : MonoBehaviour
     }
     private IEnumerator SprintCooldown()
     {
+        sprintSlider.GetComponent<Animator>().SetBool("isSprinting", false);
         yield return new WaitForSeconds(4f);
         sprintTimeReady = true;
     }
 
 
+    
 }
     
        

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.Mathematics;
+using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -24,6 +25,8 @@ public class FLASHLIGHT : MonoBehaviour
     private bool batteryDead = false;
     private float MinutesPassed;
     private bool batteryGageOpen = true;
+    private Slider batterySlider;
+    public float slideSpeed;
    
 
 
@@ -31,7 +34,7 @@ public class FLASHLIGHT : MonoBehaviour
     void Start()
     {
         switchOn.transform.SetParent(null);
-   
+        
         //battery = SaveDataManager.Instance.daveSata.batteries; null rn
 
     }
@@ -66,6 +69,8 @@ public class FLASHLIGHT : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        batterySlider = GameObject.Find("Battery Slider").GetComponent<Slider>();
+
         switchOn.transform.position = Camera.main.transform.position + Camera.main.transform.TransformDirection(lightPos);
         switchOn.transform.rotation = Camera.main.transform.rotation * Quaternion.Euler(rotationOffset);
         
@@ -75,6 +80,7 @@ public class FLASHLIGHT : MonoBehaviour
           if(battery > 0 && batteryGageOpen)
           {
              batteryTime = battery * 60 + batteryTime;
+            batterySlider.value = batteryTime;
             batteryGageOpen = false;
              
           }
@@ -146,6 +152,7 @@ public class FLASHLIGHT : MonoBehaviour
             batteryTime -= Time.deltaTime;
             batteryTime = Mathf.Max(batteryTime, 0);
             MinutesPassed += Time.deltaTime;
+            batterySlider.value = Mathf.MoveTowards(batterySlider.value, batteryTime, slideSpeed * Time.deltaTime);
             //Debug.Log(batteryTime);
             yield return null;
            
