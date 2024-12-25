@@ -70,6 +70,8 @@ public class Artifact : MonoBehaviour
 
     public bool hasGrabbed;
 
+    public KeyCode grabArtifact;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -236,7 +238,7 @@ public class Artifact : MonoBehaviour
     void Update()
     {
         playerDistance = Vector3.Distance(this.transform.position, player.transform.position);
-        if (playerDistance <= targetDistance && Input.GetKeyDown(KeyCode.E))
+        if (playerDistance <= targetDistance && Input.GetKeyDown(grabArtifact))
         {
             hasGrabbed = true;
             if (HasOctopus == true)

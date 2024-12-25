@@ -102,6 +102,7 @@ MonoBehaviour:
   ghostes: {fileID: 0}
   jumpscare: {fileID: 2519572346323538144}
   hasGrabbed: 0
+  grabArtifact: 101
 --- !u!108 &8777328507824627827
 Light:
   m_ObjectHideFlags: 0
