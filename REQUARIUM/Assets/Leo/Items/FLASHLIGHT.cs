@@ -23,17 +23,16 @@ public class FLASHLIGHT : MonoBehaviour
     public int battery = 3;
     private bool batteryDead = false;
     private float MinutesPassed;
-    private float originalBatteryTime;
+   
+  
 
 
-    private bool wasON = false;
+    private bool wasON = true;
+    private bool batteryGageOpen = true;
     void Start()
     {
         switchOn.transform.SetParent(null);
-        batteryTime = battery * 60 + batteryTime;
-        originalBatteryTime = batteryTime;
-        Debug.Log(batteryTime / 60);
-        Debug.Log("THATS YOUR BATTERY TIME!");
+       
         //battery = SaveDataManager.Instance.daveSata.batteries; null rn
 
     }
@@ -70,26 +69,36 @@ public class FLASHLIGHT : MonoBehaviour
     {
         switchOn.transform.position = Camera.main.transform.position + Camera.main.transform.TransformDirection(lightPos);
         switchOn.transform.rotation = Camera.main.transform.rotation * Quaternion.Euler(rotationOffset);
-        MinutesPassed += Time.deltaTime;
-        
+
+
+        if (battery > 0 && batteryGageOpen)
+        {
+            batteryTime = battery * 60 + batteryTime;
+            batteryGageOpen = false;
+            batteryDead = false;
+
+        }
+
+        if(battery > 0 && !batteryDead)
+        {
+            batteryDead = false;
+        }
+
 
         if ( batteryDead)
         {
-            StopCoroutine(FlashLightCooldown());
+            StopAllCoroutines();
             switchOn.enabled = false;
+           
 
-            if( MinutesPassed > 60f)
-            {
-                MinutesPassed = 0f;
-            }
-            
+           
+         
         }
        
-        if(switchOn.enabled == false && wasON)
+        if(switchOn.enabled == false && !batteryDead)
         {
             Debug.Log("flash light cooldown off");
-            StopCoroutine(FlashLightCooldown());
-            batteryTime = originalBatteryTime;
+            StopAllCoroutines();
             Debug.Log(batteryTime);
         }
 
@@ -111,11 +120,11 @@ public class FLASHLIGHT : MonoBehaviour
     {
         wasON = !wasON;
 
+        Debug.Log("flashlight clicked");
 
         if(!batteryDead || battery > 0 )
         {
             Debug.Log("running corutine"); 
-            batteryDead = false;
             StartCoroutine(FlashLightCooldown());
         }
 
@@ -131,8 +140,8 @@ public class FLASHLIGHT : MonoBehaviour
     {
 
         flashLightHitbox.enabled = !flashLightHitbox.enabled;
-        Debug.Log("light on");
         switchOn.enabled = !switchOn.enabled;
+        Debug.Log("light on");
 
       
         
@@ -141,9 +150,9 @@ public class FLASHLIGHT : MonoBehaviour
         {
             //Debug.Log("Battery depleating");
             batteryTime -= Time.deltaTime;
-            Mathf.Clamp(batteryTime,0, batteryTime);
-            //Debug.Log(batteryTime);
-            Mathf.Clamp(batteryTime, 0, batteryTime);
+            batteryTime = Mathf.Max(batteryTime, 0);
+            MinutesPassed += Time.deltaTime;
+        
             yield return null;
            
         
@@ -151,6 +160,7 @@ public class FLASHLIGHT : MonoBehaviour
         }
 
         batteryDead = true;
+        batteryGageOpen = true;
         Debug.Log("dead");
         Debug.Log(battery);
         
