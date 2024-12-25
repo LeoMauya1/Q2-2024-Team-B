@@ -105,8 +105,8 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 223.68684
-  m_Range: 15.97905
+  m_Intensity: 237.68965
+  m_Range: 14.1
   m_SpotAngle: 110.06729
   m_InnerSpotAngle: 75.08784
   m_CookieSize: 10
@@ -187,7 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 600
+  m_Intensity: 637.56
   m_EnableSpotReflector: 1
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
@@ -421,13 +421,14 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 0
   switchOn: {fileID: 6726532456470656010}
-  lightPos: {x: 0.331, y: -0.161, z: 0.555}
+  lightPos: {x: 0.331, y: -0.161, z: 1.65}
   lightRot: {x: 0, y: 0, z: 0, w: 0}
   playerPos: {fileID: 0}
   camPos: {fileID: 0}
   rotationOffset: {x: 0, y: 0, z: 0}
   flashLightHitbox: {fileID: 1518604118532214254}
   battery: 1
+  slideSpeed: 0
 --- !u!114 &8708863119133998543
 MonoBehaviour:
   m_ObjectHideFlags: 0
