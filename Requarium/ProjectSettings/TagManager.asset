@@ -9,6 +9,9 @@ TagManager:
   - Ghost Node
   - Dolphin Node
   - FlashLight
+  - Cruci-Fish
+  - Light
+  - PostProcessing
   layers:
   - Default
   - TransparentFX
@@ -24,7 +27,7 @@ TagManager:
   - Camera
   - Flashlight
   - Spear2
-  - 
+  - Post Processing
   - 
   - 
   - 
