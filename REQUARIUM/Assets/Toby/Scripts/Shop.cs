@@ -6,10 +6,9 @@ using UnityEngine.Events;
 
 public class Shop : MonoBehaviour
 {
-    public GameObject player;
-    public PlayerInfo playerInfo;
+    //public GameObject player;
+    //public PlayerInfo playerInfo;
     public GameObject shopPanel;
-    public Timer timer;
     public int batteryCost;
     public int spearCost;
     public int oxygenTankCost;
@@ -20,19 +19,20 @@ public class Shop : MonoBehaviour
     public TextMeshProUGUI oxygen;
     public TextMeshProUGUI timers;
     public TextMeshProUGUI spendingMoney;
-    public float playerDistance;
+    //public float playerDistance;
 
-    private float targetDistance = 5;
+    //private float targetDistance = 5;
     public UnityEvent rejection;
 
-    public KeyCode openShop;
-    public bool shopOpen;
+    //public KeyCode openShop;
+    //public bool shopOpen;
+    //public bool isUi;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        playerInfo = player.GetComponent<PlayerInfo>();
+        //player = GameObject.FindGameObjectWithTag("Player");
+        //playerInfo = player.GetComponent<PlayerInfo>();
         battery.text = string.Format($"${batteryCost} per Battery");
         spear.text = string.Format($"${spearCost} per Spear");
         oxygen.text = string.Format($"${oxygenTankCost} per 1/2 Oxygen Refill");
@@ -76,7 +76,7 @@ public class Shop : MonoBehaviour
     {
         if (SaveDataManager.Instance.daveSata.spendingMoney >= timerCost)
         {
-            timer.remainingTime += 60;
+            SaveDataManager.Instance.daveSata.timeAddition += 30;
         }
         else
         {
@@ -91,18 +91,21 @@ public class Shop : MonoBehaviour
     void Update()
     {
         spendingMoney.text = string.Format($"${SaveDataManager.Instance.daveSata.spendingMoney} to spend.");
-        playerDistance = Vector3.Distance(this.transform.position, player.transform.position);
-        if (playerDistance <= targetDistance && Input.GetKeyDown(openShop) && shopOpen == false)
+        /*if (isUi == true)
         {
-            shopPanel.gameObject.SetActive(true);
-            Time.timeScale = 0;
-            shopOpen = true;
-        }
-        else if (shopOpen == true && Input.GetKeyDown(openShop))
-        {
-            shopPanel.gameObject.SetActive(false);
-            Time.timeScale = 1;
-            shopOpen = false;
-        }
+            playerDistance = Vector3.Distance(this.transform.position, player.transform.position);
+            if (playerDistance <= targetDistance && Input.GetKeyDown(openShop) && shopOpen == false)
+            {
+                shopPanel.gameObject.SetActive(true);
+                Time.timeScale = 0;
+                shopOpen = true;
+            }
+            else if (shopOpen == true && Input.GetKeyDown(openShop))
+            {
+                shopPanel.gameObject.SetActive(false);
+                Time.timeScale = 1;
+                shopOpen = false;
+            }
+        }*/
     }
 }
