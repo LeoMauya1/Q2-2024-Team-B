@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0074053593, g: 0.00917497, b: 0.012143271, a: 1}
+  m_IndirectSpecularColor: {r: 0.007405393, g: 0.009175008, b: 0.012143336, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -521,6 +521,11 @@ PrefabInstance:
         type: 3}
       propertyPath: slideSpeed
       value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 7870763229049083616, guid: 92db87499493d7544a2346b0652ce48a,
+        type: 3}
+      propertyPath: playerheight
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7870763229049083616, guid: 92db87499493d7544a2346b0652ce48a,
         type: 3}
