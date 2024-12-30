@@ -80,7 +80,9 @@ public class FLASHLIGHT : MonoBehaviour
           if(battery > 0 && batteryGageOpen)
           {
              batteryTime = battery * 60 + batteryTime;
-            batterySlider.value = batteryTime;
+            
+            batterySlider.maxValue = batteryTime;
+            batterySlider.value = 0;
             batteryGageOpen = false;
              
           }
@@ -152,7 +154,7 @@ public class FLASHLIGHT : MonoBehaviour
             batteryTime -= Time.deltaTime;
             batteryTime = Mathf.Max(batteryTime, 0);
             MinutesPassed += Time.deltaTime;
-            batterySlider.value = Mathf.MoveTowards(batterySlider.value, batteryTime, slideSpeed * Time.deltaTime);
+            batterySlider.value = Mathf.MoveTowards(batterySlider.maxValue, batterySlider.minValue, batteryTime);
             //Debug.Log(batteryTime);
             yield return null;
            

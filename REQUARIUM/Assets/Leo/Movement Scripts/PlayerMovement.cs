@@ -90,8 +90,8 @@ public class PlayerMovement : MonoBehaviour
         if (crouch.action.IsPressed())
         {
            transform.localScale = new Vector3(transform.localScale.x, crouchScale, transform.localScale.z);
+           rb.AddForce(Vector3.down * 3 , ForceMode.Impulse);
             Debug.Log("ur Crouching");
-           rb.AddForce(Vector3.down * 10*Time.deltaTime, ForceMode.Impulse);
         }
       
         if (crouch.action.WasReleasedThisFrame())
