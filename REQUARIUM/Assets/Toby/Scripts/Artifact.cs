@@ -72,6 +72,12 @@ public class Artifact : MonoBehaviour
 
     public KeyCode grabArtifact;
 
+    public AudioClip defaultClip;
+
+    public AudioSource audioSource;
+
+    public AudioClip moctopusSound;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -92,17 +98,23 @@ public class Artifact : MonoBehaviour
             RandomizeNormalSprite();
             lightIntensity = 0;
             thisArtifact.GetComponent<Light>().intensity = lightIntensity;
+            artifactSound = defaultClip;
+            audioSource.clip = artifactSound;
         }
         else if (corruptionCount == 5 || corruptionCount == 6 || corruptionCount == 7)
         {
             RandomizeHauntedSprite();
             isHaunted = true;
+            artifactSound = defaultClip;
+            audioSource.clip = artifactSound;
         }
         else if (corruptionCount == 8 || corruptionCount == 9 || corruptionCount == 10)
         {
             RandomizeLightCue();
             RandomizeNormalSprite();
             isHaunted = true;
+            artifactSound = defaultClip;
+            audioSource.clip = artifactSound;
         }
         else if (corruptionCount == 11 || corruptionCount == 12 || corruptionCount == 13)
         {
@@ -115,6 +127,8 @@ public class Artifact : MonoBehaviour
         {
             RandomizeNormalSprite();
             HasOctopus = true;
+            artifactSound = moctopusSound;
+            audioSource.clip = moctopusSound;
         }
         else if (corruptionCount == 15)
         {
@@ -122,12 +136,16 @@ public class Artifact : MonoBehaviour
             RandomizeLightCue();
             HasOctopus = true;
             isHaunted = true;
+            artifactSound = moctopusSound;
+            audioSource.clip = moctopusSound;
         }
         else if (corruptionCount == 16)
         {
             RandomizeHauntedSprite();
             HasOctopus = true;
             isHaunted = true;
+            artifactSound = moctopusSound;
+            audioSource.clip = moctopusSound;
         }
         else if (corruptionCount == 17)
         {
@@ -141,6 +159,8 @@ public class Artifact : MonoBehaviour
         {
             isHaunted = true;
             isSwitch = true;
+            artifactSound = defaultClip;
+            audioSource.clip = artifactSound;
         }
         RandomizePrice();
     }
@@ -163,8 +183,9 @@ public class Artifact : MonoBehaviour
     public void RandomizeSound()
     {
         List<AudioClip> shuffledSounds = artifactSounds.OrderBy(x => randyTheRandom.Next()).ToList();
-        //artifactSound = shuffledSounds[0];
-        thisArtifact.GetComponent<AudioSource>().clip = artifactSound;
+        artifactSound = shuffledSounds[0];
+        audioSource.clip = artifactSound;
+        audioSource.Play();
     }
     public void RandomizeLightCue()
     {
@@ -198,18 +219,13 @@ public class Artifact : MonoBehaviour
             switchTime -= Time.deltaTime;
         }
     }
+
+    [ContextMenu("PlaySound")]
     public void PlaySound()
-    {
-        if (switchTime <= 0)
-        {
-            thisArtifact.GetComponent<AudioSource>().Play();
-            switchTime = switchTimeMax;
-        }
-        else
-        {
-            switchTime -= Time.deltaTime;
-        }
+    { 
+        thisArtifact.GetComponent<AudioSource>().Play();
     }
+    
 
     public void Inking()
     {
@@ -233,6 +249,10 @@ public class Artifact : MonoBehaviour
                 isHaunted = false;
                 Debug.Log(isHaunted);
             }
+            if (isSound == true)
+            {
+                audioSource.Stop();
+            }
         }
     }
     void Update()
@@ -243,6 +263,7 @@ public class Artifact : MonoBehaviour
             hasGrabbed = true;
             if (HasOctopus == true)
             {
+                audioSource.Stop();
                 jumpscare.SpawnScare();
             }
             if (isHaunted == true)
@@ -255,10 +276,10 @@ public class Artifact : MonoBehaviour
                 SaveDataManager.Instance.daveSata.quotaMoney += price / 2;
                 SaveDataManager.Instance.daveSata.spendingMoney += price / 2;
                 if (playerInfo.artifactsGrabbed == amountToSpawnGhost && SaveDataManager.Instance.daveSata.isNewGame == false)
-                 {
+                {
                      FindObjectOfType<EnemyManager>().SpawnGhost();
                      amountToSpawnGhost = amountToSpawnGhost + 3;
-                 }
+                }
                 if (HasOctopus == false)
                 {
                     Destroy(thisArtifact);
@@ -295,10 +316,11 @@ public class Artifact : MonoBehaviour
         {
             SwitchSprite();
         }
-        if (isSound == true)
+        /*if (isSound == true)
         {
             PlaySound();
         }
+        */
         if (Input.GetKeyDown(KeyCode.L))
         {
             Debug.Log(isHaunted);

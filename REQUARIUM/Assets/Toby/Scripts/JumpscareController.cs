@@ -11,6 +11,7 @@ public partial class JumpscareController : MonoBehaviour
     public GameObject spawnedJumpscare;
     public GameObject player;
     public float storedSpeed;
+    public AudioSource audioSource;
     public void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -24,6 +25,7 @@ public partial class JumpscareController : MonoBehaviour
         jumping = true;
         spawnedJumpscare = Instantiate(jumpscare.jumpscareImage, parent.transform);
         jumpscare.jumpscareImage.transform.parent = parent.transform;
+        audioSource.Play();
     }
     public void UnJumpscare()
     {

@@ -9,6 +9,7 @@ public class InkSplot : MonoBehaviour
     public GameObject ink;
     public bool inkOn;
     public Color inkColor;
+    public AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +20,7 @@ public class InkSplot : MonoBehaviour
     public void TurnInkOn()
     {
         inkOn = true;
+        audioSource.Play();
         ink.gameObject.GetComponent<Image>().color = inkColor;
     }
     void Update()

@@ -12,6 +12,7 @@ using UnityEngine.EventSystems;
 
 public class Dolphin : MonoBehaviour
 {
+    public UnityEvent onCollision;
     public enum States {Chasing, Stunned}
 
     private States state = States.Chasing;
@@ -49,6 +50,12 @@ public class Dolphin : MonoBehaviour
     public bool stunned;
     
     public JumpscareController jumpscare;
+
+    public AudioClip chasingClip;
+
+    public AudioClip stunnedClip;
+
+    public AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
@@ -128,6 +135,8 @@ public class Dolphin : MonoBehaviour
         {
             state = States.Chasing;
             stunned = false;
+            audioSource.clip = chasingClip;
+            audioSource.Play();
         }    
     }
     public void CapVelocity()
@@ -167,11 +176,14 @@ public class Dolphin : MonoBehaviour
     }
     public void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && stunned == false)
         {
-            jumpscare.SpawnScare();
+            onCollision.Invoke();
             stunTime = maxStunTime;
             SaveDataManager.Instance.daveSata.health -= 50;
+            audioSource.clip = stunnedClip;
+            audioSource.Play();
+            stunned = true;
             state = States.Stunned;
             playerInfo.killedByDolphin = true;
         }

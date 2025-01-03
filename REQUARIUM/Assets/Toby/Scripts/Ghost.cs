@@ -92,6 +92,12 @@ public class Ghost : MonoBehaviour
 
     public GhostHeadLight headLight;
 
+    public AudioClip roamingClip;
+
+    public AudioClip chasingClip;
+
+    public AudioSource audioSource;
+
     [ContextMenu("FindNodes")]
     public void FindNodes()
     {
@@ -132,11 +138,8 @@ public class Ghost : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    { 
-        if (isArtifact == false)
-        {
-            ghost.animator.SetBool("IsWatching", doneWatching);
-        }
+    {
+        ghost.animator.SetBool("IsWatching", doneWatching);
         targetDistance = Vector3.Distance(this.transform.position, ghost.currentTarget.transform.position);
         playerDistance = Vector3.Distance(this.transform.position, player.transform.position);
         UpdatePath();
@@ -163,6 +166,7 @@ public class Ghost : MonoBehaviour
             ghost.speed = speed;
             speedCap = spedCep;
             doneWatching = false;
+            audioSource.clip = roamingClip;
             IsRoaming();
         }
         else if (state == States.Watching)
@@ -172,6 +176,7 @@ public class Ghost : MonoBehaviour
         else if (state == States.Attacking)
         { 
             IsAttacking();
+            audioSource.clip = chasingClip;
         }
         else if (state == States.Possessing)
         {
@@ -390,6 +395,8 @@ public class Ghost : MonoBehaviour
             {
                 doneWatching = true;
                 ghost.currentTarget = player;
+                audioSource.clip = chasingClip;
+                audioSource.Play();
                 state = States.Attacking;
             }
         }
@@ -401,6 +408,8 @@ public class Ghost : MonoBehaviour
                 if (followTime <= 0)
                 {
                     SortNodes();
+                    audioSource.clip = roamingClip;
+                    audioSource.Play();
                     state = States.Roaming;
                 }
             } 
