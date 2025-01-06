@@ -65,10 +65,19 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isWalking = false;
     private float soundPitch;
-    
-   
 
-    
+
+    private void OnEnable()
+    {
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+    }
+    private void OnDisable()
+    {
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
+    }
+
+
+
 
 
     public enum MovementState
