@@ -12,7 +12,7 @@ public class Timer : MonoBehaviour
 
     void Start()
     {
-        remainingTime = enemyManager.dolphinTimer;
+        remainingTime = enemyManager.dolphinTimer + SaveDataManager.Instance.daveSata.timeAddition;
     }
     void Update()
     {

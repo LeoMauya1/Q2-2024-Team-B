@@ -1,29 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InkSplot : MonoBehaviour
 {
     public float inkTime;
-    public float inkTimeMax;
     public GameObject ink;
+    public bool inkOn;
+    public Color inkColor;
+    public AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
-        inkTime = inkTimeMax;
     }
 
-    // Update is called once per frame
+    [ContextMenu("TurnInkOn")]
+
+    public void TurnInkOn()
+    {
+        inkOn = true;
+        audioSource.Play();
+        ink.gameObject.GetComponent<Image>().color = inkColor;
+    }
     void Update()
     {
-        if (ink.activeSelf == true)
+        if (inkOn == true)
         {
-            inkTime -= Time.deltaTime;
+            inkColor.a -= inkTime * Time.deltaTime;
+            ink.gameObject.GetComponent<Image>().color = inkColor;
         }
-        if (inkTime <= 0)
+        if (inkColor.a <= 0)
         {
-            ink.SetActive(false);
-            inkTime = inkTimeMax;
+            inkOn = false;
+            inkColor.a = 1;
         }
     }
 }

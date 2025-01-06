@@ -22,6 +22,8 @@ public struct SaveData
     public bool isNewGame;
 
     public int quota;
+
+    public float timeAddition;
     public static SaveData Load(string filePath, SaveData defaultData)
     {
         if (!File.Exists(filePath))

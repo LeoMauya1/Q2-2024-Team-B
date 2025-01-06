@@ -39,8 +39,8 @@ public class ResultScreen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        quotaText.text = string.Format($"Quota: {SaveDataManager.Instance.daveSata.quota}");
-        moneyText.text = string.Format($"Money left over to spend: {SaveDataManager.Instance.daveSata.spendingMoney}");
-        dayText.text = string.Format($"Move To Next Day: {SaveDataManager.Instance.daveSata.workDay}");
+        quotaText.text = string.Format($"Quota: ${SaveDataManager.Instance.daveSata.quota}");
+        moneyText.text = string.Format($"Money left over to spend: ${SaveDataManager.Instance.daveSata.spendingMoney}");
+        dayText.text = string.Format($"Move To Day: {SaveDataManager.Instance.daveSata.workDay}");
     }
 }

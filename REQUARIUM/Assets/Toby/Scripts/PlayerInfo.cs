@@ -14,7 +14,6 @@ public class PlayerInfo : MonoBehaviour
     public int possessedNumber;
     public int artifactsGrabbed;
     public bool killedByDolphin;
-    public float jumpscareTime;
 
     [ContextMenu("FindNodes")]
     public void FindNodes()
@@ -45,13 +44,7 @@ public class PlayerInfo : MonoBehaviour
         }
         if (SaveDataManager.Instance.daveSata.health <= 0 && killedByDolphin == true)
         {
-            FindObjectOfType<Dolphin>().jumpscare.GetComponent<Image>().gameObject.SetActive(true);
-            jumpscareTime -= Time.deltaTime;
-            if (jumpscareTime <= 0)
-            {
-                FindObjectOfType<Dolphin>().jumpscare.GetComponent<Image>().gameObject.SetActive(false);
-                GameOver();
-            }
+            Invoke("GameOver", 3f);
         }
     }
 

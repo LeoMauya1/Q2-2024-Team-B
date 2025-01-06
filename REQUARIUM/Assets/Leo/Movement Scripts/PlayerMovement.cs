@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.EnhancedTouch;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -25,7 +25,8 @@ public class PlayerMovement : MonoBehaviour
     public Transform crouchPos;
     public InputActionReference sprint;
     private PLAYERCONTROLLER playerController;
-
+    private AudioSource audioSource;
+    private int randomIndex;
 
 
     public float playerheight;
@@ -46,14 +47,28 @@ public class PlayerMovement : MonoBehaviour
     public InputAction ScrollEvent;
 
 
-
+    [Header("sprint settings")]
     public Camera CAM;
     public float targetFOV;
     public float fovLerpSpeed;
-
+    public Slider sprintSlider;
     private bool sprintTimeReady = true;
+    public float endSlider;
+    public float beginningSlider;
+    public float slideSpeed;
 
 
+    [Header("PLAYER SOUNDS")]
+    public AudioClip[] walkSounds;
+    public AudioClip[] crouchSounds;
+    public AudioClip[] jumpSounds;
+
+    private bool isWalking = false;
+    private float soundPitch;
+    
+   
+
+    
 
 
     public enum MovementState
@@ -67,8 +82,11 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+      
         readyToJump = true;
         playerOriginalPos = transform.localScale.y;
+        audioSource = GetComponent<AudioSource>();
+        soundPitch = audioSource.pitch;
 
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
     } 
@@ -78,18 +96,26 @@ public class PlayerMovement : MonoBehaviour
     {
         movement = move.action.ReadValue<Vector2>();
         movedirection = playerDirection.forward * movement.y + playerDirection.right * movement.x;
+        if (move.action.IsPressed() && !audioSource.isPlaying)
+        {
 
+            PlayRandomWalkSound();
+
+        }
+        
 
         if (crouch.action.IsPressed())
         {
            transform.localScale = new Vector3(transform.localScale.x, crouchScale, transform.localScale.z);
+           rb.AddForce(Vector3.down * 3 , ForceMode.Impulse);
+            audioSource.PlayOneShot(crouchSounds[0]);
             Debug.Log("ur Crouching");
-           rb.AddForce(Vector3.down * 10*Time.deltaTime, ForceMode.Impulse);
         }
       
         if (crouch.action.WasReleasedThisFrame())
         {
             transform.localScale = new Vector3(transform.localScale.x,playerOriginalPos, transform.localScale.z);
+            audioSource.PlayOneShot(crouchSounds[1]);
         }
    
         if(Jump.action.WasPerformedThisFrame() && IsGrounded() && readyToJump)
@@ -161,6 +187,7 @@ public class PlayerMovement : MonoBehaviour
         {
 
             
+            
             state = MovementState.crouching;
             movementSpeed = crouchSpeed;
         }
@@ -170,7 +197,9 @@ public class PlayerMovement : MonoBehaviour
         } 
         else if (IsGrounded())
         {
+            soundPitch = 1;
             CAM.fieldOfView = Mathf.Lerp(CAM.fieldOfView, 60f, fovLerpSpeed * Time.deltaTime);
+            sprintSlider.value = Mathf.MoveTowards(sprintSlider.value, beginningSlider, slideSpeed * Time.deltaTime);
             state = MovementState.walking;
             movementSpeed = walkSpeed;
             
@@ -196,7 +225,10 @@ public class PlayerMovement : MonoBehaviour
     }
     private IEnumerator Sprinting()
     {
+        soundPitch = 2;
         CAM.fieldOfView = Mathf.Lerp(CAM.fieldOfView, targetFOV, fovLerpSpeed * Time.deltaTime);
+        sprintSlider.GetComponent<Animator>().SetBool("isSprinting", true);
+        sprintSlider.value = Mathf.MoveTowards(sprintSlider.value, endSlider, slideSpeed * Time.deltaTime);
         state = MovementState.sprint;
         movementSpeed = SprintSpeed;
         yield return new WaitForSeconds(4f);
@@ -204,11 +236,33 @@ public class PlayerMovement : MonoBehaviour
     }
     private IEnumerator SprintCooldown()
     {
+        sprintSlider.GetComponent<Animator>().SetBool("isSprinting", false);
         yield return new WaitForSeconds(4f);
         sprintTimeReady = true;
     }
 
 
+
+    void PlayRandomWalkSound()
+    {
+        if(audioSource.isPlaying)
+        {
+
+        }
+        
+        if(walkSounds.Length > 0)
+        {
+            randomIndex = Random.Range(0, walkSounds.Length);
+
+
+        }
+
+
+        
+        audioSource.PlayOneShot(walkSounds[randomIndex]);
+    }
+
+    
 }
     
        

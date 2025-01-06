@@ -58,16 +58,13 @@ public class CRUCIFISH : MonoBehaviour
 
     private void swingCrucifish(InputAction.CallbackContext contxt)
     {
-       if(canSwing == false)
-        {
-            StartCoroutine(SwingCooldown());
-        }
+     
+     
+      
         
-        if( canSwing == true)
-        {
          StartCoroutine(swinging());
 
-        }
+        
     }
 
     private IEnumerator swinging()
@@ -106,11 +103,7 @@ public class CRUCIFISH : MonoBehaviour
 
     }
 
-    private IEnumerator SwingCooldown()
-    {
-        yield return new WaitForSeconds(2f);
-        canSwing = true;
-    }
+    
 
     private IEnumerator HitBox()
     {
