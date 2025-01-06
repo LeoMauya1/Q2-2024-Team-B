@@ -35,6 +35,7 @@ public class PLAYER_INVENTORY : MonoBehaviour
 
     public Camera rightHandCam;
     private Light flashLight;
+    private GameObject flashLightUI;
 
 
 
@@ -53,7 +54,12 @@ public class PLAYER_INVENTORY : MonoBehaviour
 
     private void Update()
     {
-       if(instantiatedItems.Count > 0)
+
+        instantiatedItems[currentIndex].transform.SetParent(GameObject.Find("Main Camera").GetComponent<Camera>().transform);
+
+
+
+        if (instantiatedItems.Count > 0)
         {
 
             instantiatedItems[currentIndex].transform.position = rightHandCam.transform.position + rightHandCam.transform.TransformDirection(itemPos);
@@ -133,11 +139,18 @@ public class PLAYER_INVENTORY : MonoBehaviour
             if (instantiatedItems[previousIndex].tag == "FlashLight")
             {
                 flashLight = GameObject.Find("light").GetComponent<Light>();
+                flashLightUI = GameObject.Find("Battery Slider");
+                flashLightUI.GetComponent<Animator>().SetBool("batteryIsSelected", false);
                 flashLight.GetComponentInChildren<SphereCollider>().enabled = false;
                 flashLight.enabled = false;
                 Debug.Log("flash turned off");
                 
             }
+            if (instantiatedItems[currentIndex].tag == "FlashLight")
+            {
+                flashLightUI = GameObject.Find("Battery Slider");
+                flashLightUI.GetComponent<Animator>().SetBool("batteryIsSelected", true);
+}
 
         }
 

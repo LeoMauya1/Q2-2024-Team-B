@@ -7,6 +7,7 @@ using UnityEditor.Rendering;
 using UnityEngine.Events;
 using System.Linq;
 using System.ComponentModel.Design;
+using UnityEngine.UI;
 
 public class Ghost : MonoBehaviour
 {
@@ -87,7 +88,15 @@ public class Ghost : MonoBehaviour
 
     public bool isArtifact;
 
+    public JumpscareController jumpscare;
 
+    public GhostHeadLight headLight;
+
+    public AudioClip roamingClip;
+
+    public AudioClip chasingClip;
+
+    public AudioSource audioSource;
 
     [ContextMenu("FindNodes")]
     public void FindNodes()
@@ -101,6 +110,7 @@ public class Ghost : MonoBehaviour
 
     void Start()
     {
+        flashlight = GameObject.FindGameObjectWithTag("Light");
         speed = ghost.speed;
         spedCep = speedCap;
         state = States.Roaming;
@@ -129,10 +139,7 @@ public class Ghost : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         ghost.animator.SetBool("IsWatching", doneWatching);
-        Debug.Log($"Current Target: {ghost.currentTarget}");
-        Debug.Log($"Current State: {state}");
         targetDistance = Vector3.Distance(this.transform.position, ghost.currentTarget.transform.position);
         playerDistance = Vector3.Distance(this.transform.position, player.transform.position);
         UpdatePath();
@@ -159,6 +166,7 @@ public class Ghost : MonoBehaviour
             ghost.speed = speed;
             speedCap = spedCep;
             doneWatching = false;
+            audioSource.clip = roamingClip;
             IsRoaming();
         }
         else if (state == States.Watching)
@@ -168,13 +176,13 @@ public class Ghost : MonoBehaviour
         else if (state == States.Attacking)
         { 
             IsAttacking();
+            audioSource.clip = chasingClip;
         }
         else if (state == States.Possessing)
         {
             IsPossessing();
         }
     }
-
     [ContextMenu("IsRoaming")]
     public void IsRoaming()
     {
@@ -281,7 +289,7 @@ public class Ghost : MonoBehaviour
         {
             isPossessing = true;
             playerInfo.possessedNumber += 1;
-            flashlight = GameObject.FindGameObjectWithTag("Light");
+            jumpscare.SpawnScare();
         }
         if (other.CompareTag("FlashLight") && FLASHLIGHT.isPossessed == false)
         {
@@ -294,7 +302,6 @@ public class Ghost : MonoBehaviour
             speedCap = possessedSpeedCap;
         }
     }
-
     public void PossessItem()
     {
         if (playerInfo.possessedNumber == 1)
@@ -388,6 +395,8 @@ public class Ghost : MonoBehaviour
             {
                 doneWatching = true;
                 ghost.currentTarget = player;
+                audioSource.clip = chasingClip;
+                audioSource.Play();
                 state = States.Attacking;
             }
         }
@@ -399,6 +408,8 @@ public class Ghost : MonoBehaviour
                 if (followTime <= 0)
                 {
                     SortNodes();
+                    audioSource.clip = roamingClip;
+                    audioSource.Play();
                     state = States.Roaming;
                 }
             } 
@@ -419,5 +430,25 @@ public class Ghost : MonoBehaviour
     {
         ghost.animator.SetFloat("AnimMoveX", direction.x);
         ghost.animator.SetFloat("AnimMoveY", direction.z);
+        if (doneWatching == false)
+        {
+            headLight.clipName = "Gangler Watching";
+        }
+        if ((direction.x >= 0 && direction.x < 1) && (direction.z >= -1 && direction.z < 0))
+        {
+            headLight.clipName = "Gangler Front";
+        }
+        if ((direction.x >= -1 && direction.x < 0) && (direction.z >= 0 && direction.z < 1))
+        {
+            headLight.clipName = "Gangler Left";
+        }
+        if ((direction.x >= 1 && direction.x > 0) && (direction.z <= 0 && direction.z < 1))
+        {
+            headLight.clipName = "Gangler Right";
+        }
+        if ((direction.x <= 0 && direction.x < 1) && (direction.z <= 1 && direction.z > 0))
+        {
+            headLight.clipName = "Gangler Back";
+        }
     }
 }

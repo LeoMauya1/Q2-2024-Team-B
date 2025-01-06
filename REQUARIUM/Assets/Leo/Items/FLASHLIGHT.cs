@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.Mathematics;
+using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,14 +21,22 @@ public class FLASHLIGHT : MonoBehaviour
     public static bool isPossessed;
     public Collider flashLightHitbox;
     private float batteryTime = 0;
-    public int battery = 1;
+    public int battery = 3;
     private bool batteryDead = false;
     private float MinutesPassed;
+    private bool batteryGageOpen = true;
+    private Slider batterySlider;
+    public float slideSpeed;
+   
+
+
+    
     void Start()
     {
         switchOn.transform.SetParent(null);
+        
         //battery = SaveDataManager.Instance.daveSata.batteries; null rn
-       
+
     }
 
     private void Awake()
@@ -60,40 +69,72 @@ public class FLASHLIGHT : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        batterySlider = GameObject.Find("Battery Slider").GetComponent<Slider>();
+
         switchOn.transform.position = Camera.main.transform.position + Camera.main.transform.TransformDirection(lightPos);
         switchOn.transform.rotation = Camera.main.transform.rotation * Quaternion.Euler(rotationOffset);
-        MinutesPassed += Time.deltaTime;
+        
+        
+
+
+          if(battery > 0 && batteryGageOpen)
+          {
+             batteryTime = battery * 60 + batteryTime;
+            
+            batterySlider.maxValue = batteryTime;
+            batterySlider.value = 0;
+            batteryGageOpen = false;
+             
+          }
+
 
         if ( batteryDead)
         {
-            StopCoroutine(FlashLightCooldown());
+        
             switchOn.enabled = false;
-            
+            StopAllCoroutines();
 
+           
+            
         }
-        if (MinutesPassed == 60f)
+       
+        if(switchOn.enabled == false && !batteryDead)
+        {
+            Debug.Log("flash light cooldown off");
+            StopAllCoroutines();
+        
+            Debug.Log(batteryTime);
+        }
+
+        if (MinutesPassed > 60f && switchOn.enabled == true)
         {
             Debug.Log("one battery donw");
             battery -= 1;
-            Debug.Log(battery);
+            MinutesPassed = 0;
+            
         }
-
-
-
+      
 
     }
 
 
     private void FlashLightActions(InputAction.CallbackContext contxt)
     {
+        
+
+
         if(!batteryDead || battery > 0 )
         {
+            Debug.Log("running corutine"); 
+            batteryDead = false;
             StartCoroutine(FlashLightCooldown());
         }
+
         
-      
-        
-       
+
+
+
+
 
     }
 
@@ -104,23 +145,25 @@ public class FLASHLIGHT : MonoBehaviour
         Debug.Log("light on");
         switchOn.enabled = !switchOn.enabled;
 
-        batteryTime = battery * 60 + batteryTime;
-        Debug.Log(batteryTime/60);
-        Debug.Log("THATS YOUR BATTERY TIME!");
+      
         
 
         while (batteryTime > 0)
         {
-            Debug.Log("Battery depleating");
+          
             batteryTime -= Time.deltaTime;
-            Mathf.Clamp(batteryTime,0, batteryTime);
-            Debug.Log(batteryTime);
+            batteryTime = Mathf.Max(batteryTime, 0);
+            MinutesPassed += Time.deltaTime;
+            batterySlider.value = Mathf.MoveTowards(batterySlider.maxValue, batterySlider.minValue, batteryTime);
+            //Debug.Log(batteryTime);
             yield return null;
            
+        
            
         }
-        
+
         batteryDead = true;
+        batteryGageOpen = true;
         Debug.Log("dead");
         Debug.Log(battery);
         

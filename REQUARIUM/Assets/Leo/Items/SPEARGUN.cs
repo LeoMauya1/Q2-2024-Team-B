@@ -39,11 +39,14 @@ public class SPEARGUN : MonoBehaviour
     private Camera rightHandCam;
     public LayerMask spearLayer;
 
+
+    private int spearAmount = 3;
+
     public static bool isHaunted;
 
     private void Update()
     {
-
+        //spearAmount = SaveDataManager.Instance.daveSata.spears; this is also null
 
 
 
@@ -52,19 +55,14 @@ public class SPEARGUN : MonoBehaviour
 
 
 
-        if (hasShot && spear != null)
-        {
-            Debug.Log("POW!");
-            
-        }
+        
             
      
     }
     private void Start()
     {
 
-        rightHandCam = GameObject.Find("Hand Camera").GetComponent<Camera>();
-
+       
 
         FiringPoint.transform.SetParent(null);
 
@@ -113,12 +111,18 @@ public class SPEARGUN : MonoBehaviour
 
         Debug.Log("spear was shot!");
 
-        spear = Instantiate(spears, FiringPoint.transform.position, FiringPoint.transform.rotation);
+        if( spearAmount > 0 && !isHaunted)
+        {
+         spear = Instantiate(spears, FiringPoint.transform.position, FiringPoint.transform.rotation);
+         spear.GetComponent<Rigidbody>().velocity = Camera.main.transform.forward * spearSpeed;
+         spearAmount -= 1;
+         spearAmount = Mathf.Max(spearAmount, 0);
+
+
+        }
+        
         //spear.transform.forward = Camera.main.transform.forward;
         
-        hasShot = true;
-
-        spear.GetComponent<Rigidbody>().velocity = Camera.main.transform.forward * spearSpeed;
 
 
     }

@@ -6,11 +6,17 @@ using UnityEngine;
 public class ResultScreen : MonoBehaviour
 {
     public TextMeshProUGUI quotaText;
+    
     public TextMeshProUGUI moneyText;
+    
     public TextMeshProUGUI dayText;
+    
     public GameObject regularText;
+    
     public GameObject firedSheet;
+    
     public int quotaIncreaseAmountMax;
+    
     public int quotaIncreaseAmountMin;
     void Start()
     {
@@ -33,8 +39,8 @@ public class ResultScreen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        quotaText.text = string.Format($"Quota: {SaveDataManager.Instance.daveSata.quota}");
-        moneyText.text = string.Format($"Money: {SaveDataManager.Instance.daveSata.quotaMoney}");
-        dayText.text = string.Format($"Move To Next Day: {SaveDataManager.Instance.daveSata.workDay}");
+        quotaText.text = string.Format($"Quota: ${SaveDataManager.Instance.daveSata.quota}");
+        moneyText.text = string.Format($"Money left over to spend: ${SaveDataManager.Instance.daveSata.spendingMoney}");
+        dayText.text = string.Format($"Move To Day: {SaveDataManager.Instance.daveSata.workDay}");
     }
 }

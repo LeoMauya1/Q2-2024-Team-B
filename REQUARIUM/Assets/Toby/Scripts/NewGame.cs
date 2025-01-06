@@ -24,6 +24,7 @@ public class NewGame : MonoBehaviour
     public void LoadNewGame()
     {
         SaveDataManager.Instance.daveSata.isNewGame = true;
-        SceneManager.LoadScene("New Game");
+        SaveDataManager.Instance.daveSata = SaveDataManager.Instance.defaultData;
+        SceneManager.LoadScene("Main Game");
     }
 }
