@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.2561884, g: 0.31743145, b: 0.42013597, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -190,6 +190,56 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Map
+      objectReference: {fileID: 0}
+    - target: {fileID: 3896523553216961117, guid: d0874b06068d49a4583eda4b856b066e,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5.083047
+      objectReference: {fileID: 0}
+    - target: {fileID: 3896523553216961117, guid: d0874b06068d49a4583eda4b856b066e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 16.4231
+      objectReference: {fileID: 0}
+    - target: {fileID: 3896523553360984459, guid: d0874b06068d49a4583eda4b856b066e,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.0552
+      objectReference: {fileID: 0}
+    - target: {fileID: 3896523553360984459, guid: d0874b06068d49a4583eda4b856b066e,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4.949419
+      objectReference: {fileID: 0}
+    - target: {fileID: 3896523553360984459, guid: d0874b06068d49a4583eda4b856b066e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -14.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 3896523553360984459, guid: d0874b06068d49a4583eda4b856b066e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 16.5833
+      objectReference: {fileID: 0}
+    - target: {fileID: 8191653753694741338, guid: d0874b06068d49a4583eda4b856b066e,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 141.89273
+      objectReference: {fileID: 0}
+    - target: {fileID: 8191653753694741338, guid: d0874b06068d49a4583eda4b856b066e,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 75.22634
+      objectReference: {fileID: 0}
+    - target: {fileID: 8191653753694741338, guid: d0874b06068d49a4583eda4b856b066e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.2783
+      objectReference: {fileID: 0}
+    - target: {fileID: 8191653753694741338, guid: d0874b06068d49a4583eda4b856b066e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.2055
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
