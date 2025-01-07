@@ -550,6 +550,26 @@ PrefabInstance:
       propertyPath: rightHandCam
       value: 
       objectReference: {fileID: 47631151}
+    - target: {fileID: 7870763229049083624, guid: 92db87499493d7544a2346b0652ce48a,
+        type: 3}
+      propertyPath: scrollSounds.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7870763229049083624, guid: 92db87499493d7544a2346b0652ce48a,
+        type: 3}
+      propertyPath: scrollSounds.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 48110e816e2263a428900d29b6e0a6a6, type: 3}
+    - target: {fileID: 7870763229049083624, guid: 92db87499493d7544a2346b0652ce48a,
+        type: 3}
+      propertyPath: scrollSounds.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: e121b6e24d614bf43869676e4b6fda4a, type: 3}
+    - target: {fileID: 7870763229049083624, guid: 92db87499493d7544a2346b0652ce48a,
+        type: 3}
+      propertyPath: scrollSounds.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 430578bce22645b4b93d1a49b02f178d, type: 3}
     - target: {fileID: 7870763229049083628, guid: 92db87499493d7544a2346b0652ce48a,
         type: 3}
       propertyPath: m_RootOrder

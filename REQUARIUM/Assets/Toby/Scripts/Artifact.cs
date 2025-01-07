@@ -78,6 +78,8 @@ public class Artifact : MonoBehaviour
 
     public AudioClip moctopusSound;
 
+    public ParticleSystem particle;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -246,6 +248,7 @@ public class Artifact : MonoBehaviour
             }
             else if (isHaunted == true)
             {
+                particle.Play();
                 isHaunted = false;
                 Debug.Log(isHaunted);
             }
