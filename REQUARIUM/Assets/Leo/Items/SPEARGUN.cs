@@ -38,7 +38,8 @@ public class SPEARGUN : MonoBehaviour
     private Vector3 targetpoint;
     private Camera rightHandCam;
     public LayerMask spearLayer;
-
+    private AudioSource audioSource;
+    public AudioClip spearSound;
 
     private int spearAmount = 3;
 
@@ -46,7 +47,7 @@ public class SPEARGUN : MonoBehaviour
 
     private void Update()
     {
-        //spearAmount = SaveDataManager.Instance.daveSata.spears; this is also null
+
 
 
 
@@ -62,8 +63,8 @@ public class SPEARGUN : MonoBehaviour
     private void Start()
     {
 
-       
-
+        //spearAmount = SaveDataManager.Instance.daveSata.spears;
+        audioSource = GetComponent<AudioSource>();
         FiringPoint.transform.SetParent(null);
 
 
@@ -113,6 +114,7 @@ public class SPEARGUN : MonoBehaviour
 
         if( spearAmount > 0 && !isHaunted)
         {
+         audioSource.PlayOneShot(spearSound);
          spear = Instantiate(spears, FiringPoint.transform.position, FiringPoint.transform.rotation);
          spear.GetComponent<Rigidbody>().velocity = Camera.main.transform.forward * spearSpeed;
          spearAmount -= 1;

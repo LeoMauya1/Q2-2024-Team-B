@@ -27,15 +27,17 @@ public class FLASHLIGHT : MonoBehaviour
     private bool batteryGageOpen = true;
     private Slider batterySlider;
     public float slideSpeed;
-   
+    private AudioSource audioSource;
+    public AudioClip[] flashLightSounds;
+    private int soundOrder = 0;
 
-
+    private AudioClip soundOn;
     
     void Start()
     {
         switchOn.transform.SetParent(null);
-        
-        //battery = SaveDataManager.Instance.daveSata.batteries; null rn
+        audioSource = GetComponent<AudioSource>();
+        battery = SaveDataManager.Instance.daveSata.batteries; 
 
     }
 
@@ -144,7 +146,8 @@ public class FLASHLIGHT : MonoBehaviour
         flashLightHitbox.enabled = !flashLightHitbox.enabled;
         Debug.Log("light on");
         switchOn.enabled = !switchOn.enabled;
-
+        audioSource.PlayOneShot(flashLightSounds[soundOrder]);
+        soundOrder = (int)Mathf.Repeat(soundOrder + 1, flashLightSounds.Length);
       
         
 
@@ -164,6 +167,7 @@ public class FLASHLIGHT : MonoBehaviour
 
         batteryDead = true;
         batteryGageOpen = true;
+        audioSource.PlayOneShot(flashLightSounds[2]);
         Debug.Log("dead");
         Debug.Log(battery);
         
@@ -172,7 +176,10 @@ public class FLASHLIGHT : MonoBehaviour
     }
 
 
-    
+    private void FlashlightButtonSound(InputAction.CallbackContext contxt)
+    {
+        
+    }
 
 
 }

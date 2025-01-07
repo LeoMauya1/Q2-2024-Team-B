@@ -62,9 +62,12 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip[] walkSounds;
     public AudioClip[] crouchSounds;
     public AudioClip[] jumpSounds;
+    
 
     private bool isWalking = false;
     private float soundPitch;
+    private int crouchOrder = 0;
+    private bool hasCrouched = false;
 
 
     private void OnEnable()
@@ -117,14 +120,21 @@ public class PlayerMovement : MonoBehaviour
         {
            transform.localScale = new Vector3(transform.localScale.x, crouchScale, transform.localScale.z);
            rb.AddForce(Vector3.down * 3 , ForceMode.Impulse);
-            audioSource.PlayOneShot(crouchSounds[0]);
-            Debug.Log("ur Crouching");
+            if (!hasCrouched)
+            {
+                PlayCrouchSound();
+            }
+                Debug.Log("ur Crouching");
         }
       
         if (crouch.action.WasReleasedThisFrame())
         {
             transform.localScale = new Vector3(transform.localScale.x,playerOriginalPos, transform.localScale.z);
-            audioSource.PlayOneShot(crouchSounds[1]);
+            if(hasCrouched)
+            {
+                PlayCrouchSound();
+                hasCrouched = false;
+            }
         }
    
         if(Jump.action.WasPerformedThisFrame() && IsGrounded() && readyToJump)
@@ -252,16 +262,13 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-    void PlayRandomWalkSound()
+    private void PlayRandomWalkSound()
     {
-        if(audioSource.isPlaying)
-        {
-
-        }
+        
         
         if(walkSounds.Length > 0)
         {
-            randomIndex = Random.Range(0, walkSounds.Length);
+            randomIndex =  Random.Range(walkSounds.Length,0);
 
 
         }
@@ -271,7 +278,18 @@ public class PlayerMovement : MonoBehaviour
         audioSource.PlayOneShot(walkSounds[randomIndex]);
     }
 
-    
+
+
+    private void PlayCrouchSound()
+    {
+        if(audioSource.isPlaying)
+        {
+            return;
+        }
+        audioSource.PlayOneShot(crouchSounds[crouchOrder]);
+        hasCrouched = true;
+        crouchOrder = (int)Mathf.Repeat(crouchOrder + 1, crouchSounds.Length);
+    }
 }
     
        

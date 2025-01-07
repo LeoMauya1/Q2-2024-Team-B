@@ -23,6 +23,10 @@ public class CRUCIFISH : MonoBehaviour
     public Vector3 HitBoxPosition;
     public Vector3 HitBoxRotation;
 
+
+    private AudioSource audioSource;
+    public AudioClip crucifishAudio;
+
     private void Update()
     {
         hitBox.transform.position = Camera.main.transform.position + Camera.main.transform.TransformDirection(HitBoxPosition);
@@ -33,6 +37,7 @@ public class CRUCIFISH : MonoBehaviour
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         hitBox.transform.SetParent(null);
         crucifishOriginalPosition = transform;
         crucifishOriginalRotation = transform.rotation;
@@ -75,6 +80,7 @@ public class CRUCIFISH : MonoBehaviour
         
         while (elapsedTime < CrucifishSwingTime)
         {
+            playSound();
             transform.position = Vector3.Lerp(crucifishOriginalPosition.position, SwingTo.position, elapsedTime / CrucifishSwingTime);
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(SwingTo.position - transform.position), elapsedTime / CrucifishSwingTime) * Quaternion.Euler(swingRotation);
 
@@ -112,6 +118,14 @@ public class CRUCIFISH : MonoBehaviour
         hitBox.SetActive(false);
     }
 
-  
+    private void playSound()
+    {
+        if( audioSource.isPlaying)
+        {
+            return;
+        }
+
+        audioSource.PlayOneShot(crucifishAudio);
+    }
 
 }
