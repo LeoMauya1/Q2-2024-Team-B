@@ -44,6 +44,7 @@ public class PauseMenu : MonoBehaviour
     }
     public void Pause()
     {
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
         isOpen = true;
         Time.timeScale = 0;
         PausePanel.SetActive(true);
@@ -51,6 +52,7 @@ public class PauseMenu : MonoBehaviour
     }
     public void Continue()
     {
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         isOpen = false;
         PausePanel.SetActive(false);
         UIElements.SetActive(true);
