@@ -282,10 +282,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void PlayCrouchSound()
     {
-        if(audioSource.isPlaying)
-        {
-            return;
-        }
+        
         audioSource.PlayOneShot(crouchSounds[crouchOrder]);
         hasCrouched = true;
         crouchOrder = (int)Mathf.Repeat(crouchOrder + 1, crouchSounds.Length);

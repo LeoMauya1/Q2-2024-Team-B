@@ -29,6 +29,7 @@ public class FLASHLIGHT : MonoBehaviour
     public float slideSpeed;
     private AudioSource audioSource;
     public AudioClip[] flashLightSounds;
+
     private int soundOrder = 0;
 
     private AudioClip soundOn;
@@ -94,6 +95,7 @@ public class FLASHLIGHT : MonoBehaviour
         {
         
             switchOn.enabled = false;
+            audioSource.PlayOneShot(flashLightSounds[2]);
             StopAllCoroutines();
 
            
@@ -147,7 +149,7 @@ public class FLASHLIGHT : MonoBehaviour
         Debug.Log("light on");
         switchOn.enabled = !switchOn.enabled;
         audioSource.PlayOneShot(flashLightSounds[soundOrder]);
-        soundOrder = (int)Mathf.Repeat(soundOrder + 1, flashLightSounds.Length);
+        soundOrder = (int)Mathf.Repeat(soundOrder + 1, 2);
       
         
 
@@ -167,7 +169,7 @@ public class FLASHLIGHT : MonoBehaviour
 
         batteryDead = true;
         batteryGageOpen = true;
-        audioSource.PlayOneShot(flashLightSounds[2]);
+        
         Debug.Log("dead");
         Debug.Log(battery);
         
