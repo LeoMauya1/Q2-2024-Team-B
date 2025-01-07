@@ -20,7 +20,7 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         SaveDataManager.Instance.daveSata.quotaMoney = 0;
-        if (SaveDataManager.Instance.daveSata.isNewGame == true)
+        if (SaveDataManager.Instance.daveSata.isNewGame == true || SaveDataManager.Instance.daveSata.workDay == 0)
         {
             artifactAmount = 5;
             canSpawnArtifacts = true;
