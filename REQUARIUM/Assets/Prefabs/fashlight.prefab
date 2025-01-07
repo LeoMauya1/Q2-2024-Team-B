@@ -433,7 +433,7 @@ MonoBehaviour:
   flashLightSounds:
   - {fileID: 8300000, guid: 25060a8d0c5a2554ebeed34b92b43c84, type: 3}
   - {fileID: 8300000, guid: 231884708a8afa04c96daa10ecd47138, type: 3}
-  - {fileID: 8300000, guid: d97561f9272d01849a0d4fbebd3001fd, type: 3}
+  deadSound: {fileID: 0}
 --- !u!114 &8708863119133998543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -477,13 +477,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.716
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 127
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500

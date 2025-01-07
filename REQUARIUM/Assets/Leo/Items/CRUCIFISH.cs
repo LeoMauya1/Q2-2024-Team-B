@@ -19,11 +19,11 @@ public class CRUCIFISH : MonoBehaviour
 
     public static bool isHaunted;
 
-    private float elapsedTime = 0;
+    public float elapsedTime = 0;
     public Vector3 HitBoxPosition;
     public Vector3 HitBoxRotation;
 
-
+    private Animator animator;
     private AudioSource audioSource;
     public AudioClip crucifishAudio;
 
@@ -37,7 +37,8 @@ public class CRUCIFISH : MonoBehaviour
 
     private void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        
+        animator = GetComponent<Animator>();
         hitBox.transform.SetParent(null);
         crucifishOriginalPosition = transform;
         crucifishOriginalRotation = transform.rotation;
@@ -51,6 +52,8 @@ public class CRUCIFISH : MonoBehaviour
 
     private void OnEnable()
     {
+        audioSource = GetComponent<AudioSource>();
+        
         crucifishEvent = playerInputs.GamePlay1.Crucifish;
         crucifishEvent.Enable();
         crucifishEvent.performed += swingCrucifish;
@@ -63,53 +66,24 @@ public class CRUCIFISH : MonoBehaviour
 
     private void swingCrucifish(InputAction.CallbackContext contxt)
     {
-     
-     
-      
-        
-         StartCoroutine(swinging());
-
-        
+        StartCoroutine(SwingingProcess());
     }
 
-    private IEnumerator swinging()
-
-
+    private void swinging()
     {
-        canSwing = false;
-        
-        while (elapsedTime < CrucifishSwingTime)
-        {
-            playSound();
-            transform.position = Vector3.Lerp(crucifishOriginalPosition.position, SwingTo.position, elapsedTime / CrucifishSwingTime);
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(SwingTo.position - transform.position), elapsedTime / CrucifishSwingTime) * Quaternion.Euler(swingRotation);
-
-            elapsedTime += Time.deltaTime;
-            yield return null;  
-        }
-
-        StartCoroutine(HitBox());
-        elapsedTime = 0f;
-
        
-        while (elapsedTime < CrucifishSwingTime)
-        {
-            transform.position = Vector3.Lerp(SwingTo.position, crucifishOriginalPosition.position, elapsedTime / CrucifishSwingTime);
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(SwingTo.position - transform.position), elapsedTime / CrucifishSwingTime) * Quaternion.Euler(swingRotation);
-
-            elapsedTime += Time.deltaTime;
-            yield return null; 
-        }
-        elapsedTime = 0f;
+         
+            playSound();
+            animator.SetBool("isSwinging", true);
+            
+  
         
-
-        transform.position = crucifishOriginalPosition.position;
-        transform.rotation = crucifishOriginalRotation;
-
-
     }
 
-    
+    private void returnSwing()
+    {
+        animator.SetBool("isSwinging", false);
+    }
 
     private IEnumerator HitBox()
     {
@@ -128,4 +102,11 @@ public class CRUCIFISH : MonoBehaviour
         audioSource.PlayOneShot(crucifishAudio);
     }
 
+
+    private IEnumerator SwingingProcess()
+    {
+        swinging();
+        yield return new WaitForSeconds(1.3f);
+        returnSwing();
+    }
 }

@@ -224,7 +224,7 @@ Material:
     - _Cutoff: 0.5
     - _DepthOffsetEnable: 0
     - _DetailAlbedoMapScale: 1
-    - _DetailAlbedoScale: 0.85
+    - _DetailAlbedoScale: 0.29
     - _DetailNormalMapScale: 1
     - _DetailNormalScale: 1
     - _DetailSmoothnessScale: 1
