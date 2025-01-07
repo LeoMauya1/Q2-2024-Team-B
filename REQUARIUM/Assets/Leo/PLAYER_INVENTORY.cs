@@ -36,8 +36,9 @@ public class PLAYER_INVENTORY : MonoBehaviour
     public Camera rightHandCam;
     private Light flashLight;
     private GameObject flashLightUI;
-
-
+    public AudioClip[] scrollSounds;
+    private AudioSource audioSource;
+    private int soundOrder = 0;
 
 
 
@@ -48,6 +49,7 @@ public class PLAYER_INVENTORY : MonoBehaviour
     private void Start()
     {
         InstantiateItems();
+        audioSource = GetComponent<AudioSource>();
     }
 
 
@@ -102,6 +104,8 @@ public class PLAYER_INVENTORY : MonoBehaviour
         if (scrollValue < 0)
         {
             currentIndex = (int)Mathf.Repeat(currentIndex - 1, Inventory.Count);
+            audioSource.PlayOneShot(scrollSounds[soundOrder]);
+            soundOrder = (int)Mathf.Repeat(soundOrder - 1, scrollSounds.Length);
             Debug.Log("left in the inventory");
             Debug.Log(currentIndex);
             ToItem(currentIndex, previousIndex);
@@ -110,6 +114,8 @@ public class PLAYER_INVENTORY : MonoBehaviour
         if(scrollValue > 0)
         {
             currentIndex = (int)Mathf.Repeat(currentIndex + 1, Inventory.Count);
+            audioSource.PlayOneShot(scrollSounds[soundOrder]);
+            soundOrder = (int)Mathf.Repeat(soundOrder + 1, scrollSounds.Length);
             Debug.Log("right in the inventory");
             Debug.Log(currentIndex);
             ToItem(currentIndex, previousIndex);
@@ -127,14 +133,16 @@ public class PLAYER_INVENTORY : MonoBehaviour
     {
 
 
-       
+        
         instantiatedItems[previousIndex].SetActive(false);
         
 
 
         foreach (var item in Inventory)
         {
+
             instantiatedItems[currentIndex].SetActive(true);
+           
             
             if (instantiatedItems[previousIndex].tag == "FlashLight")
             {
@@ -174,6 +182,11 @@ public class PLAYER_INVENTORY : MonoBehaviour
         {
             instantiatedItems[0].SetActive(true);
         }
+    }
+
+    private void playItemJingle()
+    {
+       
     }
     
 
