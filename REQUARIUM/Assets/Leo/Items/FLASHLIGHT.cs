@@ -29,6 +29,7 @@ public class FLASHLIGHT : MonoBehaviour
     public float slideSpeed;
     private AudioSource audioSource;
     public AudioClip[] flashLightSounds;
+    public Animator animator;
 
     private int soundOrder = 0;
 
@@ -36,6 +37,7 @@ public class FLASHLIGHT : MonoBehaviour
     
     void Start()
     {
+        
         switchOn.transform.SetParent(null);
         audioSource = GetComponent<AudioSource>();
         battery = SaveDataManager.Instance.daveSata.batteries; 
@@ -104,19 +106,27 @@ public class FLASHLIGHT : MonoBehaviour
        
         if(switchOn.enabled == false && !batteryDead)
         {
-            Debug.Log("flash light cooldown off");
+            
             StopAllCoroutines();
         
-            Debug.Log(batteryTime);
+           
         }
 
         if (MinutesPassed > 60f && switchOn.enabled == true)
         {
             Debug.Log("one battery donw");
             battery -= 1;
+            StartCoroutine(FlashLightFlicker());
             MinutesPassed = 0;
             
         }
+        if( batteryTime <= 25f)
+        {
+            Debug.Log("running out of time");
+            animator.SetBool("flashIdle",false);
+            animator.SetBool("fewSeconds", true);
+        }
+       
       
 
     }
@@ -155,7 +165,8 @@ public class FLASHLIGHT : MonoBehaviour
 
         while (batteryTime > 0)
         {
-          
+            
+            
             batteryTime -= Time.deltaTime;
             batteryTime = Mathf.Max(batteryTime, 0);
             MinutesPassed += Time.deltaTime;
@@ -166,7 +177,8 @@ public class FLASHLIGHT : MonoBehaviour
         
            
         }
-
+        animator.SetBool("flashIdle", true);
+        animator.SetBool("fewSeconds", false);
         batteryDead = true;
         batteryGageOpen = true;
         audioSource.PlayOneShot(flashLightSounds[2]);
@@ -176,6 +188,17 @@ public class FLASHLIGHT : MonoBehaviour
 
         
     }
+
+
+    private IEnumerator FlashLightFlicker()
+    {
+       
+        animator.SetBool("flashIdle", false);
+        animator.SetBool("batteryDown", true);
+        yield return new WaitForSeconds(0.7f);
+        animator.SetBool("flashIdle", true);
+    }
+    
 
 
     private void FlashlightButtonSound(InputAction.CallbackContext contxt)
