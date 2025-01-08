@@ -75,6 +75,7 @@ public class CRUCIFISH : MonoBehaviour
          
             playSound();
             animator.SetBool("isSwinging", true);
+            StartCoroutine(HitBox());
             
   
         
@@ -87,8 +88,10 @@ public class CRUCIFISH : MonoBehaviour
 
     private IEnumerator HitBox()
     {
+        yield return new WaitForSeconds(0.2f);
         hitBox.SetActive(true);
-        yield return new WaitForSeconds(0.3f);
+        
+        yield return new WaitForSeconds(0.5f);
         hitBox.SetActive(false);
     }
 
@@ -106,7 +109,7 @@ public class CRUCIFISH : MonoBehaviour
     private IEnumerator SwingingProcess()
     {
         swinging();
-        yield return new WaitForSeconds(1.3f);
+        yield return new WaitForSeconds(.3f);
         returnSwing();
     }
 }

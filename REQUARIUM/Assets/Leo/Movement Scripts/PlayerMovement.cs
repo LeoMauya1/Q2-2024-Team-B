@@ -51,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
     public Camera CAM;
     public float targetFOV;
     public float fovLerpSpeed;
-    public Slider sprintSlider;
+    public Image sprintSlider;
     private bool sprintTimeReady = true;
     public float endSlider;
     public float beginningSlider;
@@ -94,13 +94,13 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-      
+        
         readyToJump = true;
         playerOriginalPos = transform.localScale.y;
         audioSource = GetComponent<AudioSource>();
         soundPitch = audioSource.pitch;
 
-        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+        //UnityEngine.Cursor.lockState = CursorLockMode.Locked;
     } 
 
     // Update is called once per frame
@@ -166,9 +166,11 @@ public class PlayerMovement : MonoBehaviour
 
         if(!sprintTimeReady)
         {
+           
             StartCoroutine(SprintCooldown());
         }
         
+
 
 
     }
@@ -213,12 +215,16 @@ public class PlayerMovement : MonoBehaviour
         else if( IsGrounded() && sprint.action.IsPressed() && sprintTimeReady)
         {
             StartCoroutine(Sprinting());
-        } 
+        }
+        
+            
+        
+
         else if (IsGrounded())
         {
             soundPitch = 1;
             CAM.fieldOfView = Mathf.Lerp(CAM.fieldOfView, 60f, fovLerpSpeed * Time.deltaTime);
-            sprintSlider.value = Mathf.MoveTowards(sprintSlider.value, beginningSlider, slideSpeed * Time.deltaTime);
+            sprintSlider.fillAmount = Mathf.MoveTowards(sprintSlider.fillAmount, beginningSlider, slideSpeed * Time.deltaTime);
             state = MovementState.walking;
             movementSpeed = walkSpeed;
             
@@ -227,6 +233,8 @@ public class PlayerMovement : MonoBehaviour
         {
             state = MovementState.air;
         }
+
+        
         
     }
 
@@ -247,7 +255,7 @@ public class PlayerMovement : MonoBehaviour
         soundPitch = 2;
         CAM.fieldOfView = Mathf.Lerp(CAM.fieldOfView, targetFOV, fovLerpSpeed * Time.deltaTime);
         sprintSlider.GetComponent<Animator>().SetBool("isSprinting", true);
-        sprintSlider.value = Mathf.MoveTowards(sprintSlider.value, endSlider, slideSpeed * Time.deltaTime);
+        sprintSlider.fillAmount = Mathf.MoveTowards(sprintSlider.fillAmount, endSlider, slideSpeed * Time.deltaTime);
         state = MovementState.sprint;
         movementSpeed = SprintSpeed;
         yield return new WaitForSeconds(4f);
@@ -255,6 +263,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private IEnumerator SprintCooldown()
     {
+        
         sprintSlider.GetComponent<Animator>().SetBool("isSprinting", false);
         yield return new WaitForSeconds(4f);
         sprintTimeReady = true;
@@ -268,7 +277,7 @@ public class PlayerMovement : MonoBehaviour
         
         if(walkSounds.Length > 0)
         {
-            randomIndex =  Random.Range(walkSounds.Length,0);
+            randomIndex =  Random.Range(0,walkSounds.Length);
 
 
         }

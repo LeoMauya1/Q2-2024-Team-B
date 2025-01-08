@@ -11,6 +11,7 @@ public class CRUCIFISHHITBOX : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Artifact"))
         {
+
             if (CRUCIFISH.isHaunted == true)
             {
                 other.GetComponent<Artifact>().price = other.GetComponent<Artifact>().price / 2;
@@ -30,5 +31,8 @@ public class CRUCIFISHHITBOX : MonoBehaviour
             }
         }
     }
+
+
+    
 }
 

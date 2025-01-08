@@ -95,7 +95,7 @@ public class FLASHLIGHT : MonoBehaviour
         {
         
             switchOn.enabled = false;
-            audioSource.PlayOneShot(flashLightSounds[2]);
+            
             StopAllCoroutines();
 
            
@@ -169,7 +169,7 @@ public class FLASHLIGHT : MonoBehaviour
 
         batteryDead = true;
         batteryGageOpen = true;
-        
+        audioSource.PlayOneShot(flashLightSounds[2]);
         Debug.Log("dead");
         Debug.Log(battery);
         
