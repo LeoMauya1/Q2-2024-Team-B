@@ -20,7 +20,6 @@ public class ResultScreen : MonoBehaviour
     public int quotaIncreaseAmountMin;
     void Start()
     {
-        IncreaseQuota();
         SaveDataManager.Instance.daveSata.workDay += 1;
         if (SaveDataManager.Instance.daveSata.workDay > 0)
         {
@@ -31,6 +30,7 @@ public class ResultScreen : MonoBehaviour
             regularText.SetActive(false);
             firedSheet.SetActive(true);
         }
+        IncreaseQuota();
     }
     public void IncreaseQuota()
     {

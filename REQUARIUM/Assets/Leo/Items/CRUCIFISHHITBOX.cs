@@ -18,7 +18,7 @@ public class CRUCIFISHHITBOX : MonoBehaviour
             }
             if (other.GetComponent<Artifact>().isHaunted == false)
             {
-                Destroy(other);
+                Destroy(other.gameObject);
             }
             else if (other.GetComponent<Artifact>().isHaunted == true)
             {

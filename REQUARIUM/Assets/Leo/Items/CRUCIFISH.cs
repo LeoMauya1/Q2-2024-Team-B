@@ -73,8 +73,8 @@ public class CRUCIFISH : MonoBehaviour
     {
        
          
-            playSound();
             animator.SetBool("isSwinging", true);
+            playSound();
             StartCoroutine(HitBox());
             
   
@@ -97,10 +97,7 @@ public class CRUCIFISH : MonoBehaviour
 
     private void playSound()
     {
-        if( audioSource.isPlaying)
-        {
-            return;
-        }
+       
 
         audioSource.PlayOneShot(crucifishAudio);
     }

@@ -80,6 +80,8 @@ public class Artifact : MonoBehaviour
 
     public ParticleSystem particle;
 
+    public GameObject moctopus;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -129,6 +131,7 @@ public class Artifact : MonoBehaviour
         {
             RandomizeNormalSprite();
             HasOctopus = true;
+            moctopus.SetActive(true);
             artifactSound = moctopusSound;
             audioSource.clip = moctopusSound;
         }
@@ -137,6 +140,7 @@ public class Artifact : MonoBehaviour
             RandomizeNormalSprite();
             RandomizeLightCue();
             HasOctopus = true;
+            moctopus.SetActive(true);
             isHaunted = true;
             artifactSound = moctopusSound;
             audioSource.clip = moctopusSound;
@@ -145,6 +149,7 @@ public class Artifact : MonoBehaviour
         {
             RandomizeHauntedSprite();
             HasOctopus = true;
+            moctopus.SetActive(true);
             isHaunted = true;
             artifactSound = moctopusSound;
             audioSource.clip = moctopusSound;
@@ -191,7 +196,7 @@ public class Artifact : MonoBehaviour
     }
     public void RandomizeLightCue()
     {
-        lightIntensity = randyTheRandom.Next(10, 600);
+        lightIntensity = randyTheRandom.Next(5, 150);
         thisArtifact.GetComponent<Light>().intensity = lightIntensity;
     }
     public void RandomizePrice()
