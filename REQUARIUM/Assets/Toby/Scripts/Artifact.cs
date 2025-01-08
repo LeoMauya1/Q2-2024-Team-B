@@ -50,7 +50,7 @@ public class Artifact : MonoBehaviour
 
     private bool isSwitch;
 
-    private bool isSound;
+    public bool isSound;
 
     private float playerDistance;
 
@@ -234,7 +234,7 @@ public class Artifact : MonoBehaviour
         FindObjectOfType<InkSplot>().TurnInkOn();
     }
 
-    public void OnTriggerEnter(Collider other)
+    /*public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Cruci-Fish"))
         {
@@ -258,6 +258,7 @@ public class Artifact : MonoBehaviour
             }
         }
     }
+     */
     void Update()
     {
         playerDistance = Vector3.Distance(this.transform.position, player.transform.position);
@@ -319,14 +320,16 @@ public class Artifact : MonoBehaviour
         {
             SwitchSprite();
         }
+
         /*if (isSound == true)
         {
             PlaySound();
         }
-        */
+       
         if (Input.GetKeyDown(KeyCode.L))
         {
             Debug.Log(isHaunted);
         }
+        */
     }
 }

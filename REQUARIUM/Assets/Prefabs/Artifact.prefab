@@ -9871,6 +9871,7 @@ MonoBehaviour:
   minPriceHaunt: 300
   corruptionCount: 0
   isHaunted: 0
+  isSound: 0
   ghostes: {fileID: 0}
   jumpscare: {fileID: 2519572346323538144}
   hasGrabbed: 0
