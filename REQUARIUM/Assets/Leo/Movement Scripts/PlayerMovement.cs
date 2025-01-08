@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
     private PLAYERCONTROLLER playerController;
     private AudioSource audioSource;
     private int randomIndex;
-
+   
 
     public float playerheight;
     public LayerMask theGroud;
@@ -68,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
     private float soundPitch;
     private int crouchOrder = 0;
     private bool hasCrouched = false;
-
+    private bool sprintWasReleased;
 
     private void OnEnable()
     {
@@ -169,9 +169,19 @@ public class PlayerMovement : MonoBehaviour
            
             StartCoroutine(SprintCooldown());
         }
+        if(sprint.action.WasReleasedThisFrame())
+        {
+            StopCoroutine(Sprinting());
+            sprintTimeReady = true;
+        }
         
 
-
+        if(sprint.action.WasReleasedThisFrame() && sprintTimeReady)
+        {
+            StopAllCoroutines();
+            Debug.Log("stop");
+            sprintTimeReady = true;
+        }
 
     }
 
@@ -212,9 +222,18 @@ public class PlayerMovement : MonoBehaviour
             state = MovementState.crouching;
             movementSpeed = crouchSpeed;
         }
-        else if( IsGrounded() && sprint.action.IsPressed() && sprintTimeReady)
+
+
+        else if( sprint.action.IsPressed() && sprintTimeReady)
         {
             StartCoroutine(Sprinting());
+
+
+            if(sprint.action.WasReleasedThisFrame())
+            {
+                Debug.Log("sprint releaed");
+                StopCoroutine(Sprinting());
+            }
         }
         
             
@@ -222,6 +241,7 @@ public class PlayerMovement : MonoBehaviour
 
         else if (IsGrounded())
         {
+          
             soundPitch = 1;
             CAM.fieldOfView = Mathf.Lerp(CAM.fieldOfView, 60f, fovLerpSpeed * Time.deltaTime);
             sprintSlider.fillAmount = Mathf.MoveTowards(sprintSlider.fillAmount, beginningSlider, slideSpeed * Time.deltaTime);
@@ -232,6 +252,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             state = MovementState.air;
+            ;
         }
 
         
@@ -252,12 +273,19 @@ public class PlayerMovement : MonoBehaviour
     }
     private IEnumerator Sprinting()
     {
+        if(sprintSlider.fillAmount <= 0)
+        {
+            sprintTimeReady = false;
+        }
         soundPitch = 2;
         CAM.fieldOfView = Mathf.Lerp(CAM.fieldOfView, targetFOV, fovLerpSpeed * Time.deltaTime);
         sprintSlider.GetComponent<Animator>().SetBool("isSprinting", true);
         sprintSlider.fillAmount = Mathf.MoveTowards(sprintSlider.fillAmount, endSlider, slideSpeed * Time.deltaTime);
         state = MovementState.sprint;
         movementSpeed = SprintSpeed;
+
+
+
         yield return new WaitForSeconds(4f);
         sprintTimeReady = false;
     }
