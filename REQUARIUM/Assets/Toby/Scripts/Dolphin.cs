@@ -56,6 +56,8 @@ public class Dolphin : MonoBehaviour
     public AudioClip stunnedClip;
 
     public AudioSource audioSource;
+
+    public AudioSource hitClip;
     // Start is called before the first frame update
     void Start()
     {
@@ -191,6 +193,9 @@ public class Dolphin : MonoBehaviour
         {
             stunTime = maxStunTime;
             state = States.Stunned;
+            hitClip.Play();
+            audioSource.clip = stunnedClip;
+            audioSource.Play();
         }
     }
 

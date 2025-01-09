@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 4323842485039142736}
   m_Layer: 0
   m_Name: SPEAR
-  m_TagString: Untagged
+  m_TagString: Spear
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -196,8 +196,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 8.3024235, y: 6.5264716, z: 1}
+  m_Center: {x: 0.29452816, y: -0.15360694, z: -0.000005814317}
 --- !u!54 &3656923699835325370
 Rigidbody:
   m_ObjectHideFlags: 0

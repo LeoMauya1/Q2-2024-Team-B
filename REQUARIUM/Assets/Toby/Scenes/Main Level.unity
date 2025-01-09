@@ -220,6 +220,14 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1202880788, guid: 92db87499493d7544a2346b0652ce48a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1928554219, guid: 92db87499493d7544a2346b0652ce48a, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2490270987904171435, guid: 92db87499493d7544a2346b0652ce48a,
         type: 3}
       propertyPath: possessionClip
@@ -475,6 +483,11 @@ PrefabInstance:
       propertyPath: pNodes.Array.data[48]
       value: 
       objectReference: {fileID: 1535500298}
+    - target: {fileID: 6322474807572565109, guid: 92db87499493d7544a2346b0652ce48a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 7870763229049083616, guid: 92db87499493d7544a2346b0652ce48a,
         type: 3}
       propertyPath: endSlider
@@ -487,8 +500,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7870763229049083616, guid: 92db87499493d7544a2346b0652ce48a,
         type: 3}
+      propertyPath: walkSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7870763229049083616, guid: 92db87499493d7544a2346b0652ce48a,
+        type: 3}
       propertyPath: slideSpeed
       value: 0.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 7870763229049083616, guid: 92db87499493d7544a2346b0652ce48a,
+        type: 3}
+      propertyPath: SprintSpeed
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 7870763229049083616, guid: 92db87499493d7544a2346b0652ce48a,
         type: 3}
@@ -559,6 +582,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: NEWER PLAYER
+      objectReference: {fileID: 0}
+    - target: {fileID: 7870763229049083622, guid: 92db87499493d7544a2346b0652ce48a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7870763229049083624, guid: 92db87499493d7544a2346b0652ce48a,
         type: 3}
@@ -6203,7 +6231,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &892396054
 MonoBehaviour:
@@ -6242,7 +6270,7 @@ MonoBehaviour:
     type: 3}
   m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018,
     type: 3}
-  m_DeselectOnBackgroundClick: 1
+  m_DeselectOnBackgroundClick: 0
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
 --- !u!1 &894195498 stripped
@@ -7721,7 +7749,7 @@ PrefabInstance:
     - target: {fileID: 8400288670638742328, guid: 3731c7adb66a031429df0911933d31d1,
         type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 8400288670638742328, guid: 3731c7adb66a031429df0911933d31d1,
         type: 3}
@@ -8016,7 +8044,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1098377591
 PrefabInstance:
@@ -12533,13 +12561,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 192c24bdc0562f7478663bc3f1160d8d, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 50
+  Priority: 200
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -13816,7 +13844,7 @@ PrefabInstance:
     - target: {fileID: 5799965774749603163, guid: 57550b38146ff794e8c42c5d67928b68,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5799965774749603163, guid: 57550b38146ff794e8c42c5d67928b68,
         type: 3}

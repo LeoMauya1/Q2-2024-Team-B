@@ -62,7 +62,9 @@ public class Artifact : MonoBehaviour
 
     public ArtifactGhost ghostes;
 
-    private int amountToSpawnGhost = 3;
+    public GameObject ghost;
+
+    public int amountToSpawnGhost = 3;
 
     public JumpscareController jumpscare;
 
@@ -86,6 +88,8 @@ public class Artifact : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         playerInfo = player.GetComponent<PlayerInfo>();
+        ghost = GameObject.FindGameObjectWithTag("Ghost");
+        ghostes = ghost.GetComponent<ArtifactGhost>();
         List<float> shuffledFloats = switchTimes.OrderBy(x => randyTheRandom.Next()).ToList();
         switchTimeMax = shuffledFloats[0];
         switchTime = switchTimeMax;
@@ -263,6 +267,7 @@ public class Artifact : MonoBehaviour
      */
     void Update()
     {
+        playerInfo.artifactsGrabbed += 1;
         if (isSwitch == true)
         {
             SwitchSprite();
@@ -278,32 +283,30 @@ public class Artifact : MonoBehaviour
                 jumpscare.SpawnScare();
             }
             if (isHaunted == true)
-            {
-                playerInfo.artifactsGrabbed += 1;
+            {   
+                if (playerInfo.artifactsGrabbed == amountToSpawnGhost)
+                {
+                    FindObjectOfType<EnemyManager>().SpawnGhost();
+                    playerInfo.artifactsGrabbed = 0;
+                }
                 ghostes.isPossessing = true;
                 PlayerInfo.possessedNumber += 1;
-                if (playerInfo.artifactsGrabbed == amountToSpawnGhost && SaveDataManager.Instance.daveSata.isNewGame == false)
-                {
-                     FindObjectOfType<EnemyManager>().SpawnGhost();
-                     amountToSpawnGhost = amountToSpawnGhost + 3;
-                }
-                if (HasOctopus == false)
+                if (HasOctopus == false && hasGrabbed == true)
                 {
                     Destroy(thisArtifact);
                 }
             }
             else if (isHaunted == false)
             {
-                SaveDataManager.Instance.daveSata.quotaMoney += price;
-                SaveDataManager.Instance.daveSata.spendingMoney += price;
-                playerInfo.artifactsGrabbed += 1;
-                if (playerInfo.artifactsGrabbed == amountToSpawnGhost && SaveDataManager.Instance.daveSata.isNewGame == false)
+                if (playerInfo.artifactsGrabbed == amountToSpawnGhost + 2)
                 {
                     FindObjectOfType<EnemyManager>().SpawnGhost();
-                    amountToSpawnGhost = amountToSpawnGhost + 3;
+                    playerInfo.artifactsGrabbed = 0;
                 }
+                SaveDataManager.Instance.daveSata.quotaMoney += price;
+                SaveDataManager.Instance.daveSata.spendingMoney += price;
                 FindObjectOfType<ArtifactController>().CreateArtifact();
-                if (HasOctopus == false)
+                if (HasOctopus == false && hasGrabbed == true)
                 {
                     Destroy(thisArtifact);
                 }

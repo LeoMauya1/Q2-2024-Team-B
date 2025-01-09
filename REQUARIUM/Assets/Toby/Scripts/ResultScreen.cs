@@ -27,6 +27,7 @@ public class ResultScreen : MonoBehaviour
         }
         if (SaveDataManager.Instance.daveSata.quotaMoney < SaveDataManager.Instance.daveSata.quota)
         {
+            SaveDataManager.Instance.daveSata.workDay = 0;
             regularText.SetActive(false);
             firedSheet.SetActive(true);
         }

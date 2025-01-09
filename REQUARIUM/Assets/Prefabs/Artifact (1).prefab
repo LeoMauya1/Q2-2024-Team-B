@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 5585481680442735190}
   - component: {fileID: 9150984795074327168}
   - component: {fileID: 4630569586382364699}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Artifact (1)
   m_TagString: Artifact
   m_Icon: {fileID: 0}
@@ -116,6 +116,8 @@ MonoBehaviour:
   isHaunted: 0
   isSound: 0
   ghostes: {fileID: 0}
+  ghost: {fileID: 0}
+  amountToSpawnGhost: 3
   jumpscare: {fileID: 5997962545312614214}
   hasGrabbed: 0
   grabArtifact: 101
@@ -519,7 +521,7 @@ GameObject:
   - component: {fileID: 6666376054650455260}
   - component: {fileID: 5684151129370514080}
   - component: {fileID: 3462171869159422198}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Wisp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5333,7 +5335,7 @@ GameObject:
   - component: {fileID: 417395088798244735}
   - component: {fileID: 1440717185457959689}
   - component: {fileID: 3299381089457745160}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Sparkle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10148,7 +10150,7 @@ GameObject:
   - component: {fileID: 1342759996506247962}
   - component: {fileID: 5188910181442601409}
   - component: {fileID: 1842970747155798857}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Ghost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14964,13 +14966,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: b7e10f4aa0d321c4f95030c2b1da4058, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 50
+  Priority: 200
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -15058,7 +15060,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5124767756371351531}
   - component: {fileID: 1943973619470781183}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Moctopus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15142,7 +15144,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4919374498316692011}
   - component: {fileID: 2400544287266927242}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Jump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15271,7 +15273,7 @@ GameObject:
   - component: {fileID: 8199465695099779580}
   - component: {fileID: 8199465695099779579}
   - component: {fileID: 8199465695099779578}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
