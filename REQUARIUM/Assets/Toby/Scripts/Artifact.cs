@@ -60,9 +60,7 @@ public class Artifact : MonoBehaviour
 
     private PlayerInfo playerInfo;
 
-    private GameObject ghost;
-
-    public Ghost ghostes;
+    public ArtifactGhost ghostes;
 
     private int amountToSpawnGhost = 3;
 
@@ -80,15 +78,14 @@ public class Artifact : MonoBehaviour
 
     public ParticleSystem particle;
 
+    public AudioSource particleSound;
+
     public GameObject moctopus;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         playerInfo = player.GetComponent<PlayerInfo>();
-        ghost = GameObject.FindGameObjectWithTag("Ghost");
-        ghostes = ghost.GetComponent<Ghost>();
-        ghostes.isArtifact = true;
         List<float> shuffledFloats = switchTimes.OrderBy(x => randyTheRandom.Next()).ToList();
         switchTimeMax = shuffledFloats[0];
         switchTime = switchTimeMax;
@@ -197,7 +194,7 @@ public class Artifact : MonoBehaviour
     public void RandomizeLightCue()
     {
         lightIntensity = randyTheRandom.Next(5, 150);
-        thisArtifact.GetComponent<Light>().intensity = lightIntensity;
+        lightMoment.intensity = lightIntensity;
     }
     public void RandomizePrice()
     {
@@ -266,6 +263,11 @@ public class Artifact : MonoBehaviour
      */
     void Update()
     {
+        if (isSwitch == true)
+        {
+            SwitchSprite();
+        }
+        lightMoment.intensity = lightIntensity;
         playerDistance = Vector3.Distance(this.transform.position, player.transform.position);
         if (playerDistance <= targetDistance && Input.GetKeyDown(grabArtifact))
         {
@@ -279,11 +281,7 @@ public class Artifact : MonoBehaviour
             {
                 playerInfo.artifactsGrabbed += 1;
                 ghostes.isPossessing = true;
-                playerInfo.possessedNumber += 1;
-                ghostes.flashlight = GameObject.FindGameObjectWithTag("Light");
-                ghostes.state = Ghost.States.Possessing;
-                SaveDataManager.Instance.daveSata.quotaMoney += price / 2;
-                SaveDataManager.Instance.daveSata.spendingMoney += price / 2;
+                PlayerInfo.possessedNumber += 1;
                 if (playerInfo.artifactsGrabbed == amountToSpawnGhost && SaveDataManager.Instance.daveSata.isNewGame == false)
                 {
                      FindObjectOfType<EnemyManager>().SpawnGhost();
@@ -320,10 +318,6 @@ public class Artifact : MonoBehaviour
                 Inking();
                 Destroy(thisArtifact);
             }
-        }
-        if (isSwitch == true)
-        {
-            SwitchSprite();
         }
 
         /*if (isSound == true)

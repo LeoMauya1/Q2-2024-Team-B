@@ -20,10 +20,14 @@ public class Shop : MonoBehaviour
     public TextMeshProUGUI timers;
     public TextMeshProUGUI spendingMoney;
     //public float playerDistance;
-
+    public TextMeshProUGUI spearText;
+    public TextMeshProUGUI batteryText;
+    public TextMeshProUGUI currentHealth;
+    public TextMeshProUGUI additionalTime;
     //private float targetDistance = 5;
     public UnityEvent rejection;
-
+    
+    private float remainingTime = 300 + SaveDataManager.Instance.daveSata.timeAddition;
     //public KeyCode openShop;
     //public bool shopOpen;
     //public bool isUi;
@@ -44,6 +48,7 @@ public class Shop : MonoBehaviour
         if (SaveDataManager.Instance.daveSata.spendingMoney >= batteryCost)
         {
             SaveDataManager.Instance.daveSata.batteries += 1;
+            SaveDataManager.Instance.daveSata.spendingMoney -= batteryCost;
         }
         else
         {
@@ -55,6 +60,7 @@ public class Shop : MonoBehaviour
         if (SaveDataManager.Instance.daveSata.spendingMoney >= spearCost)
         {
             SaveDataManager.Instance.daveSata.spears += 1;
+            SaveDataManager.Instance.daveSata.spendingMoney -= spearCost;
         }
         else
         {
@@ -66,6 +72,7 @@ public class Shop : MonoBehaviour
         if (SaveDataManager.Instance.daveSata.spendingMoney >= oxygenTankCost)
         {
             SaveDataManager.Instance.daveSata.health += 50;
+            SaveDataManager.Instance.daveSata.spendingMoney -= batteryCost;
         }
         else
         {
@@ -77,6 +84,8 @@ public class Shop : MonoBehaviour
         if (SaveDataManager.Instance.daveSata.spendingMoney >= timerCost)
         {
             SaveDataManager.Instance.daveSata.timeAddition += 30;
+            SaveDataManager.Instance.daveSata.spendingMoney -= batteryCost;
+            remainingTime += SaveDataManager.Instance.daveSata.timeAddition;
         }
         else
         {
@@ -91,6 +100,13 @@ public class Shop : MonoBehaviour
     void Update()
     {
         spendingMoney.text = string.Format($"${SaveDataManager.Instance.daveSata.spendingMoney} to spend.");
+        batteryText.text = string.Format($"Batteries Owned: {SaveDataManager.Instance.daveSata.batteries}");
+        spearText.text = string.Format($"Spears Owned: {SaveDataManager.Instance.daveSata.spears}");
+        currentHealth.text = string.Format($"Current Oxygen: {SaveDataManager.Instance.daveSata.health}");
+        int minutes = Mathf.FloorToInt(remainingTime / 60);
+        int seconds = Mathf.FloorToInt(remainingTime % 60);
+        additionalTime.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        
         /*if (isUi == true)
         {
             playerDistance = Vector3.Distance(this.transform.position, player.transform.position);

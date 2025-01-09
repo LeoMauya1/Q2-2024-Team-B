@@ -12,6 +12,10 @@ public class CRUCIFISHHITBOX : MonoBehaviour
         if (other.gameObject.CompareTag("Artifact"))
         {
 
+            if (other.GetComponent<Artifact>().isSound == true)
+            {
+                other.GetComponent<Artifact>().audioSource.Stop();
+            }
             if (CRUCIFISH.isHaunted == true)
             {
                 other.GetComponent<Artifact>().price = other.GetComponent<Artifact>().price / 2;
@@ -23,11 +27,8 @@ public class CRUCIFISHHITBOX : MonoBehaviour
             else if (other.GetComponent<Artifact>().isHaunted == true)
             {
                 other.GetComponent<Artifact>().particle.Play();
+                other.GetComponent<Artifact>().particleSound.Play();
                 other.GetComponent<Artifact>().isHaunted = false;
-            }
-            if (other.GetComponent<Artifact>().isSound == true)
-            {
-                other.GetComponent<Artifact>().audioSource.Stop();
             }
         }
     }

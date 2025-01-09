@@ -11,7 +11,9 @@ public class PlayerInfo : MonoBehaviour
     
     public List<GameObject> pNodes;
     public List<GameObject> sortedNodes;
-    public int possessedNumber;
+    public static int possessedNumber;
+    public bool soundPlayed;
+    public AudioSource possessionClip; 
     public int artifactsGrabbed;
     public bool killedByDolphin;
 
@@ -38,6 +40,16 @@ public class PlayerInfo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (possessedNumber == 0 && soundPlayed == true)
+        {
+            possessionClip.Stop();
+            soundPlayed = false;
+        }
+        if (possessedNumber >= 1 && soundPlayed == false)
+        {
+            possessionClip.Play();
+            soundPlayed = true;
+        }
         if (possessedNumber >= 4)
         {
             SaveDataManager.Instance.daveSata.health -= 0.05f;

@@ -34,7 +34,9 @@ public class FLASHLIGHT : MonoBehaviour
     private int soundOrder = 0;
 
     private AudioClip soundOn;
-    
+
+    public Color baseColor = Color.white;
+    public Color possessedColor;
     void Start()
     {
         
@@ -74,7 +76,15 @@ public class FLASHLIGHT : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        batterySlider = GameObject.Find("Battery Slider").GetComponent<Slider>();
+        if (isPossessed == true)
+        {
+            switchOn.color = possessedColor;
+        }
+        else
+        {
+            switchOn.color = baseColor;
+        }
+            batterySlider = GameObject.Find("Battery Slider").GetComponent<Slider>();
 
         switchOn.transform.position = Camera.main.transform.position + Camera.main.transform.TransformDirection(lightPos);
         switchOn.transform.rotation = Camera.main.transform.rotation * Quaternion.Euler(rotationOffset);

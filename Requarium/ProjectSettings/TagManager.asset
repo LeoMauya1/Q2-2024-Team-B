@@ -12,6 +12,15 @@ TagManager:
   - Cruci-Fish
   - Light
   - PostProcessing
+  - Canvas
+  - Ink
+  - Artifact
+  - Moctopus
+  - Enemy Manager
+  - Gangler
+  - Zolphin
+  - Ghost
+  - Artifact Manager
   layers:
   - Default
   - TransparentFX
@@ -28,8 +37,8 @@ TagManager:
   - Flashlight
   - Spear2
   - Post Processing
-  - 
-  - 
+  - Artifact
+  - Dolphin
   - 
   - 
   - 

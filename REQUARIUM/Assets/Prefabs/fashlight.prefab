@@ -456,6 +456,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 231884708a8afa04c96daa10ecd47138, type: 3}
   - {fileID: 8300000, guid: d97561f9272d01849a0d4fbebd3001fd, type: 3}
   animator: {fileID: 6684709443479482240}
+  baseColor: {r: 1, g: 1, b: 1, a: 1}
+  possessedColor: {r: 0.5357895, g: 0.11974903, b: 0.6509434, a: 1}
 --- !u!114 &8708863119133998543
 MonoBehaviour:
   m_ObjectHideFlags: 0

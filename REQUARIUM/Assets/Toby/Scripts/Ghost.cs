@@ -84,7 +84,6 @@ public class Ghost : MonoBehaviour
 
     private float spedCep;
 
-    public Color possessColor;
 
     public bool isArtifact;
 
@@ -272,7 +271,7 @@ public class Ghost : MonoBehaviour
         {
             unpossess.Invoke();
             isPossessing = false;
-            playerInfo.possessedNumber -= 1;
+            PlayerInfo.possessedNumber -= 1;
             playerInfo.SortNodesBD();
             if (isArtifact == false)
             {
@@ -288,7 +287,7 @@ public class Ghost : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isPossessing = true;
-            playerInfo.possessedNumber += 1;
+            PlayerInfo.possessedNumber += 1;
             jumpscare.SpawnScare();
         }
         if (other.CompareTag("FlashLight") && FLASHLIGHT.isPossessed == false)
@@ -304,16 +303,15 @@ public class Ghost : MonoBehaviour
     }
     public void PossessItem()
     {
-        if (playerInfo.possessedNumber == 1)
+        if (PlayerInfo.possessedNumber == 1)
         {
             FLASHLIGHT.isPossessed = true;
-            flashlight.GetComponent<Light>().color = possessColor;
         }
-        else if (playerInfo.possessedNumber == 2)
+        else if (PlayerInfo.possessedNumber == 2)
         {
             SPEARGUN.isHaunted = true;
         }
-        else if (playerInfo.possessedNumber >= 3)
+        else if (PlayerInfo.possessedNumber >= 3)
         {
             CRUCIFISH.isHaunted = true;
         }
@@ -321,16 +319,15 @@ public class Ghost : MonoBehaviour
 
     public void unPossessItem()
     {
-        if (playerInfo.possessedNumber == 1)
+        if (PlayerInfo.possessedNumber == 1)
         {
             FLASHLIGHT.isPossessed = false;
-            flashlight.GetComponent<Light>().color = Color.white;
         }
-         else if (playerInfo.possessedNumber == 2)
+         else if (PlayerInfo.possessedNumber == 2)
         {
             SPEARGUN.isHaunted = false;
         }
-        else if (playerInfo.possessedNumber >= 3)
+        else if (PlayerInfo.possessedNumber >= 3)
         {
             CRUCIFISH.isHaunted = false;
         }
