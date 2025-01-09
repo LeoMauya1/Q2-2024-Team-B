@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_New Shader Graph
-  m_Shader: {fileID: -6465566751694194690, guid: ddffa5725ce893a4088150c7ef31563e,
+  m_Name: yaya
+  m_Shader: {fileID: -6465566751694194690, guid: 0062effbb15dd6e43bdf9e5100bcd4f3,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -29,7 +29,7 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _SampleTexture2D_d23bb25b408e4d3488f4199cad344490_Texture_1:
+    - _SampleTexture2D_5b64b76a9c1a404c9f0fdd500e6f08b5_Texture_1:
         m_Texture: {fileID: 8400000, guid: 7313aa2cd3914d740a231655bb235d6c, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -90,12 +90,12 @@ Material:
     - _ZTestGBuffer: 4
     - _ZTestTransparent: 4
     - _ZWrite: 1
-    - _pixelation: 16
+    - _pixel: 16
     m_Colors:
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &9157392352110685735
+--- !u!114 &44552720441015282
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.007202911, g: 0.008924127, b: 0.011810642, a: 1}
+  m_IndirectSpecularColor: {r: 0.0072148815, g: 0.00893987, b: 0.011831999, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -933,14 +933,15 @@ MonoBehaviour:
   fadeRadius: 0
   priority: 0
   customPasses:
-  - rid: 486513172135280672
+  - rid: 8911036189819535381
+  - rid: 8911036189819535382
   injectionPoint: 1
   m_TargetCamera: {fileID: 0}
   useTargetCamera: 0
   references:
     version: 2
     RefIds:
-    - rid: 486513172135280672
+    - rid: 8911036189819535381
       type: {class: FullscreenPassHDRP, ns: , asm: Assembly-CSharp}
       data:
         m_Name: Custom Pass
@@ -950,8 +951,20 @@ MonoBehaviour:
         clearFlags: 0
         passFoldout: 0
         m_Version: 0
-        fullscreenMaterial: {fileID: 2100000, guid: 90beb6112fe1e8446aa139ceaae96178,
-          type: 2}
+        fullscreenMaterial: {fileID: -876546973899608171, guid: ddffa5725ce893a4088150c7ef31563e,
+          type: 3}
+    - rid: 8911036189819535382
+      type: {class: FullscreenPassHDRP, ns: , asm: Assembly-CSharp}
+      data:
+        m_Name: Custom Pass
+        enabled: 1
+        targetColorBuffer: 1
+        targetDepthBuffer: 2
+        clearFlags: 1
+        passFoldout: 0
+        m_Version: 0
+        fullscreenMaterial: {fileID: -876546973899608171, guid: ddffa5725ce893a4088150c7ef31563e,
+          type: 3}
 --- !u!4 &582173398
 Transform:
   m_ObjectHideFlags: 0
