@@ -21,7 +21,7 @@ public class FLASHLIGHT : MonoBehaviour
     public static bool isPossessed;
     public Collider flashLightHitbox;
     private float batteryTime = 0;
-    public int battery = 3;
+    public int battery;
     private bool batteryDead = false;
     private float MinutesPassed;
     private bool batteryGageOpen = true;
@@ -42,7 +42,7 @@ public class FLASHLIGHT : MonoBehaviour
         
         switchOn.transform.SetParent(null);
         audioSource = GetComponent<AudioSource>();
-        battery = SaveDataManager.Instance.daveSata.batteries; 
+        battery = SaveDataManager.Instance.defaultData.batteries;
 
     }
 
@@ -126,8 +126,8 @@ public class FLASHLIGHT : MonoBehaviour
         {
             Debug.Log("one battery donw");
             battery -= 1;
-            StartCoroutine(FlashLightFlicker());
             MinutesPassed = 0;
+            StartCoroutine(FlashLightFlicker());
             
         }
         if( batteryTime <= 25f)
@@ -207,6 +207,8 @@ public class FLASHLIGHT : MonoBehaviour
         animator.SetBool("batteryDown", true);
         yield return new WaitForSeconds(0.7f);
         animator.SetBool("flashIdle", true);
+        animator.SetBool("batteryDown", false);
+
     }
     
 
