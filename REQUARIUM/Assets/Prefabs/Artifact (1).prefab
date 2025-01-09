@@ -73,14 +73,9 @@ MonoBehaviour:
   lightMoment: {fileID: 9150984795074327168}
   artifactLook: {fileID: 21300000, guid: 27a76373cf24f964aadf898a6ef11e72, type: 3}
   artifactNormalSprites:
-  - {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  - {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
-  - {fileID: 2747690628134850419, guid: 16037dbd798344f57a526d53d48f5ead, type: 3}
-  - {fileID: -9095717837082945937, guid: 34587324d412940a79d530020c957dc0, type: 3}
-  - {fileID: 3625043607559282579, guid: 045b15ec09bba42448d89db77fa6f20a, type: 3}
+  - {fileID: 21300000, guid: 172714b69fe79f748b98cb71f96b36cd, type: 3}
   artifactHauntedSprites:
-  - {fileID: -1831541627, guid: 33c081c871c34234c83a1fb2a93e1600, type: 3}
-  - {fileID: -397112836, guid: 3249bce6bcc098b4b84ef9155de70ffe, type: 3}
+  - {fileID: 21300000, guid: 1de42ca7014cc194399cec5a58525eb7, type: 3}
   artifactSound: {fileID: 0}
   artifactSounds:
   - {fileID: 8300000, guid: 67859f755cb72f342aa92fefef8689f5, type: 3}
