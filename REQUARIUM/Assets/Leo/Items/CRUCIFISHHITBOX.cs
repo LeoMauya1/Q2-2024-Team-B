@@ -7,11 +7,21 @@ using static UnityEngine.ParticleSystem;
 
 public class CRUCIFISHHITBOX : MonoBehaviour
 {
+    public GameObject artifactHit;
+    public bool artifactIsHit;
+    public float timeToDestroy;
+    public float timeToDestroyMax;
+    public void DestroyArtifact()
+    {
+        artifactIsHit = false;
+        timeToDestroy = timeToDestroyMax;
+        Destroy(artifactHit);
+    }
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Artifact"))
         {
-
+            artifactHit = other.gameObject;
             if (other.GetComponent<Artifact>().isSound == true)
             {
                 other.GetComponent<Artifact>().audioSource.Stop();
@@ -22,7 +32,10 @@ public class CRUCIFISHHITBOX : MonoBehaviour
             }
             if (other.GetComponent<Artifact>().isHaunted == false)
             {
-                Destroy(other.gameObject);
+                other.GetComponent<SpriteRenderer>().enabled = false;
+                other.GetComponent<Artifact>().dirt.Play();
+                other.GetComponent<Artifact>().dirtSound.Play();
+                artifactIsHit = true;
             }
             else if (other.GetComponent<Artifact>().isHaunted == true)
             {
@@ -32,8 +45,19 @@ public class CRUCIFISHHITBOX : MonoBehaviour
             }
         }
     }
+    public void Update()
+    {
+        if (artifactIsHit == true)
+        {
+            timeToDestroy -= Time.deltaTime;
+            if (timeToDestroy <= 0)
+            {
+                DestroyArtifact();
+            }
+        }
+    }
 
 
-    
+
 }
 

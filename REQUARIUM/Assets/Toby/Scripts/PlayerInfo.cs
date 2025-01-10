@@ -53,8 +53,12 @@ public class PlayerInfo : MonoBehaviour
         if (possessedNumber >= 4)
         {
             SaveDataManager.Instance.daveSata.health -= 0.05f;
+            if (SaveDataManager.Instance.daveSata.health <= -265)
+            {
+                GameOver();
+            }
         }
-        if (SaveDataManager.Instance.daveSata.health <= 0 && killedByDolphin == true)
+        if (SaveDataManager.Instance.daveSata.health <= -265 && killedByDolphin == true)
         {
             Invoke("GameOver", 3f);
         }

@@ -82,6 +82,12 @@ public class Artifact : MonoBehaviour
 
     public AudioSource particleSound;
 
+    public ParticleSystem dirt;
+
+    public AudioSource dirtSound;
+
+    public AudioSource grab;
+
     public GameObject moctopus;
 
     void Start()
@@ -90,6 +96,7 @@ public class Artifact : MonoBehaviour
         playerInfo = player.GetComponent<PlayerInfo>();
         ghost = GameObject.FindGameObjectWithTag("Ghost");
         ghostes = ghost.GetComponent<ArtifactGhost>();
+        grab = ghost.GetComponent<AudioSource>();
         List<float> shuffledFloats = switchTimes.OrderBy(x => randyTheRandom.Next()).ToList();
         switchTimeMax = shuffledFloats[0];
         switchTime = switchTimeMax;
@@ -206,11 +213,11 @@ public class Artifact : MonoBehaviour
         {
             price = randyTheRandom.Next(minPriceNorm, maxPriceNorm);
         }
-        else if (corruptionCount >= 5 && corruptionCount < 13)
+        else if (corruptionCount >= 5 && corruptionCount < 15)
         {
             price = randyTheRandom.Next(minPriceHaunt, maxPriceHaunt);
         }
-        else if (corruptionCount > 14)
+        else if (corruptionCount > 15)
         {
             price = randyTheRandom.Next(1000, 3000);
         }
@@ -267,7 +274,6 @@ public class Artifact : MonoBehaviour
      */
     void Update()
     {
-        playerInfo.artifactsGrabbed += 1;
         if (isSwitch == true)
         {
             SwitchSprite();
@@ -276,7 +282,9 @@ public class Artifact : MonoBehaviour
         playerDistance = Vector3.Distance(this.transform.position, player.transform.position);
         if (playerDistance <= targetDistance && Input.GetKeyDown(grabArtifact))
         {
+            playerInfo.artifactsGrabbed += 1;
             hasGrabbed = true;
+            grab.Play();
             if (HasOctopus == true)
             {
                 audioSource.Stop();
@@ -291,6 +299,7 @@ public class Artifact : MonoBehaviour
                 }
                 ghostes.isPossessing = true;
                 PlayerInfo.possessedNumber += 1;
+                playerInfo.possessionClip.volume += 0.1f;
                 if (HasOctopus == false && hasGrabbed == true)
                 {
                     Destroy(thisArtifact);

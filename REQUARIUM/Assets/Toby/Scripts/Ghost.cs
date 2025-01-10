@@ -272,6 +272,7 @@ public class Ghost : MonoBehaviour
             unpossess.Invoke();
             isPossessing = false;
             PlayerInfo.possessedNumber -= 1;
+            playerInfo.possessionClip.volume -= 0.1f;
             playerInfo.SortNodesBD();
             if (isArtifact == false)
             {
@@ -288,6 +289,7 @@ public class Ghost : MonoBehaviour
         {
             isPossessing = true;
             PlayerInfo.possessedNumber += 1;
+            playerInfo.possessionClip.volume += 0.1f;
             jumpscare.SpawnScare();
         }
         if (other.CompareTag("FlashLight") && FLASHLIGHT.isPossessed == false)

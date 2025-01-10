@@ -5912,10 +5912,10 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6209335054722164819}
-  - {fileID: 2054157141675672988}
   - {fileID: 2076818980957744998}
   - {fileID: 4183194641067970533}
   - {fileID: 7000256841260455768}
+  - {fileID: 2054157141675672988}
   m_Father: {fileID: 6209335053970564336}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

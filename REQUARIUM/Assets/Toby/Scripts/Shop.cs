@@ -39,7 +39,7 @@ public class Shop : MonoBehaviour
         //playerInfo = player.GetComponent<PlayerInfo>();
         battery.text = string.Format($"${batteryCost} per Battery");
         spear.text = string.Format($"${spearCost} per Spear");
-        oxygen.text = string.Format($"${oxygenTankCost} per 1/2 Oxygen Refill");
+        oxygen.text = string.Format($"${oxygenTankCost} per Oxygen Refill");
         timers.text = string.Format($"${timerCost} per minute added to time");
     }
 
@@ -71,8 +71,12 @@ public class Shop : MonoBehaviour
     {
         if (SaveDataManager.Instance.daveSata.spendingMoney >= oxygenTankCost)
         {
-            SaveDataManager.Instance.daveSata.health += 50;
+            SaveDataManager.Instance.daveSata.health = 0;
             SaveDataManager.Instance.daveSata.spendingMoney -= batteryCost;
+        }
+        else if (SaveDataManager.Instance.daveSata.health == 0)
+        {
+            Rejection();
         }
         else
         {
@@ -102,7 +106,30 @@ public class Shop : MonoBehaviour
         spendingMoney.text = string.Format($"${SaveDataManager.Instance.daveSata.spendingMoney} to spend.");
         batteryText.text = string.Format($"Batteries Owned: {SaveDataManager.Instance.daveSata.batteries}");
         spearText.text = string.Format($"Spears Owned: {SaveDataManager.Instance.daveSata.spears}");
-        currentHealth.text = string.Format($"Current Oxygen: {SaveDataManager.Instance.daveSata.health}");
+        if (SaveDataManager.Instance.daveSata.health >= -50)
+        {
+            currentHealth.text = string.Format($"Current Oxygen Status: Dark Green");
+        }
+        else if (SaveDataManager.Instance.daveSata.health >= -105 && SaveDataManager.Instance.daveSata.health < -50)
+        {
+            currentHealth.text = string.Format($"Current Oxygen Status: Light Green");
+        }
+        else if (SaveDataManager.Instance.daveSata.health >= -145 && SaveDataManager.Instance.daveSata.health < -105)
+        {
+            currentHealth.text = string.Format($"Current Oxygen Status: Lime Green");
+        }
+        else if (SaveDataManager.Instance.daveSata.health >= -185 && SaveDataManager.Instance.daveSata.health < -145)
+        {
+            currentHealth.text = string.Format($"Current Oxygen Status: Yellow");
+        }
+        else if (SaveDataManager.Instance.daveSata.health >= -222 && SaveDataManager.Instance.daveSata.health < -185)
+        {
+            currentHealth.text = string.Format($"Current Oxygen Status: Orange");
+        }
+        else if (SaveDataManager.Instance.daveSata.health >= -264 && SaveDataManager.Instance.daveSata.health < -222)
+        {
+            currentHealth.text = string.Format($"Current Oxygen Status: OXYGEN CRITICAL");
+        }
         int minutes = Mathf.FloorToInt(remainingTime / 60);
         int seconds = Mathf.FloorToInt(remainingTime % 60);
         additionalTime.text = string.Format("{0:00}:{1:00}", minutes, seconds);

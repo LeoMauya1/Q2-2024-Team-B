@@ -49,7 +49,7 @@ MonoBehaviour:
     quotaMoney: 0
     batteries: 1
     spears: 0
-    health: 100
+    health: 0
     workDay: 0
     isNewGame: 1
     quota: 500

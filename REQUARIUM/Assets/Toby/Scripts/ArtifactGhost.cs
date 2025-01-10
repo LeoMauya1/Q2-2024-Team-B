@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,6 +27,12 @@ public class ArtifactGhost : MonoBehaviour
         if (isPossessing == true)
         {
             IsPossessing();
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            FLASHLIGHT.isPossessed = true;
+            PlayerInfo.possessedNumber += 1;
+            Debug.Log($"{SaveDataManager.Instance.daveSata.health}");
         }
     }
     public void PossessItem()
@@ -68,6 +75,7 @@ public class ArtifactGhost : MonoBehaviour
             unpossess.Invoke();
             isPossessing = false;
             PlayerInfo.possessedNumber -= 1;
+            FindObjectOfType<PlayerInfo>().possessionClip.volume -= 0.1f;
         }
     }
 }

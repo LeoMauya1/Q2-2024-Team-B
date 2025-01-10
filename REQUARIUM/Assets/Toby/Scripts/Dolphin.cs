@@ -182,7 +182,7 @@ public class Dolphin : MonoBehaviour
         {
             onCollision.Invoke();
             stunTime = maxStunTime;
-            SaveDataManager.Instance.daveSata.health -= 50;
+            SaveDataManager.Instance.daveSata.health -= 133;
             audioSource.clip = stunnedClip;
             audioSource.Play();
             stunned = true;

@@ -15,7 +15,7 @@ public class CRUCIFISH : MonoBehaviour
     private Quaternion crucifishOriginalRotation;
     public float CrucifishSwingTime;
     private bool canSwing = true;
-    public GameObject hitBox;
+    public BoxCollider hitBox;
 
     public static bool isHaunted;
 
@@ -89,10 +89,10 @@ public class CRUCIFISH : MonoBehaviour
     private IEnumerator HitBox()
     {
         yield return new WaitForSeconds(0.2f);
-        hitBox.SetActive(true);
+        hitBox.enabled = true;
         
         yield return new WaitForSeconds(0.5f);
-        hitBox.SetActive(false);
+        hitBox.enabled = false;
     }
 
     private void playSound()
