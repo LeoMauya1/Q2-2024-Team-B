@@ -42,7 +42,7 @@ public class FLASHLIGHT : MonoBehaviour
         
         switchOn.transform.SetParent(null);
         audioSource = GetComponent<AudioSource>();
-        battery = SaveDataManager.Instance.defaultData.batteries;
+        
 
     }
 
@@ -53,6 +53,7 @@ public class FLASHLIGHT : MonoBehaviour
 
     public void OnEnable()
     {
+        battery = SaveDataManager.Instance.defaultData.batteries;
         flashLightButton = playerInputActions.GamePlay1.FlashLight;
         flashLightButton.Enable();
         
