@@ -148,7 +148,7 @@ public class PLAYER_INVENTORY : MonoBehaviour
             {
                 flashLight = GameObject.Find("light").GetComponent<Light>();
                 flashLightUI = GameObject.Find("Battery Slider");
-                flashLightUI.GetComponent<Animator>().SetBool("batteryIsSelected", false);
+                //flashLightUI.GetComponent<Animator>().SetBool("batteryIsSelected", false);
                 flashLight.GetComponentInChildren<SphereCollider>().enabled = false;
                 flashLight.enabled = false;
                 Debug.Log("flash turned off");
@@ -157,7 +157,7 @@ public class PLAYER_INVENTORY : MonoBehaviour
             if (instantiatedItems[currentIndex].tag == "FlashLight")
             {
                 flashLightUI = GameObject.Find("Battery Slider");
-                flashLightUI.GetComponent<Animator>().SetBool("batteryIsSelected", true);
+                //flashLightUI.GetComponent<Animator>().SetBool("batteryIsSelected", true);
 }
 
         }

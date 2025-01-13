@@ -5,6 +5,8 @@ using Unity.Mathematics;
 using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
+using System;
 
 public class FLASHLIGHT : MonoBehaviour
 {
@@ -25,14 +27,14 @@ public class FLASHLIGHT : MonoBehaviour
     private bool batteryDead = false;
     private float MinutesPassed;
     private bool batteryGageOpen = true;
-    private Slider batterySlider;
+    private Image batterySlider;
     public float slideSpeed;
     private AudioSource audioSource;
     public AudioClip[] flashLightSounds;
     public Animator animator;
-
+    public float sliderEnd;
     private int soundOrder = 0;
-
+    private float sliderTime;
     private AudioClip soundOn;
 
     public Color baseColor = Color.white;
@@ -85,7 +87,7 @@ public class FLASHLIGHT : MonoBehaviour
         {
             switchOn.color = baseColor;
         }
-            batterySlider = GameObject.Find("Battery Slider").GetComponent<Slider>();
+            batterySlider = GameObject.Find("Battery Slider").GetComponent<Image>();
 
         switchOn.transform.position = Camera.main.transform.position + Camera.main.transform.TransformDirection(lightPos);
         switchOn.transform.rotation = Camera.main.transform.rotation * Quaternion.Euler(rotationOffset);
@@ -96,9 +98,8 @@ public class FLASHLIGHT : MonoBehaviour
           if(battery > 0 && batteryGageOpen)
           {
              batteryTime = battery * 60 + batteryTime;
-            
-            batterySlider.maxValue = batteryTime;
-            batterySlider.value = 0;
+
+            batterySlider.fillAmount = 1;
             batteryGageOpen = false;
              
           }
@@ -181,7 +182,8 @@ public class FLASHLIGHT : MonoBehaviour
             batteryTime -= Time.deltaTime;
             batteryTime = Mathf.Max(batteryTime, 0);
             MinutesPassed += Time.deltaTime;
-            batterySlider.value = Mathf.MoveTowards(batterySlider.maxValue, batterySlider.minValue, batteryTime);
+            sliderTime = batteryTime / batteryTime;
+            batterySlider.fillAmount = Mathf.MoveTowards(180, sliderEnd, batteryTime);
             //Debug.Log(batteryTime);
             yield return null;
            
