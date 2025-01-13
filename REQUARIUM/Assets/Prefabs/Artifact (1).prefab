@@ -76,11 +76,13 @@ MonoBehaviour:
   artifactNormalSprites:
   - {fileID: 21300000, guid: 172714b69fe79f748b98cb71f96b36cd, type: 3}
   - {fileID: 21300000, guid: 20cda3aadf93f1a48a09e5b3c0c1dd01, type: 3}
+  - {fileID: 21300000, guid: d260a9f51339b854eaca605ad9f279dd, type: 3}
   artifactHauntedSprites:
   - {fileID: 21300000, guid: 1de42ca7014cc194399cec5a58525eb7, type: 3}
   - {fileID: 21300000, guid: f6989336d8caac7418b7ecad6512570d, type: 3}
   - {fileID: 21300000, guid: 7ebc81c6a7fe18c4e844647d904d23cb, type: 3}
   - {fileID: 21300000, guid: b109952efac34ae4f9e0db8d2659cd7d, type: 3}
+  - {fileID: 21300000, guid: db7cfee66b173964cabad6e1aa7a928b, type: 3}
   artifactSound: {fileID: 0}
   artifactSounds:
   - {fileID: 8300000, guid: 67859f755cb72f342aa92fefef8689f5, type: 3}
