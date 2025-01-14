@@ -106,9 +106,9 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 147.84744
+  m_Intensity: 3.774597
   m_Range: 14.1
-  m_SpotAngle: 110.06729
+  m_SpotAngle: 82
   m_InnerSpotAngle: 75.08784
   m_CookieSize: 10
   m_Shadows:
@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68c43fe1f2a47cfa234b5eeaa98012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Intensity: 396.57434
+  m_Intensity: 5.817428
   m_EnableSpotReflector: 1
   m_LuxAtDistance: 1
   m_InnerSpotPercent: 0
@@ -456,6 +456,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 231884708a8afa04c96daa10ecd47138, type: 3}
   - {fileID: 8300000, guid: d97561f9272d01849a0d4fbebd3001fd, type: 3}
   animator: {fileID: 6684709443479482240}
+  sliderEnd: 0
   baseColor: {r: 1, g: 1, b: 1, a: 1}
   possessedColor: {r: 0.5357895, g: 0.11974903, b: 0.6509434, a: 1}
 --- !u!114 &8708863119133998543

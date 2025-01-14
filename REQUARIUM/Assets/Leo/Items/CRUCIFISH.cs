@@ -26,6 +26,7 @@ public class CRUCIFISH : MonoBehaviour
     private Animator animator;
     private AudioSource audioSource;
     public AudioClip crucifishAudio;
+    private GameObject crucifishTut;
 
     private void Update()
     {
@@ -48,6 +49,7 @@ public class CRUCIFISH : MonoBehaviour
     private void Awake()
     {
         playerInputs = new PLAYERCONTROLLER();
+        crucifishTut = GameObject.Find("CRUCIFISH TEXT");
     }
 
     private void OnEnable()
@@ -57,11 +59,13 @@ public class CRUCIFISH : MonoBehaviour
         crucifishEvent = playerInputs.GamePlay1.Crucifish;
         crucifishEvent.Enable();
         crucifishEvent.performed += swingCrucifish;
+        crucifishTut.SetActive(true);
 
     }
     private void OnDisable()
     {
         crucifishEvent.Disable();
+        crucifishTut.SetActive(false);
     }
 
     private void swingCrucifish(InputAction.CallbackContext contxt)

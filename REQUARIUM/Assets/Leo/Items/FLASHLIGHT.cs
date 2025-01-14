@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using System;
+using TMPro;
 
 public class FLASHLIGHT : MonoBehaviour
 {
@@ -36,12 +37,15 @@ public class FLASHLIGHT : MonoBehaviour
     private int soundOrder = 0;
     private float sliderTime;
     private AudioClip soundOn;
+    private float maxBatterySlider;
+    private GameObject flashTut;
+    private GameObject critHealthText;
 
     public Color baseColor = Color.white;
     public Color possessedColor;
     void Start()
     {
-        
+        battery = SaveDataManager.Instance.defaultData.batteries;
         switchOn.transform.SetParent(null);
         audioSource = GetComponent<AudioSource>();
         
@@ -49,17 +53,23 @@ public class FLASHLIGHT : MonoBehaviour
     }
 
     private void Awake()
+
     {
+        
         playerInputActions = new PLAYERCONTROLLER();
+        flashTut = GameObject.Find("FLASHLIGHT TEXT");
+        critHealthText = GameObject.Find("CRITICAL");
+        batterySlider = GameObject.Find("Battery Slider").GetComponent<Image>();
+
     }
 
     public void OnEnable()
     {
-        battery = SaveDataManager.Instance.defaultData.batteries;
+        
         flashLightButton = playerInputActions.GamePlay1.FlashLight;
         flashLightButton.Enable();
-        
-       
+        flashTut.gameObject.SetActive(true);
+
         flashLightButton.performed += FlashLightActions;
         
 
@@ -70,9 +80,10 @@ public class FLASHLIGHT : MonoBehaviour
     {
         flashLightButton.Disable();
         flashLightButton.performed -= FlashLightActions;
+        flashTut.gameObject.SetActive(false);
+        critHealthText.gameObject.SetActive(false);
 
-    
-        
+
     }
 
 
@@ -87,7 +98,8 @@ public class FLASHLIGHT : MonoBehaviour
         {
             switchOn.color = baseColor;
         }
-            batterySlider = GameObject.Find("Battery Slider").GetComponent<Image>();
+            
+        
 
         switchOn.transform.position = Camera.main.transform.position + Camera.main.transform.TransformDirection(lightPos);
         switchOn.transform.rotation = Camera.main.transform.rotation * Quaternion.Euler(rotationOffset);
@@ -99,10 +111,15 @@ public class FLASHLIGHT : MonoBehaviour
           {
              batteryTime = battery * 60 + batteryTime;
 
+            maxBatterySlider = batteryTime;
             batterySlider.fillAmount = 1;
             batteryGageOpen = false;
-             
-          }
+            critHealthText.SetActive(false);
+            animator.SetBool("flashIdle", true);
+            animator.SetBool("fewSeconds", false);
+            animator.SetBool("batteryDown", false);
+
+        }
 
 
         if ( batteryDead)
@@ -134,6 +151,7 @@ public class FLASHLIGHT : MonoBehaviour
         }
         if( batteryTime <= 25f)
         {
+            critHealthText.SetActive(true);
             Debug.Log("running out of time");
             animator.SetBool("flashIdle",false);
             animator.SetBool("fewSeconds", true);
@@ -182,16 +200,15 @@ public class FLASHLIGHT : MonoBehaviour
             batteryTime -= Time.deltaTime;
             batteryTime = Mathf.Max(batteryTime, 0);
             MinutesPassed += Time.deltaTime;
-            sliderTime = batteryTime / batteryTime;
-            batterySlider.fillAmount = Mathf.MoveTowards(180, sliderEnd, batteryTime);
+            batterySlider.fillAmount = batteryTime / maxBatterySlider;
             //Debug.Log(batteryTime);
             yield return null;
            
         
            
         }
-        animator.SetBool("flashIdle", true);
-        animator.SetBool("fewSeconds", false);
+     
+   
         batteryDead = true;
         batteryGageOpen = true;
         audioSource.PlayOneShot(flashLightSounds[2]);
