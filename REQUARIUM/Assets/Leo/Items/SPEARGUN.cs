@@ -40,7 +40,7 @@ public class SPEARGUN : MonoBehaviour
     public LayerMask spearLayer;
     private AudioSource audioSource;
     public AudioClip spearSound;
-
+    private GameObject crucifishTut;
     private int spearAmount = 3;
 
     public static bool isHaunted;
@@ -74,6 +74,7 @@ public class SPEARGUN : MonoBehaviour
     private void Awake()
     {
         shootingEvent = new PLAYERCONTROLLER();
+        crucifishTut = GameObject.Find("SPEAR GUN");
     }
 
 
@@ -82,12 +83,16 @@ public class SPEARGUN : MonoBehaviour
         launchSpear = shootingEvent.GamePlay1.shootSpear;
         launchSpear.Enable();
         launchSpear.performed += ShootSpear;
-       
+        crucifishTut.SetActive(true);
+
+
+
     }
     private void OnDisable()
     {
         launchSpear.Disable();
         launchSpear.performed -= ShootSpear;
+        crucifishTut.SetActive(false);
        
     }
 
