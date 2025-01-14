@@ -83,6 +83,13 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 7ebc81c6a7fe18c4e844647d904d23cb, type: 3}
   - {fileID: 21300000, guid: b109952efac34ae4f9e0db8d2659cd7d, type: 3}
   - {fileID: 21300000, guid: db7cfee66b173964cabad6e1aa7a928b, type: 3}
+  - {fileID: 21300000, guid: 12eccc477488b524d96ddff1a838adb1, type: 3}
+  - {fileID: 21300000, guid: 0acbcad6fb176614db19d5029f3cc178, type: 3}
+  - {fileID: 21300000, guid: 639913b0d2da57749aed9d20b4bab1b6, type: 3}
+  - {fileID: 21300000, guid: 4c88921f288952749a058c53f07758d5, type: 3}
+  - {fileID: 21300000, guid: cc3d5e5ee412e3749bc79e6ed09a9a9e, type: 3}
+  - {fileID: 21300000, guid: 9ca45c525c5ff3b4fa740ad2e804dfde, type: 3}
+  - {fileID: 21300000, guid: 7d2df2325358dc045b9f39e267da9bc1, type: 3}
   artifactSound: {fileID: 0}
   artifactSounds:
   - {fileID: 8300000, guid: 67859f755cb72f342aa92fefef8689f5, type: 3}
