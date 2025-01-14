@@ -5,6 +5,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using TMPro;
 
 public class Artifact : MonoBehaviour
 {
@@ -90,6 +91,15 @@ public class Artifact : MonoBehaviour
 
     public GameObject moctopus;
 
+    public bool isTutorial;
+
+    public TextMeshProUGUI infoText;
+
+    public TextMeshProUGUI possessText;
+
+    public TextMeshProUGUI grabText;
+
+    public GameObject reminderText;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -100,7 +110,10 @@ public class Artifact : MonoBehaviour
         List<float> shuffledFloats = switchTimes.OrderBy(x => randyTheRandom.Next()).ToList();
         switchTimeMax = shuffledFloats[0];
         switchTime = switchTimeMax;
-        SetArtifactValues();
+        if (isTutorial == false)
+        {
+            SetArtifactValues();
+        }
     }
     public void SetArtifactValues()
     {
@@ -274,6 +287,22 @@ public class Artifact : MonoBehaviour
      */
     void Update()
     {
+        if (playerDistance <= targetDistance)
+        {
+            if (isTutorial == true)
+            {
+                infoText.enabled = true;
+                reminderText.SetActive(false);
+            }
+        }
+        if (playerDistance > targetDistance)
+        {
+            if (isTutorial == true)
+            {
+                infoText.enabled = false;
+                reminderText.SetActive(true);
+            }
+        }
         if (isSwitch == true)
         {
             SwitchSprite();
@@ -292,6 +321,10 @@ public class Artifact : MonoBehaviour
             }
             if (isHaunted == true)
             {   
+                if (isTutorial == true)
+                {
+                    possessText.enabled = true;
+                }
                 if (playerInfo.artifactsGrabbed == amountToSpawnGhost)
                 {
                     FindObjectOfType<EnemyManager>().SpawnGhost();
@@ -307,6 +340,10 @@ public class Artifact : MonoBehaviour
             }
             else if (isHaunted == false)
             {
+                if (isTutorial == true)
+                {
+                    grabText.enabled = true;
+                }
                 if (playerInfo.artifactsGrabbed == amountToSpawnGhost + 2)
                 {
                     FindObjectOfType<EnemyManager>().SpawnGhost();
