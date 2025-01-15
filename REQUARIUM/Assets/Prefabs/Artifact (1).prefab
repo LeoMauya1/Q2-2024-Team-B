@@ -71,6 +71,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b364e5631cac0784a8a4957730e0feb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerDistance: 0
   thisArtifact: {fileID: 577885019834169308}
   lightMoment: {fileID: 9150984795074327168}
   artifactLook: {fileID: 21300000, guid: 172714b69fe79f748b98cb71f96b36cd, type: 3}
@@ -78,6 +79,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 172714b69fe79f748b98cb71f96b36cd, type: 3}
   - {fileID: 21300000, guid: 20cda3aadf93f1a48a09e5b3c0c1dd01, type: 3}
   - {fileID: 21300000, guid: d260a9f51339b854eaca605ad9f279dd, type: 3}
+  - {fileID: 21300000, guid: a400b441c8147334a8cba9f6f346ff1c, type: 3}
+  - {fileID: 21300000, guid: 04d91ce226404f148ac03f6746304a42, type: 3}
   artifactHauntedSprites:
   - {fileID: 21300000, guid: 1de42ca7014cc194399cec5a58525eb7, type: 3}
   - {fileID: 21300000, guid: f6989336d8caac7418b7ecad6512570d, type: 3}
@@ -91,6 +94,14 @@ MonoBehaviour:
   - {fileID: 21300000, guid: cc3d5e5ee412e3749bc79e6ed09a9a9e, type: 3}
   - {fileID: 21300000, guid: 9ca45c525c5ff3b4fa740ad2e804dfde, type: 3}
   - {fileID: 21300000, guid: 7d2df2325358dc045b9f39e267da9bc1, type: 3}
+  - {fileID: 21300000, guid: 1b810ca0a608d974ab8f5c87f369decd, type: 3}
+  - {fileID: 21300000, guid: dd45a22d695c18b42aad259d3b36cc7b, type: 3}
+  - {fileID: 21300000, guid: 9a687358f3128814faa88b2a399d2636, type: 3}
+  - {fileID: 21300000, guid: 1a5713b165cc6674b86aa04ccb8f94e3, type: 3}
+  - {fileID: 21300000, guid: a661a93112e4a7e45b47b36e894bddd4, type: 3}
+  - {fileID: 21300000, guid: a54c1c5e475bc9f4b94043f183164bec, type: 3}
+  - {fileID: 21300000, guid: 51bc897cea416f64f9609d9c6d5caa5a, type: 3}
+  - {fileID: 21300000, guid: a663c702efe4c3f42818fa64704d2a3d, type: 3}
   artifactSound: {fileID: 0}
   artifactSounds:
   - {fileID: 8300000, guid: 67859f755cb72f342aa92fefef8689f5, type: 3}
@@ -141,10 +152,9 @@ MonoBehaviour:
   grab: {fileID: 0}
   moctopus: {fileID: 8199465695099779583}
   isTutorial: 0
-  infoText: {fileID: 6182760550485144389}
-  possessText: {fileID: 6182760550485144389}
-  grabText: {fileID: 6182760550485144389}
-  octopusText: {fileID: 6182760550485144389}
+  infoText: {fileID: 3080099915239123717}
+  possessText: {fileID: 3080099915239123717}
+  grabText: {fileID: 3080099915239123717}
   reminderText: {fileID: 3080099915239123717}
 --- !u!212 &577885019834169259
 SpriteRenderer:

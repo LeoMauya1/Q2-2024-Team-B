@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject PausePanel;
+    public GameObject artifactPanel;
     public GameObject UIElements;
     public TextMeshProUGUI batteryText;
     public TextMeshProUGUI quotaText;
@@ -16,8 +17,10 @@ public class PauseMenu : MonoBehaviour
     public TextMeshProUGUI dayText;
     public TextMeshProUGUI timerText;
     public KeyCode pause;
+    public KeyCode artifactInfo;
     //public Timer timer;
     public bool isOpen;
+    public bool artifactOpen;
     // Update is called once per frame
 
     public void Start()
@@ -27,13 +30,21 @@ public class PauseMenu : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(pause) && isOpen == true)
+        if (Input.GetKeyDown(pause) && isOpen == true && artifactOpen == false)
         {
             Continue();
         }
-        else if (Input.GetKeyDown(pause) && isOpen == false)
+        else if (Input.GetKeyDown(pause) && isOpen == false && artifactOpen == false)
         {
             Pause();
+        }
+        if (Input.GetKeyDown(artifactInfo) && isOpen == false && artifactOpen == true)
+        {
+            Close();
+        }
+        else if (Input.GetKeyDown(artifactInfo) && isOpen == false && artifactOpen == false)
+        {
+            Open();
         }
         batteryText.text = string.Format($"Batteries: {SaveDataManager.Instance.daveSata.batteries}");
         quotaText.text = string.Format($"Money needed for Quota: ${SaveDataManager.Instance.daveSata.quota - SaveDataManager.Instance.daveSata.quotaMoney}");
@@ -70,5 +81,23 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1;
         SceneManager.LoadScene("Title Screen");
+    }
+
+    public void Open()
+    {
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
+        Time.timeScale = 0;
+        artifactOpen = true;
+        artifactPanel.SetActive(true);
+        UIElements.SetActive(false);
+    }
+
+    public void Close()
+    {
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
+        Time.timeScale = 1;
+        artifactOpen = false;
+        artifactPanel.SetActive(false);
+        UIElements.SetActive(true);
     }
 }

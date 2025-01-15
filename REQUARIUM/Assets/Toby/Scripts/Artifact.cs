@@ -9,6 +9,8 @@ using TMPro;
 
 public class Artifact : MonoBehaviour
 {
+    public float playerDistance;
+    
     public GameObject thisArtifact;
 
     public Light lightMoment;
@@ -53,7 +55,6 @@ public class Artifact : MonoBehaviour
 
     public bool isSound;
 
-    private float playerDistance;
 
     private float targetDistance = 5;
 
@@ -93,11 +94,11 @@ public class Artifact : MonoBehaviour
 
     public bool isTutorial;
 
-    public TextMeshProUGUI infoText;
+    public GameObject infoText;
 
-    public TextMeshProUGUI possessText;
+    public GameObject possessText;
 
-    public TextMeshProUGUI grabText;
+    public GameObject grabText;
 
     public GameObject reminderText;
     void Start()
@@ -287,28 +288,29 @@ public class Artifact : MonoBehaviour
      */
     void Update()
     {
-        if (playerDistance <= targetDistance)
-        {
-            if (isTutorial == true)
-            {
-                infoText.enabled = true;
-                reminderText.SetActive(false);
-            }
-        }
-        if (playerDistance > targetDistance)
-        {
-            if (isTutorial == true)
-            {
-                infoText.enabled = false;
-                reminderText.SetActive(true);
-            }
-        }
         if (isSwitch == true)
         {
             SwitchSprite();
         }
         lightMoment.intensity = lightIntensity;
         playerDistance = Vector3.Distance(this.transform.position, player.transform.position);
+        if (playerDistance <= targetDistance)
+        {
+            if (isTutorial == true)
+            {
+                reminderText.SetActive(false);
+                possessText.SetActive(false);
+                grabText.SetActive(false);
+                infoText.SetActive(true);
+            }
+        }
+        if (playerDistance > targetDistance)
+        {
+            if (isTutorial == true)
+            {
+                infoText.SetActive(false);
+            }
+        }
         if (playerDistance <= targetDistance && Input.GetKeyDown(grabArtifact))
         {
             playerInfo.artifactsGrabbed += 1;
@@ -321,10 +323,6 @@ public class Artifact : MonoBehaviour
             }
             if (isHaunted == true)
             {   
-                if (isTutorial == true)
-                {
-                    possessText.enabled = true;
-                }
                 if (playerInfo.artifactsGrabbed == amountToSpawnGhost)
                 {
                     FindObjectOfType<EnemyManager>().SpawnGhost();
@@ -333,6 +331,11 @@ public class Artifact : MonoBehaviour
                 ghostes.isPossessing = true;
                 PlayerInfo.possessedNumber += 1;
                 playerInfo.possessionClip.volume += 0.1f;
+                if (isTutorial == true)
+                {
+                    possessText.SetActive(true);
+                    infoText.SetActive(false);
+                }
                 if (HasOctopus == false && hasGrabbed == true)
                 {
                     Destroy(thisArtifact);
@@ -340,10 +343,6 @@ public class Artifact : MonoBehaviour
             }
             else if (isHaunted == false)
             {
-                if (isTutorial == true)
-                {
-                    grabText.enabled = true;
-                }
                 if (playerInfo.artifactsGrabbed == amountToSpawnGhost + 2)
                 {
                     FindObjectOfType<EnemyManager>().SpawnGhost();
@@ -351,9 +350,18 @@ public class Artifact : MonoBehaviour
                 }
                 SaveDataManager.Instance.daveSata.quotaMoney += price;
                 SaveDataManager.Instance.daveSata.spendingMoney += price;
-                FindObjectOfType<ArtifactController>().CreateArtifact();
+                if (isTutorial == false)
+                {
+                    FindObjectOfType<ArtifactController>().CreateArtifact();
+                }
+                if (isTutorial == true)
+                {
+                    grabText.SetActive(true);
+                    infoText.SetActive(false);
+                }
                 if (HasOctopus == false && hasGrabbed == true)
                 {
+                    infoText.SetActive(false);
                     Destroy(thisArtifact);
                 }
             }

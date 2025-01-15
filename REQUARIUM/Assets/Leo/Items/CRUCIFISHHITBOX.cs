@@ -52,6 +52,10 @@ public class CRUCIFISHHITBOX : MonoBehaviour
             timeToDestroy -= Time.deltaTime;
             if (timeToDestroy <= 0)
             {
+                if (artifactHit.GetComponent<Artifact>().isTutorial == true)
+                {
+                    artifactHit.GetComponent<Artifact>().infoText.SetActive(false);
+                }
                 DestroyArtifact();
             }
         }
