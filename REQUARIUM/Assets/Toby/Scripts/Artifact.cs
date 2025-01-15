@@ -127,14 +127,14 @@ public class Artifact : MonoBehaviour
             artifactSound = defaultClip;
             audioSource.clip = artifactSound;
         }
-        else if (corruptionCount == 5 || corruptionCount == 6 || corruptionCount == 7)
+        else if (corruptionCount == 5 || corruptionCount == 6 || corruptionCount == 7 || corruptionCount == 8 )
         {
             RandomizeHauntedSprite();
             isHaunted = true;
             artifactSound = defaultClip;
             audioSource.clip = artifactSound;
         }
-        else if (corruptionCount == 8 || corruptionCount == 9 || corruptionCount == 10)
+        else if (corruptionCount == 9 || corruptionCount == 10)
         {
             RandomizeLightCue();
             RandomizeNormalSprite();

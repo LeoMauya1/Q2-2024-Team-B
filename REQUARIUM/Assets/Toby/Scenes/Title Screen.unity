@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.018488433, g: 0.022907004, b: 0.030317647, a: 1}
+  m_IndirectSpecularColor: {r: 0.0010007359, g: 0.0012399666, b: 0.0016411562, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2207,7 +2207,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -718, y: -171}
+  m_AnchoredPosition: {x: -677, y: -276.99994}
   m_SizeDelta: {x: 217.94, y: 48.297}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &836483038
@@ -3261,7 +3261,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -718, y: 0.000015259}
+  m_AnchoredPosition: {x: -677, y: -105.99994}
   m_SizeDelta: {x: 217.94, y: 48.297}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1053376966
@@ -3802,7 +3802,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -718, y: -260}
+  m_AnchoredPosition: {x: -677, y: -366}
   m_SizeDelta: {x: -1702.06, y: 48.296997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1161462090
@@ -3858,7 +3858,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 2
           m_FloatArgument: 0
-          m_StringArgument: Main Level
+          m_StringArgument: Tutorial Scene
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1161462091
@@ -5008,8 +5008,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 53, y: -110}
-  m_SizeDelta: {x: 63.371, y: 185.166}
+  m_AnchoredPosition: {x: 0.00024414062, y: -167}
+  m_SizeDelta: {x: 0.00048828, y: 185.166}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1610740387
 MonoBehaviour:
@@ -5059,14 +5059,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 194.8
-  m_fontSizeBase: 194.8
+  m_fontSize: 198.58
+  m_fontSizeBase: 198.58
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -6825,6 +6825,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: screen transition
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093428840180583482, guid: 60dca9e37179c3045af314c27cb129cf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4093428840180583485, guid: 60dca9e37179c3045af314c27cb129cf,
         type: 3}

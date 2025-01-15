@@ -23,6 +23,8 @@ public struct SaveData
     public int quota;
 
     public float timeAddition;
+
+    public float timeRemoval;
     public static SaveData Load(string filePath, SaveData defaultData)
     {
         if (!File.Exists(filePath))

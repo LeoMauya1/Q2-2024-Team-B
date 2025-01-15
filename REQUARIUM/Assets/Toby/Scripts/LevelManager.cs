@@ -37,6 +37,7 @@ public class LevelManager : MonoBehaviour
         }
         else if (SaveDataManager.Instance.daveSata.workDay >= 3)
         {
+            SaveDataManager.Instance.daveSata.timeRemoval += 5;
             SetBaseArtifactValue();
             SetBaseGhostValue();
         }   

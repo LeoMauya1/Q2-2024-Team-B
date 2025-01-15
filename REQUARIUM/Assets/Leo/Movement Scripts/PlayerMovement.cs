@@ -165,7 +165,6 @@ public class PlayerMovement : MonoBehaviour
 
         if(!sprintTimeReady)
         {
-           
             StartCoroutine(SprintCooldown());
         }
         if(sprint.action.WasReleasedThisFrame())
@@ -215,9 +214,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if(crouch.action.IsPressed())
         {
-
-            
-            
             state = MovementState.crouching;
             movementSpeed = crouchSpeed;
         }

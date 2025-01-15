@@ -11,6 +11,7 @@ public class CRUCIFISHHITBOX : MonoBehaviour
     public bool artifactIsHit;
     public float timeToDestroy;
     public float timeToDestroyMax;
+    public BoxCollider hitbox;
     public void DestroyArtifact()
     {
         artifactIsHit = false;
@@ -42,6 +43,8 @@ public class CRUCIFISHHITBOX : MonoBehaviour
                 other.GetComponent<Artifact>().particle.Play();
                 other.GetComponent<Artifact>().particleSound.Play();
                 other.GetComponent<Artifact>().isHaunted = false;
+                other.GetComponent<Artifact>().lightIntensity = 0;
+                other.GetComponent<Artifact>().audioSource.Stop();
             }
         }
     }
