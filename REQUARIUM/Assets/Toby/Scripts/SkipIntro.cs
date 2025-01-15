@@ -8,9 +8,13 @@ public class SkipIntro : MonoBehaviour
     
     void Start()
     {
-        
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
     }
 
+    public void Lock()
+    {
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+    }
     // Update is called once per frame
     void Update()
     {
