@@ -9,9 +9,8 @@ public class NewGame : MonoBehaviour
 {
     public UnityEvent onNewGame;
     public UnityEvent onContinue;
-    public Image LoadingBarFill;
-    public GameObject loadingScreen;
-    private float progressBar;
+    public Animator animator;
+
     public void OnEnable()
     {
         if (SaveDataManager.Instance.daveSata.isNewGame)
@@ -24,33 +23,21 @@ public class NewGame : MonoBehaviour
         }
     }
 
-    public void LoadNewGame(int sceneID)
+    public void LoadNewGame(string scenename)
     {
         SaveDataManager.Instance.daveSata.isNewGame = true;
         SaveDataManager.Instance.daveSata = SaveDataManager.Instance.defaultData;
-        StartCoroutine(LoadSceneAsync(sceneID));
-        
-        
-        
-        SceneManager.LoadScene(sceneID);
+        StartCoroutine(sceneTransition(scenename));
+       
     }
 
-    IEnumerator LoadSceneAsync(int sceneID)
-   {
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneID);
 
+    private IEnumerator sceneTransition(string scenename)
+    {
+        animator.SetBool("sceneTransitionIn", true);
+        yield return new WaitForSeconds(3.1f);
+        SceneManager.LoadScene(scenename);
 
-        loadingScreen.SetActive(true);
+    }
 
-
-        while (!operation.isDone)
-       {
-
-            progressBar = Mathf.Clamp01(operation.progress/ 0.9f);
-
-           LoadingBarFill.fillAmount = progressBar;
-            
-           yield return null;
-        }
-   }
 }
