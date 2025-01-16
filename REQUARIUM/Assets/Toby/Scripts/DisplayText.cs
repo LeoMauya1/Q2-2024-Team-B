@@ -14,7 +14,7 @@ public class DisplayText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        text.text = string.Format($"Money needed for Quota: ${SaveDataManager.Instance.daveSata.quota - SaveDataManager.Instance.daveSata.quotaMoney}");
+        text.text = string.Format($"Quota: ${SaveDataManager.Instance.daveSata.quota - SaveDataManager.Instance.daveSata.quotaMoney}");
         if (SaveDataManager.Instance.daveSata.quotaMoney >= SaveDataManager.Instance.daveSata.quota)
         {
             text.text = string.Format($"Quota Complete");
