@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class UIButton : MonoBehaviour
 {
+    public List<AudioSource> sourcesOn;
     public void LoadScene(string scene)
     {
         SceneManager.LoadScene(scene);
@@ -12,6 +13,15 @@ public class UIButton : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
+    }
+
+    public void PlaySound (AudioSource audioSource)
+    {
+        foreach (AudioSource source in  sourcesOn)
+        {
+            source.Stop();
+        }
+        audioSource.Play();
     }
 
 }

@@ -5296,6 +5296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PausePanel: {fileID: 6209335054337438116}
+  artifactPanel: {fileID: 0}
   UIElements: {fileID: 6209335054788747555}
   batteryText: {fileID: 3435107889384382001}
   quotaText: {fileID: 3595136839936140775}
@@ -5304,7 +5305,9 @@ MonoBehaviour:
   dayText: {fileID: 5179832012481386126}
   timerText: {fileID: 0}
   pause: 9
+  artifactInfo: 0
   isOpen: 0
+  artifactOpen: 0
 --- !u!114 &6209335053970564339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5331,6 +5334,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50edde8f586af224c83116dea8646d88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sourcesOn:
+  - {fileID: 2624723084606647827}
 --- !u!1 &6209335054031859912
 GameObject:
   m_ObjectHideFlags: 0
@@ -8097,6 +8102,12 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: db56ef399f79a2b49b46535db94c3c6c, type: 3}
+--- !u!82 &2624723084606647827 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1862933378478826190, guid: db56ef399f79a2b49b46535db94c3c6c,
+    type: 3}
+  m_PrefabInstance: {fileID: 4446912882353753309}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &4513953773417712708 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 221330311296123033, guid: db56ef399f79a2b49b46535db94c3c6c,
