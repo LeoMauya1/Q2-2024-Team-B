@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0009990672, g: 0.0012376942, b: 0.001638155, a: 1}
+  m_IndirectSpecularColor: {r: 0.0010007359, g: 0.0012399666, b: 0.0016411562, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2459,10 +2459,10 @@ RectTransform:
   m_Children:
   - {fileID: 600043753}
   - {fileID: 2120938858}
+  - {fileID: 968736900}
   - {fileID: 2013131158}
   - {fileID: 1385324781}
   - {fileID: 2139293700}
-  - {fileID: 968736900}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6886,6 +6886,51 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093428840418149317, guid: 60dca9e37179c3045af314c27cb129cf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093428840484348436, guid: 60dca9e37179c3045af314c27cb129cf,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093428840488533905, guid: 60dca9e37179c3045af314c27cb129cf,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093428840488533905, guid: 60dca9e37179c3045af314c27cb129cf,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093428840488533905, guid: 60dca9e37179c3045af314c27cb129cf,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093428840488533905, guid: 60dca9e37179c3045af314c27cb129cf,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093428840488533905, guid: 60dca9e37179c3045af314c27cb129cf,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093428840488533918, guid: 60dca9e37179c3045af314c27cb129cf,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 404.6297
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093428840743835613, guid: 60dca9e37179c3045af314c27cb129cf,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

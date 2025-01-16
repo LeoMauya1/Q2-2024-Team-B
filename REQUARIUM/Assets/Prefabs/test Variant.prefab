@@ -116,17 +116,17 @@ PrefabInstance:
     - target: {fileID: 5595111609004942168, guid: 9241a63772879fa4f99f6eda12c73c02,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.4961498
+      value: 2.07
       objectReference: {fileID: 0}
     - target: {fileID: 5595111609004942168, guid: 9241a63772879fa4f99f6eda12c73c02,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 2.5087082
+      value: 2.0804145
       objectReference: {fileID: 0}
     - target: {fileID: 5595111609004942168, guid: 9241a63772879fa4f99f6eda12c73c02,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.40743998
+      value: 0.33788067
       objectReference: {fileID: 0}
     - target: {fileID: 5595111609004942168, guid: 9241a63772879fa4f99f6eda12c73c02,
         type: 3}
@@ -228,6 +228,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 7227389314898101634, guid: 9241a63772879fa4f99f6eda12c73c02,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: -464471530275061054}
     - target: {fileID: 7227389314898101634, guid: 9241a63772879fa4f99f6eda12c73c02,
         type: 3}
       propertyPath: spearPos.x
