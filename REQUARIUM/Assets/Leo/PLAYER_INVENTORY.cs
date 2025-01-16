@@ -16,8 +16,10 @@ public class PLAYER_INVENTORY : MonoBehaviour
     public Vector3 rotationOffset;
     [Header("FlashLight rotation")]
     public Vector3 flashLightsRotationOffset;
-
-
+    
+    [Header("spearGun Placement")]
+    public Vector3 spearGunPos;
+    public Vector3 spearRot;
 
 
 
@@ -39,6 +41,7 @@ public class PLAYER_INVENTORY : MonoBehaviour
     public AudioClip[] scrollSounds;
     private AudioSource audioSource;
     private int soundOrder = 0;
+
 
 
 
@@ -71,6 +74,12 @@ public class PLAYER_INVENTORY : MonoBehaviour
         {
             instantiatedItems[currentIndex].transform.position = rightHandCam.transform.position + rightHandCam.transform.TransformDirection(itemPos);
             instantiatedItems[currentIndex].transform.rotation = rightHandCam.transform.rotation * Quaternion.Euler(flashLightsRotationOffset);
+        }
+        if (instantiatedItems[currentIndex].tag == "test Variant")
+        {
+            instantiatedItems[currentIndex].transform.position = rightHandCam.transform.position + rightHandCam.transform.TransformDirection(spearGunPos);
+            instantiatedItems[currentIndex].transform.rotation = rightHandCam.transform.rotation * Quaternion.Euler(spearRot);
+
         }
     }
 

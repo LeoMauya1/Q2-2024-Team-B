@@ -58,7 +58,7 @@ public class FLASHLIGHT : MonoBehaviour
         
         playerInputActions = new PLAYERCONTROLLER();
         flashTut = GameObject.Find("FLASHLIGHT TEXT");
-        critHealthText = GameObject.Find("CRITICAL");
+        critHealthText = GameObject.Find("CRITICAL (1)");
         batterySlider = GameObject.Find("Battery Slider").GetComponent<Image>();
 
     }

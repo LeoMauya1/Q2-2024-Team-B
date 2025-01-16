@@ -30,6 +30,8 @@ public class SPEARGUN : MonoBehaviour
     public Vector3 spearRotation;
     public float spearSpeed;
     public float stunTime;
+    public Sprite shootingSprite; 
+
 
     private PLAYERCONTROLLER shootingEvent;
     private bool hasShot;
@@ -42,7 +44,8 @@ public class SPEARGUN : MonoBehaviour
     public AudioClip spearSound;
     private GameObject crucifishTut;
     private int spearAmount = 3;
-
+    private SpriteRenderer spriteRenderer;
+    private Sprite idleSpearGun;
     public static bool isHaunted;
 
     private void Update()
@@ -64,8 +67,10 @@ public class SPEARGUN : MonoBehaviour
     {
 
         //spearAmount = SaveDataManager.Instance.daveSata.spears;
+        spriteRenderer = GetComponent<SpriteRenderer>();
         audioSource = GetComponent<AudioSource>();
         FiringPoint.transform.SetParent(null);
+        idleSpearGun = spriteRenderer.sprite;
 
 
     }
@@ -122,17 +127,30 @@ public class SPEARGUN : MonoBehaviour
          audioSource.PlayOneShot(spearSound);
          spear = Instantiate(spears, FiringPoint.transform.position, FiringPoint.transform.rotation);
          spear.GetComponent<Rigidbody>().velocity = Camera.main.transform.forward * spearSpeed;
+         StartCoroutine(switchSprite());
          spearAmount -= 1;
          spearAmount = Mathf.Max(spearAmount, 0);
 
 
         }
+      
+
         
         //spear.transform.forward = Camera.main.transform.forward;
-        
+
 
 
     }
+    private IEnumerator switchSprite()
+    {
+        spriteRenderer.sprite = shootingSprite;
+        yield return new WaitForSeconds(1f);
+        spriteRenderer.sprite = idleSpearGun;
+        Debug.Log("switched");
+
+}
+
+   
 
     
 }

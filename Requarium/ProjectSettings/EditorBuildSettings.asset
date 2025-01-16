@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Toby/Scenes/Title Screen.unity
     guid: 0ba669181abaab64da40f262f32d96ed
   - enabled: 1
+    path: Assets/Toby/Scenes/Tutorial Scene.unity
+    guid: 2a7cc34e94ea8d54ab9436edff4cae87
+  - enabled: 1
     path: Assets/Toby/Scenes/New Game.unity
     guid: 3468a83a628ec00498ac231e66dd9afa
   - enabled: 1
