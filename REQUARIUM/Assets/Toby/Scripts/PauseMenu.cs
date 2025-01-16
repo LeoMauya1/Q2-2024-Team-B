@@ -18,7 +18,7 @@ public class PauseMenu : MonoBehaviour
     public TextMeshProUGUI timerText;
     public KeyCode pause;
     public KeyCode artifactInfo;
-    //public Timer timer;
+    public Timer timer;
     public bool isOpen;
     public bool artifactOpen;
     // Update is called once per frame
@@ -46,16 +46,16 @@ public class PauseMenu : MonoBehaviour
         {
             Open();
         }
-        batteryText.text = string.Format($"Batteries: {SaveDataManager.Instance.daveSata.batteries}");
-        quotaText.text = string.Format($"Money needed for Quota: ${SaveDataManager.Instance.daveSata.quota - SaveDataManager.Instance.daveSata.quotaMoney}");
+        batteryText.text = string.Format($"{SaveDataManager.Instance.daveSata.batteries}");
+        quotaText.text = string.Format($"Quota: ${SaveDataManager.Instance.daveSata.quota - SaveDataManager.Instance.daveSata.quotaMoney}");
         if (SaveDataManager.Instance.daveSata.quotaMoney >= SaveDataManager.Instance.daveSata.quota)
         {
             quotaText.text = string.Format($"Quota Complete");
         }
-        moneyText.text = string.Format($"Money To Spend: ${SaveDataManager.Instance.daveSata.spendingMoney}");
-        spearText.text = string.Format($"Spears: {SaveDataManager.Instance.daveSata.spears}");
-        dayText.text = string.Format($"Day: {SaveDataManager.Instance.daveSata.workDay}");
-        //timerText.text = string.Format($"{timer.timerText}");
+        moneyText.text = string.Format($"{SaveDataManager.Instance.daveSata.spendingMoney}");
+        spearText.text = string.Format($"{SaveDataManager.Instance.daveSata.spears}");
+        dayText.text = string.Format($"Day {SaveDataManager.Instance.daveSata.workDay}");
+        timerText.text = string.Format($"{timer.timerText}");
     }
     public void Pause()
     {
