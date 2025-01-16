@@ -27,12 +27,14 @@ public class ActivateByDistance : MonoBehaviour
         playerDistance = Vector3.Distance(this.transform.position, player.transform.position);
         if (playerDistance <= targetDistance && Input.GetKeyDown(activateThing) && thingActivated == false)
         {
+            UnityEngine.Cursor.lockState = CursorLockMode.None;
             thingToActivate.gameObject.SetActive(true);
             Time.timeScale = 0;
             thingActivated = true;
         }
         else if (thingActivated == true && Input.GetKeyDown(activateThing))
         {
+            UnityEngine.Cursor.lockState = CursorLockMode.Locked;
             thingToActivate.gameObject.SetActive(false);
             Time.timeScale = 1;
             thingActivated = false;

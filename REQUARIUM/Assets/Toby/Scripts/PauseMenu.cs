@@ -94,7 +94,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Close()
     {
-        UnityEngine.Cursor.lockState = CursorLockMode.None;
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1;
         artifactOpen = false;
         artifactPanel.SetActive(false);

@@ -30,11 +30,11 @@ public class Sabasstion : MonoBehaviour
     {
         if (bassSource.isPlaying == true)
         {
-            bassAnimator.SetBool("Singing", true);
+            bassAnimator.enabled = true;
         }
         else if (bassSource.isPlaying == false)
         {
-            bassAnimator.SetBool("Singing", false);
+            bassAnimator.enabled = false;
         }
     }
 }

@@ -2168,6 +2168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50edde8f586af224c83116dea8646d88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sourcesOn: []
 --- !u!114 &945654760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2180,9 +2181,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fbb64b41c8d9d842840518382857b48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bassClipsIndex: []
+  bassClipsIndex:
+  - {fileID: 8300000, guid: 446d75d31ae30f043a2cf7a77ea2034c, type: 3}
+  - {fileID: 8300000, guid: 314559ef89163de459befdcb9506c220, type: 3}
+  - {fileID: 8300000, guid: f462d0c29b82ce044961d59f26cf8d23, type: 3}
+  - {fileID: 8300000, guid: 9b086ebfe952b664aad28777fe4c8d57, type: 3}
+  - {fileID: 8300000, guid: faca30c9f01b05c468b5220172ff1cfb, type: 3}
+  - {fileID: 8300000, guid: 0381dabcc012af34eb6ee2a2ccc82e9e, type: 3}
+  - {fileID: 8300000, guid: 510179642518fcd45af87d883c899f53, type: 3}
+  - {fileID: 8300000, guid: 15797c8c0a37fb24e83b9df953511e70, type: 3}
+  - {fileID: 8300000, guid: 3b90f1f26c09d32418a39ae92bde11a2, type: 3}
+  - {fileID: 8300000, guid: 289d2812001f35a41a3e9ed73d84513a, type: 3}
   currentClips: []
-  bassSource: {fileID: 0}
+  bassSource: {fileID: 1156868800}
   bassAnimator: {fileID: 1156868799}
 --- !u!1 &1061618259
 GameObject:
@@ -4336,7 +4347,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1992392714}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 945654760}
+        m_TargetAssemblyTypeName: Sabasstion, Assembly-CSharp
+        m_MethodName: PlaySong
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1992392714
 MonoBehaviour:
   m_ObjectHideFlags: 0
