@@ -429,7 +429,7 @@ public class Ghost : MonoBehaviour
     {
         ghost.animator.SetFloat("AnimMoveX", direction.x);
         ghost.animator.SetFloat("AnimMoveY", direction.z);
-        if (doneWatching == false)
+        /*if (doneWatching == false)
         {
             headLight.clipName = "Gangler Watching";
         }
@@ -448,6 +448,6 @@ public class Ghost : MonoBehaviour
         if ((direction.x <= 0 && direction.x < 1) && (direction.z <= 1 && direction.z > 0))
         {
             headLight.clipName = "Gangler Back";
-        }
+        }*/
     }
 }
