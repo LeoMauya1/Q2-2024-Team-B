@@ -100,6 +100,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5595111609004942148, guid: 9241a63772879fa4f99f6eda12c73c02,
         type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5595111609004942148, guid: 9241a63772879fa4f99f6eda12c73c02,
+        type: 3}
       propertyPath: m_TagString
       value: test Variant
       objectReference: {fileID: 0}
@@ -236,17 +241,17 @@ PrefabInstance:
     - target: {fileID: 7227389314898101634, guid: 9241a63772879fa4f99f6eda12c73c02,
         type: 3}
       propertyPath: spearPos.x
-      value: 0.35
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7227389314898101634, guid: 9241a63772879fa4f99f6eda12c73c02,
         type: 3}
       propertyPath: spearPos.y
-      value: -0.09
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7227389314898101634, guid: 9241a63772879fa4f99f6eda12c73c02,
         type: 3}
       propertyPath: spearPos.z
-      value: 1.12
+      value: 1.65
       objectReference: {fileID: 0}
     - target: {fileID: 7227389314898101634, guid: 9241a63772879fa4f99f6eda12c73c02,
         type: 3}
@@ -257,6 +262,11 @@ PrefabInstance:
         type: 3}
       propertyPath: spearSpeed
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7227389314898101634, guid: 9241a63772879fa4f99f6eda12c73c02,
+        type: 3}
+      propertyPath: spearAmount
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7227389314898101634, guid: 9241a63772879fa4f99f6eda12c73c02,
         type: 3}

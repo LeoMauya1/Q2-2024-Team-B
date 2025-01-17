@@ -43,7 +43,7 @@ public class SPEARGUN : MonoBehaviour
     private AudioSource audioSource;
     public AudioClip spearSound;
     private GameObject crucifishTut;
-    private int spearAmount = 3;
+    public int spearAmount = 3;
     private SpriteRenderer spriteRenderer;
     private Sprite idleSpearGun;
     public static bool isHaunted;
@@ -67,7 +67,7 @@ public class SPEARGUN : MonoBehaviour
     private void Start()
     {
 
-        //spearAmount = SaveDataManager.Instance.daveSata.spears;
+        spearAmount = SaveDataManager.Instance.defaultData.spears;
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
         FiringPoint.transform.SetParent(null);

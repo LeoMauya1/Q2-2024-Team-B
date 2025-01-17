@@ -45,7 +45,7 @@ public class FLASHLIGHT : MonoBehaviour
     public Color possessedColor;
     void Start()
     {
-        battery = SaveDataManager.Instance.defaultData.batteries;
+        battery = SaveDataManager.Instance.daveSata.batteries;
         switchOn.transform.SetParent(null);
         audioSource = GetComponent<AudioSource>();
         
@@ -58,7 +58,7 @@ public class FLASHLIGHT : MonoBehaviour
         
         playerInputActions = new PLAYERCONTROLLER();
         flashTut = GameObject.Find("FLASHLIGHT TEXT");
-        critHealthText = GameObject.Find("CRITICAL (1)");
+        critHealthText = GameObject.Find("CRITICAL");
         batterySlider = GameObject.Find("Battery Slider").GetComponent<Image>();
 
     }
@@ -145,6 +145,7 @@ public class FLASHLIGHT : MonoBehaviour
         {
             Debug.Log("one battery donw");
             battery -= 1;
+            SaveDataManager.Instance.daveSata.batteries -= 1;
             MinutesPassed = 0;
             StartCoroutine(FlashLightFlicker());
             

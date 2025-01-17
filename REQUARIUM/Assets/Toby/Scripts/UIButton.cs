@@ -6,12 +6,20 @@ using UnityEngine.SceneManagement;
 public class UIButton : MonoBehaviour
 {
     public List<AudioSource> sourcesOn;
+    public Animator animator;
     public void LoadScene(string scene)
+    {
+        StartCoroutine(sceneTransition(scene));
+        
+        
+    }
+    public void LoadSceneWithNoTransition(string scene)
     {
         SceneManager.LoadScene(scene);
     }
     public void Quit()
     {
+        
         Application.Quit();
     }
 
@@ -22,6 +30,15 @@ public class UIButton : MonoBehaviour
             source.Stop();
         }
         audioSource.Play();
+    }
+    private IEnumerator sceneTransition(string scene)
+    {
+        animator.SetBool("sceneTransitionIn", true);
+        yield return new WaitForSeconds(3.1f);
+        SceneManager.LoadScene(scene);
+        Debug.Log("lock in");
+
+
     }
 
 }
