@@ -15,7 +15,6 @@ public class PauseMenu : MonoBehaviour
     public TextMeshProUGUI moneyText;
     public TextMeshProUGUI spearText;
     public TextMeshProUGUI dayText;
-    public TextMeshProUGUI timerText;
     public KeyCode pause;
     public KeyCode artifactInfo;
     public Timer timer;
@@ -54,8 +53,7 @@ public class PauseMenu : MonoBehaviour
         }
         moneyText.text = string.Format($"{SaveDataManager.Instance.daveSata.spendingMoney}");
         spearText.text = string.Format($"{SaveDataManager.Instance.daveSata.spears}");
-        dayText.text = string.Format($"Day {SaveDataManager.Instance.daveSata.workDay}");
-        timerText.text = string.Format($"{timer.timerText}");
+        dayText.text = string.Format($"{SaveDataManager.Instance.daveSata.workDay}");
     }
     public void Pause()
     {

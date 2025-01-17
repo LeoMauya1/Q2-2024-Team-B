@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour
 {
     public TextMeshProUGUI timerText;
+    public TextMeshProUGUI timerTextPause;
     public EnemyManager enemyManager;
     public float remainingTime;
 
@@ -29,6 +30,7 @@ public class Timer : MonoBehaviour
         int minutes = Mathf.FloorToInt(remainingTime / 60);
         int seconds = Mathf.FloorToInt(remainingTime % 60);
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        timerTextPause.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
     public void RestartTimer()
