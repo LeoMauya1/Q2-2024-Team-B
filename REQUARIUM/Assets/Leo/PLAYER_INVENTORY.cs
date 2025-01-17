@@ -81,7 +81,6 @@ public class PLAYER_INVENTORY : MonoBehaviour
         }
         if (instantiatedItems[currentIndex].tag == "Crucifish")
         {
-            
             instantiatedItems[currentIndex].transform.position = rightHandCam.transform.position + rightHandCam.transform.TransformDirection(crucifishPos);
             instantiatedItems[currentIndex].transform.rotation = rightHandCam.transform.rotation * Quaternion.Euler(crucirotation);
             Debug.Log("crucu");
