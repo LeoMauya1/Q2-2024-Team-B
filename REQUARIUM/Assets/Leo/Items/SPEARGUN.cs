@@ -47,6 +47,7 @@ public class SPEARGUN : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Sprite idleSpearGun;
     public static bool isHaunted;
+    private Animator animator;
 
     private void Update()
     {
@@ -67,10 +68,10 @@ public class SPEARGUN : MonoBehaviour
     {
 
         //spearAmount = SaveDataManager.Instance.daveSata.spears;
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
         FiringPoint.transform.SetParent(null);
-        idleSpearGun = spriteRenderer.sprite;
+        
 
 
     }
@@ -143,9 +144,9 @@ public class SPEARGUN : MonoBehaviour
     }
     private IEnumerator switchSprite()
     {
-        spriteRenderer.sprite = shootingSprite;
-        yield return new WaitForSeconds(1f);
-        spriteRenderer.sprite = idleSpearGun;
+        animator.SetBool("shooting", true);
+         yield return new WaitForSeconds(0.4f);
+        animator.SetBool("shooting", false);
         Debug.Log("switched");
 
 }

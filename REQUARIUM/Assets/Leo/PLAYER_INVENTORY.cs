@@ -21,6 +21,10 @@ public class PLAYER_INVENTORY : MonoBehaviour
     public Vector3 spearGunPos;
     public Vector3 spearRot;
 
+    [Header("Crucifish Placement")]
+    public Vector3 crucifishPos;
+    public Vector3 crucirotation;
+
 
 
 
@@ -64,12 +68,6 @@ public class PLAYER_INVENTORY : MonoBehaviour
 
 
 
-        if (instantiatedItems.Count > 0)
-        {
-
-            instantiatedItems[currentIndex].transform.position = rightHandCam.transform.position + rightHandCam.transform.TransformDirection(itemPos);
-            instantiatedItems[currentIndex].transform.rotation = rightHandCam.transform.rotation * Quaternion.Euler(rotationOffset);
-        }
         if(instantiatedItems[currentIndex].tag == "FlashLight")
         {
             instantiatedItems[currentIndex].transform.position = rightHandCam.transform.position + rightHandCam.transform.TransformDirection(itemPos);
@@ -80,6 +78,13 @@ public class PLAYER_INVENTORY : MonoBehaviour
             instantiatedItems[currentIndex].transform.position = rightHandCam.transform.position + rightHandCam.transform.TransformDirection(spearGunPos);
             instantiatedItems[currentIndex].transform.rotation = rightHandCam.transform.rotation * Quaternion.Euler(spearRot);
 
+        }
+        if (instantiatedItems[currentIndex].tag == "Crucifish")
+        {
+            
+            instantiatedItems[currentIndex].transform.position = rightHandCam.transform.position + rightHandCam.transform.TransformDirection(crucifishPos);
+            instantiatedItems[currentIndex].transform.rotation = rightHandCam.transform.rotation * Quaternion.Euler(crucirotation);
+            Debug.Log("crucu");
         }
     }
 
