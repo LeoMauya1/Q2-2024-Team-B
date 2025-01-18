@@ -20,6 +20,12 @@ public class ArtifactGhost : MonoBehaviour
     {
         
     }
+    public void OnDisable()
+    {
+        FLASHLIGHT.isPossessed = false;
+        SPEARGUN.isHaunted = false;
+        CRUCIFISH.isHaunted = false;
+    }
 
     // Update is called once per frame
     void Update()

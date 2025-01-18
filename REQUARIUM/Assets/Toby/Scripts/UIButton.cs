@@ -7,6 +7,7 @@ public class UIButton : MonoBehaviour
 {
     public List<AudioSource> sourcesOn;
     public Animator animator;
+
     public void LoadScene(string scene)
     {
         StartCoroutine(sceneTransition(scene));
@@ -20,10 +21,9 @@ public class UIButton : MonoBehaviour
     }
     public void Quit()
     {
-        
+
         Application.Quit();
     }
-
     public void PlaySound (AudioSource audioSource)
     {
         foreach (AudioSource source in  sourcesOn)
