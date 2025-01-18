@@ -1335,6 +1335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 0}
+  timerTextPause: {fileID: 0}
   enemyManager: {fileID: 0}
   remainingTime: 0
 --- !u!114 &6209335053970564340
@@ -1357,7 +1358,6 @@ MonoBehaviour:
   moneyText: {fileID: 0}
   spearText: {fileID: 0}
   dayText: {fileID: 0}
-  timerText: {fileID: 0}
   pause: 9
   artifactInfo: 0
   timer: {fileID: 0}
@@ -1391,6 +1391,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sourcesOn:
   - {fileID: 2624723084606647827}
+  animator: {fileID: 0}
 --- !u!1 &6209335054788747555
 GameObject:
   m_ObjectHideFlags: 0
@@ -1419,14 +1420,14 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4183194641067970533}
-  - {fileID: 7000256841260455768}
-  - {fileID: 3725506561267678713}
-  - {fileID: 2054157141675672988}
   - {fileID: 2354863337678666335}
   - {fileID: 7885001378847704328}
   - {fileID: 4590569302376769608}
   - {fileID: 6868753426282383763}
+  - {fileID: 4183194641067970533}
+  - {fileID: 7000256841260455768}
+  - {fileID: 3725506561267678713}
+  - {fileID: 2054157141675672988}
   m_Father: {fileID: 6209335053970564336}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
