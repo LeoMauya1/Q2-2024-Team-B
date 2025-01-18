@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0010007359, g: 0.0012399666, b: 0.0016411562, a: 1}
+  m_IndirectSpecularColor: {r: 0.0009990672, g: 0.0012376942, b: 0.001638155, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7026,6 +7026,16 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5799965774749603158, guid: 57550b38146ff794e8c42c5d67928b68,
+        type: 3}
+      propertyPath: m_Size.z
+      value: 1.3758086
+      objectReference: {fileID: 0}
+    - target: {fileID: 5799965774749603158, guid: 57550b38146ff794e8c42c5d67928b68,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0.18790399
+      objectReference: {fileID: 0}
     - target: {fileID: 5799965774749603159, guid: 57550b38146ff794e8c42c5d67928b68,
         type: 3}
       propertyPath: eventOnTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -10484,7 +10494,7 @@ PrefabInstance:
         type: 3}
       propertyPath: animator
       value: 
-      objectReference: {fileID: 2131995336}
+      objectReference: {fileID: 1858972435}
     - target: {fileID: 6209335053970564338, guid: cd227f8cc11a55e4a92fb4134b422446,
         type: 3}
       propertyPath: sourcesOn.Array.size
@@ -11011,6 +11021,10 @@ PrefabInstance:
         type: 3}
       insertIndex: 0
       addedObject: {fileID: 2116553299}
+    - targetCorrespondingSourceObject: {fileID: 6209335053970564336, guid: cd227f8cc11a55e4a92fb4134b422446,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1858972434}
     - targetCorrespondingSourceObject: {fileID: 6209335053970564336, guid: cd227f8cc11a55e4a92fb4134b422446,
         type: 3}
       insertIndex: -1
@@ -16104,6 +16118,94 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1842423167}
   m_CullTransparentMesh: 1
+--- !u!1001 &1858972433
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 2
+    m_TransformParent: {fileID: 810197161}
+    m_Modifications:
+    - target: {fileID: 3728628320193420099, guid: 1faf4e655a9ebbe43b3d9ad58f8a9671,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3728628320193420099, guid: 1faf4e655a9ebbe43b3d9ad58f8a9671,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -232.236
+      objectReference: {fileID: 0}
+    - target: {fileID: 3728628320193420099, guid: 1faf4e655a9ebbe43b3d9ad58f8a9671,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 38.819386
+      objectReference: {fileID: 0}
+    - target: {fileID: 3728628320193420099, guid: 1faf4e655a9ebbe43b3d9ad58f8a9671,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1828.9995
+      objectReference: {fileID: 0}
+    - target: {fileID: 3728628320193420099, guid: 1faf4e655a9ebbe43b3d9ad58f8a9671,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3728628320193420099, guid: 1faf4e655a9ebbe43b3d9ad58f8a9671,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3728628320193420099, guid: 1faf4e655a9ebbe43b3d9ad58f8a9671,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3728628320193420099, guid: 1faf4e655a9ebbe43b3d9ad58f8a9671,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3728628320193420099, guid: 1faf4e655a9ebbe43b3d9ad58f8a9671,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3728628320193420099, guid: 1faf4e655a9ebbe43b3d9ad58f8a9671,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3728628320193420099, guid: 1faf4e655a9ebbe43b3d9ad58f8a9671,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3728628320193420101, guid: 1faf4e655a9ebbe43b3d9ad58f8a9671,
+        type: 3}
+      propertyPath: m_Name
+      value: transition
+      objectReference: {fileID: 0}
+    - target: {fileID: 3728628320679590331, guid: 1faf4e655a9ebbe43b3d9ad58f8a9671,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 16777215
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_AddedGameObjects: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1faf4e655a9ebbe43b3d9ad58f8a9671, type: 3}
+--- !u!4 &1858972434 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3728628320193420099, guid: 1faf4e655a9ebbe43b3d9ad58f8a9671,
+    type: 3}
+  m_PrefabInstance: {fileID: 1858972433}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1858972435 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3728628320193420098, guid: 1faf4e655a9ebbe43b3d9ad58f8a9671,
+    type: 3}
+  m_PrefabInstance: {fileID: 1858972433}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1904214454
 GameObject:
   m_ObjectHideFlags: 0
@@ -17269,26 +17371,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc3c8b5e72977244ab36076886244b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!95 &2131995336
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2131995330}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2133515083
 GameObject:
   m_ObjectHideFlags: 0
@@ -17483,4 +17565,4 @@ MonoBehaviour:
   - {fileID: 1808857143}
   - {fileID: 777469380}
   - {fileID: 403189890}
-  animator: {fileID: 0}
+  animator: {fileID: 1858972435}

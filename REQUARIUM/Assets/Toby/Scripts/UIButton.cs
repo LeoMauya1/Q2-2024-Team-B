@@ -15,6 +15,7 @@ public class UIButton : MonoBehaviour
     }
     public void LoadSceneWithNoTransition(string scene)
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(scene);
     }
     public void Quit()
@@ -33,6 +34,7 @@ public class UIButton : MonoBehaviour
     }
     private IEnumerator sceneTransition(string scene)
     {
+        
         animator.SetBool("sceneTransitionIn", true);
         yield return new WaitForSeconds(3.1f);
         SceneManager.LoadScene(scene);
