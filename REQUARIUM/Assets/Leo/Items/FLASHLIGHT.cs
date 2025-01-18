@@ -43,6 +43,10 @@ public class FLASHLIGHT : MonoBehaviour
 
     public Color baseColor = Color.white;
     public Color possessedColor;
+
+    public Sprite regularSprite;
+    public Sprite possessedSprite;
+    public SpriteRenderer hand;
     void Start()
     {
         battery = SaveDataManager.Instance.daveSata.batteries;
@@ -93,10 +97,12 @@ public class FLASHLIGHT : MonoBehaviour
         if (isPossessed == true)
         {
             switchOn.color = possessedColor;
+            hand.sprite = possessedSprite;
         }
         else
         {
             switchOn.color = baseColor;
+            hand.sprite = regularSprite;
         }
             
         

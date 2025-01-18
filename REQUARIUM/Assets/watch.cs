@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class Watch : MonoBehaviour
+public class watch : MonoBehaviour
 {
     private TextMeshProUGUI watchText;
     private TextMeshPro thisWatch;

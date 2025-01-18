@@ -870,6 +870,9 @@ MonoBehaviour:
   sliderEnd: 0
   baseColor: {r: 1, g: 1, b: 1, a: 1}
   possessedColor: {r: 0.5357895, g: 0.11974903, b: 0.6509434, a: 1}
+  regularSprite: {fileID: 21300000, guid: 85a68ba3244cc0a4a942dc2ed045cecb, type: 3}
+  possessedSprite: {fileID: 21300000, guid: 5b38bc6897381ce4d87beaf0a0b9d2ef, type: 3}
+  hand: {fileID: 5826496775680339587}
 --- !u!114 &8708863119133998543
 MonoBehaviour:
   m_ObjectHideFlags: 0
