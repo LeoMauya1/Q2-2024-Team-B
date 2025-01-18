@@ -72,10 +72,12 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable()
     {
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+        move.action.Enable();
     }
     private void OnDisable()
     {
         UnityEngine.Cursor.lockState = CursorLockMode.None;
+        move.action.Disable();
     }
 
 
