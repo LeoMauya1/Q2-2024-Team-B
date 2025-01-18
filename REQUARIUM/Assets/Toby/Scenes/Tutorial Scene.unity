@@ -5412,7 +5412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79eb0fc695d38584080751322c206d56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camSensitivty: 500
+  camSensitivty: 100
   camDistance: 0
   PlayerPos: {fileID: 433716648}
   offset: {x: 0, y: -2, z: 0}
