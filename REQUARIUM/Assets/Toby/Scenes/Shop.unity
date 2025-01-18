@@ -2251,7 +2251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shopPanel: {fileID: 874994547}
-  batteryCost: 500
+  batteryCost: 600
   spearCost: 1000
   oxygenTankCost: 2000
   timerCost: 5000
